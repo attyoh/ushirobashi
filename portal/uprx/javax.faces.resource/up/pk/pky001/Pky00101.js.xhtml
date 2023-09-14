@@ -1,0 +1,21 @@
+/*
+ * Pky00101.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+/**
+ * Enterキーの二度押しブロック
+ */
+var KeyControl = {
+    invalidEnter: function () {
+        $('form[name = loginForm]').keypress(function (e) {
+            if (e.which === 13) {
+                return false;
+            }
+        });
+    }
+    , validityEnter: function () {
+    }
+};

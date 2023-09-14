@@ -1,0 +1,114 @@
+/*
+ * Bsa00101.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+$(function () {
+    // 前月・次月・今月ボタンにclickイベント追加＆実行
+    PrimeFaces.rxFunc.addScheduleButtonProc();
+});
+
+PrimeFaces.rxFunc = $.extend(PrimeFaces.rxFunc, {
+    /**
+     * p:scheduleの初期処理
+     */
+    scheduleInit: function (locales, firstDay) {
+        //console.log("locales", locales, "firstDay", firstDay);
+        this.currentLocale = locales;
+        var objLoc = PrimeFaces.locales[this.currentLocale + "-portal"];
+        //console.log(this.currentLocale + "-portal", "objLoc", objLoc);
+        objLoc.firstDay = firstDay;
+    },
+    currentLocale : "",
+    addScheduleButtonProcFlg : false,
+    /**
+     * p:scheduleのボタン押下処理の追加
+     */
+    addScheduleButtonProc: function (flg) {
+        if (flg) {
+            this.addScheduleButtonProcFlg = false;
+        }
+        //console.log("addFlg", this.addScheduleButtonProcFlg);
+        if (this.addScheduleButtonProcFlg) return;
+        // 対象ボタンの確認
+        var cnt = $(".portalSchedule .fc-prev-button").length;
+        if (cnt != 1)  return;
+        //console.log("add!!");
+        //前月・次月・今月ボタンに追加
+        $(".portalSchedule .fc-prev-button").on("click", this.formatTitle);
+        $(".portalSchedule .fc-next-button").on("click", this.formatTitle);
+        $(".portalSchedule .fc-today-button").on("click", this.formatTitle);
+        this.formatTitle();
+        this.addScheduleButtonProcFlg = true;
+    },
+    /**
+     * p:schedule　で出力されるtitleを編集する
+     * ※[理由]titileのフォーマット「monthNames + " " + YYYY」が設定でなんとかできないため
+     * ※[前提]portalScheduleクラス配下に対して処理を行う
+     * 
+     * TODO PrimeFaces.locales['xx-portal']　の定義を使用して、フォーマットを指定する
+     * 
+     * 今はスペースで前後入れ替えているだけ
+     * 
+     * @returns void
+     */
+    formatTitle: function () {
+        //console.log("formatTitle");
+        var that = PrimeFaces.rxFunc;
+        //抽出条件に該当する要素のテキスト表示を編集する
+        $(".portalSchedule .fc-center h2:first-child").each(function (i, elem) {
+            //console.log(that);
+            //locales
+            var objLoc = PrimeFaces.locales[that.currentLocale + "-portal"];
+            //showMonthAfterYear
+            var showMonthAfterYear = objLoc.showMonthAfterYear;
+            var yearSuffix = objLoc.yearSuffix;
+            var s = $(elem).text();
+            if (!showMonthAfterYear) {
+                $(elem).text(s + yearSuffix);
+                return;
+            }
+            
+            var r = s.split(" ");
+            var year = r[1] + yearSuffix;
+            var month = r[0];
+            $(elem).text(year + " " + month);
+        });
+    },
+});
+
+function tabChangeProc() {
+    // 前月・次月・今月ボタンにclickイベント追加＆実行
+    PrimeFaces.rxFunc.addScheduleButtonProc();
+}
+
+function addScheduleButtonProc() {
+    // (強制的に)前月・次月・今月ボタンにclickイベント追加＆実行
+    PrimeFaces.rxFunc.addScheduleButtonProc(true);
+}
+
+/**
+ * 日表示／月表示のマイスケジュール部分のupdate
+ * @param {type} xhr
+ * @param {type} status
+ * @param {type} args
+ * @returns {undefined}
+ */
+function myScheduleUpdateProc(xhr, status, args) {
+    if (args.procEnd) {
+        //マイスケジュール編集／オフィスアワー照会で更新が発生した場合
+        //console.log("編集あり");
+        //p:remoteCommand
+        dispMyScheduleUpdate();
+    }
+}
+
+/**
+ * 学修エリアの[もっと見る]クリック時のスクロールをtopへ
+ * @returns {undefined}
+ */
+function scrollProc() {
+    $('#portalSupport .ui-tabs-panels .ui-tabs-panel[style="display: block;"]').scrollTop(0);
+}

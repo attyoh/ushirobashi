@@ -1,0 +1,842 @@
+/*
+ * core.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+// ---------------------------------------------------------
+// グローバル変数の定義
+// ---------------------------------------------------------
+// 編集中の確認フラグ
+var needModifiedConfirm = true;
+// 未保存時の確認メッセージ（2言語対応のため、frameComponent.xhtmlで値を設定）
+var confirmMessage;
+// 初期データ保持用（親画面）
+var initData;
+// 初期データ保持用（子、孫画面）
+var initDataChildMap = {};
+// 前回の画面ID
+var preFormId;
+// 強制的に、未確認ダイアログを表示するか
+var saveConfirmFlg = false;
+// ポーリングの管理オブジェクト（<p:poll>を使用する場合は、すべてここで管理する）
+var polls;
+// Ajax送信時にローディングアイコンを表示するかのフラグ
+var showAjaxLoadingFlg = true;
+
+// ---------------------------------------------------------
+// 画面初期表示時の処理メソッド
+// ---------------------------------------------------------
+/**
+ * ブラウザの戻るボタン対応。
+ */
+$(function () {
+    // ブラウザ履歴に１つ追加
+    window.history.pushState('', null, null);
+    // 戻るボタン押下で
+    $(window).on('popstate', function (event) {
+        // ブラウザ履歴を操作
+        window.history.pushState('', null, null);
+    });
+
+	///////////////////////////////////////////////////////////////////////////
+	//
+	// ブラウザ履歴の制御をEXと同じにしたい場合は、上記の処理をコメント化し、
+	// 下記の処理を有効にすること。
+	// ※frameComponent.jsの28行目のコメントを元に、frameComponent.jsも修正すること。
+	//
+	///////////////////////////////////////////////////////////////////////////
+	
+//	/**
+//	 * ブラウザの戻るボタン押下時に前画面を出力させない制御
+//	 */
+//	var agent = window.navigator.userAgent;
+//	if (agent.indexOf('Mac') != -1 && agent.indexOf('Safari') != -1 
+//		&& agent.indexOf('Chrome') == -1 && agent.indexOf('iPhone') == -1) {
+//		//Mac×Safariの場合
+//		window.onpopstate = function() {
+//			//履歴に変化があった場合
+//			//ダミーの履歴を挿入（ブラウザ戻るボタン押下時に前画面を表示させない）
+//			history.pushState(null, null, null);
+//		}
+//		
+//		window.onpageshow = function(event) {
+//			if (event.persisted) {
+//				//キャッシュを見て画面表示をしようとした場合（ブラウザ戻る/進む等が押下された場合）
+//				//画面を再読込み
+//				//（ログイン画面から履歴を参照した場合、セッションタイムアウトとするための制御）
+//				window.location.reload();
+//			}
+//		}
+//		
+//		//ブラウザ進むボタン押下処理
+//		//（Safari戻るボタン長押しで表示される履歴でログイン時のポータル画面を指定した場合
+//		//  ログイン時の画面に戻さないための制御）
+//		history.forward();
+//	}else{
+//		if (agent.indexOf('Firefox') != -1 || agent.indexOf('Chrome') != -1) {
+//			setTimeout(window.history.forward(), 10);
+//		}
+//		//その他のOS×ブラウザの場合
+//		if (window.addEventListener){
+//			window.addEventListener('unload', function(){}, false);
+//		}
+//		//ブラウザ進むボタン押下処理
+//		history.forward();
+//	}
+});
+
+/**
+ * テキストフィールド内のEnterで、submitをブロックする。
+ * クラスセレクタ（ctrl-enter）が指定されているものは対象外とする。
+ */
+$(function () {
+    $(document).on("keypress", "input:not(.ctrl-enter)", function (e) {
+        return e.which !== 13;
+    });
+});
+
+/**
+ * ページ上部に移動するボタンにアニメーションを設定。
+ */
+$(function () {
+    var showFlag = false;
+    var topBtn = $('.page-top');
+    topBtn.css('bottom', '-100px');
+    //スクロールが100に達したらボタン表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            if (!showFlag) {
+                showFlag = true;
+                topBtn.stop().animate({'bottom': '80px'}, 200);
+            }
+        } else {
+            if (showFlag) {
+                showFlag = false;
+                topBtn.stop().animate({'bottom': '-100px'}, 200);
+            }
+        }
+    });
+    //スクロールしてトップ
+    $('.page-top').click(function () {
+        $('body,html').animate({scrollTop: 0}, 'slow');
+    });
+});
+
+/**
+ * ページ下部に移動するボタンにアニメーションを設定。
+ */
+$(function () {
+    var showFlag = false;
+    var downBtn = $('.page-down');
+    downBtn.css('bottom', '-100px');
+    //スクロールが100に達したらボタン表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+            if (!showFlag) {
+                showFlag = true;
+                downBtn.stop().animate({'bottom': '25px'}, 200);
+            }
+        } else {
+            if (showFlag) {
+                showFlag = false;
+                downBtn.stop().animate({'bottom': '-100px'}, 200);
+            }
+        }
+    });
+    //スクロールしてフッターへ
+    $('.page-down').click(function () {
+        $('body,html').animate({scrollTop: $('footer').offset().top}, 'slow');
+    });
+});
+
+/**
+ * ブラウザのタブ/ウィンドウが閉じる場合に、編集中のデータが存在すればメッセージを表示する。
+ * ただし、画面遷移時やファイルダウンロードでも beforeunload イベントが走るため、ブラウザや子画面の×ボタン押下時に限定させる。
+ * （リンクやボタンを起点とした beforeunload はすべてチェック対象外とする）
+ */
+$(function () {
+    // 画面閉じようとする時、編集中のデータがある場合、confirmを表示する
+    $(window).on('beforeunload.core', function () {
+        if (needModifiedConfirm && isModified()) {
+            return confirmMessage;
+        }
+    });
+    // リンクやボタン押下時に、クリックフラグをONにする（100ミリ秒でOFF）。 ※ ダウンロード対応
+    $(document).on("click", "a, button", function () {
+        needModifiedConfirm = false;
+        setTimeout(function () {
+            needModifiedConfirm = true;
+        }, 100);
+    });
+});
+
+/**
+ * 子画面でのスクロール時、親画面がスクロールしないように制御する。
+ */
+$(function () {
+    $('.rx-dialog .ui-dialog-content').preventScroll();
+});
+
+/**
+ * 特殊キー(F1～F12)を無効化する。
+ */
+$(function () {
+    $(document).keydown(function (e) {
+        // 特殊キー(F1～F12)を無効化する
+        if (e.keyCode >= 112 && e.keyCode <= 123) {
+
+            // IEの場合、ヘルプ(F1)を無効化する
+            var isIE = navigator.userAgent.match(/(?:(MSIE) |(Trident)\/.+rv:)([\w.]+)/i);
+            if (e.keyCode === 112 && isIE) {
+                document.onhelp = function () {
+                    return false;
+                };
+                window.onhelp = function () {
+                    return false;
+                };
+            }
+
+            // 押されたキーを無効化する
+            e.keyCode = 0;
+            return false;
+        }
+    });
+});
+
+/**
+ * ポーリングを管理する。
+ * 画面遷移時に起動しているポーリングは停止する。
+ */
+$(function () {
+    // ポーリングオブジェクトを格納するオブジェクト
+    if (typeof polls === 'undefined') {
+        // グローバル変数として宣言する
+        polls = {};
+    } else {
+        // 画面遷移時にはポーリングを全停止
+        for (name in polls) {
+            var poll = polls[name];
+            if (poll.isActive()) {
+                poll.stop();
+            }
+            delete polls[name];
+        }
+    }
+});
+
+/**
+ * Ajaxで画面遷移するため、遷移時に画面上部に強制移動する。
+ */
+$(function () {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+});
+
+/**
+ * スクロールイベントのpropagationを阻止する。
+ * 例：$('.ui-dialog-content:visible').preventScroll();
+ * @param {type} param
+ */
+$.fn.extend({
+    "preventScroll": function () {
+        $(this).each(function () {
+            var _this = this;
+            if (navigator.userAgent.indexOf('Firefox') >= 0) {   //firefox
+                _this.addEventListener('DOMMouseScroll', function (e) {
+                    _this.scrollTop += e.detail > 0 ? 60 : -60;
+                    e.preventDefault();
+                }, false);
+            } else {
+                _this.onmousewheel = function (e) {
+                    e = e || window.event;
+                    _this.scrollTop += e.wheelDelta > 0 ? -60 : 60;
+                    return false;
+                };
+            }
+        });
+    }
+});
+
+// ---------------------------------------------------------
+// 通常メソッド
+// ---------------------------------------------------------
+/**
+ * コンテキストパスを取得する。
+ *
+ * @returns {String} コンテキストパス
+ */
+function getContextPath() {
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+}
+
+/**
+ * フォントサイズを変更する。
+ * 
+ * @param {boolean} isStandard 標準サイズか否か
+ */
+function changeFontSize(isStandard) {
+    var fontLink = $('link[href*="javax.faces.resource/font"]');
+    var oldFont;
+    var newFont;
+    if (isStandard) {
+        oldFont = 'fontS.css';
+        newFont = 'font.css';
+    } else {
+        oldFont = 'font.css';
+        newFont = 'fontS.css';
+    }
+    var fontURL = fontLink.attr('href');
+    var newURL = fontURL.replace(oldFont, newFont);
+    fontLink.attr('href', newURL);
+}
+
+/**
+ * コンポーネントにフォーカスを設定する。
+ * 原則として p:focus を利用すること。
+ * p:focusが利用できない場合、またはフォーカスの制御が複雑な場合に利用してもよい。
+ * 
+ * @param {String} widgetVar コンポーネントのwidgetVar
+ */
+function setFocus(widgetVar) {
+    // PrimeFaces.focusでもsetTimeoutを使用するので、これに倣う。（特にボタン、子画面のコンポーネントには必要。）
+    setTimeout(function () {
+        PF(widgetVar).getJQ().focus();
+    }, 250);
+}
+
+/**
+ * 時刻を妥当な値に変換します。
+ * クラスセレクタ "ctrl-h24" が設定されている場合、24:00を許します。
+ * 
+ * @param {Object} obj 時刻オブジェクト
+ * @param {String} mask '99:99' or '99:99:99'
+ */
+function setTime(obj, mask) {
+	var time = $(obj);
+	var maxH = time.hasClass('ctrl-h24') ? 24 : 23;
+	var value = time.val();
+	if (value.indexOf('_') === -1) {
+		var h = parseInt(value.substring(0, 2), 10);
+		var m = parseInt(value.substring(3, 5), 10);
+		h = (h > maxH) ? maxH : h;
+		m = (h === 24) ? 0 : ((m > 59) ? 59 : m);   // 24時の場合は0分
+		
+		var cnvTime;
+		if(mask === '99:99'){
+			cnvTime = ('00' + h).slice(-2) + ':' + ('00' + m).slice(-2);
+			
+		} else if(mask === '99:99:99'){
+			var d = parseInt(value.substring(6), 10);
+			d = d > 59 ? 59 : d;   // 24時の場合は0分
+			cnvTime = ('00' + h).slice(-2) + ':' + ('00' + m).slice(-2) + ':' + ('00' + d).slice(-2);
+		}		
+		
+		if (value !== cnvTime) {
+			time.val(cnvTime);
+		}
+	}
+}
+
+/**
+ * 変更チェック対象となる項目の値を取得する。
+ * widgetVarが指定されている場合、子画面をターゲットとする。
+ *
+ * .ctrl-checkModify が指定されている項目（エリアに含まれる項目）をチェック対象とする。
+ * ただし、.ctrl-ignoreModify が指定されている項目（エリアに含まれる項目）はチェック対象外とする。
+ *
+ * ※ 画面ID.js に、collectOriginalData を実装することで、独自情報を判定条件に含めることができる。
+ *
+ * 【備考】
+ * ・制御用クラスセレクタ（ctrl-checkModify、ctrl-ignoreModify）は入力項目単体、または入力項目を含むエリアに複数指定することができる。
+ * 　制御用クラスセレクタは、ctrl-checkModify > ctrl-ignoreModify となるように設定することを前提とする。
+ * 　同一項目（エリア）に両方を設定した場合、ctrl-ignoreModify > ctrl-checkModify となるように設定した場合の動作は保証しない。
+ * ・ドラッグ＆ドロップでの行移動も変更チェック対象に含むが、入力項目と同様でチェック対象外に指定することも可能である。
+ * 　ドラッグ＆ドロップテーブルはセル内のテキストを基に判定する。テキストまたは入力項目に含まれない変更（アイコンの変更など）の場合は、
+ * 　非表示項目としてキーワードを埋める必要がある。
+ * ・子画面のidとwidgetVarは同じものを使用することを前提とする。
+ *
+ * @param {String} widgetVar 子画面のwidgetVar（親画面の場合は指定しない）
+ * @returns {String} 画面入力情報（JSON形式）
+ */
+function collectData(widgetVar) {
+    var funcFormId = "funcForm";
+    // custom.mobile.jsで定義
+    if (typeof (MobileConst) !== 'undefined') {
+        funcFormId = MobileConst.Prefix + ":" + funcFormId;
+    }
+    // idにコロン:があればエスケープ
+    funcFormId = PrimeFaces.escapeClientId(funcFormId);
+    var retArray = new Array();
+    // 対象のフォームを特定する
+    var parentForm = widgetVar ? $('#' + widgetVar + '\\:' + 'dialog') : $(funcFormId);
+    // チェック対象となる項目を取得する（チェック対象エリアのクローンを生成 ⇒ チェック対象外エリアを削除 ⇒ 対象項目を抽出）
+    var targetList = parentForm.find('.ctrl-checkModify').clone();  // 画面に影響しないようにクローン
+    for (var i = 0; i < targetList.length; i++) {
+        var target = $(targetList[i]);
+        target.find('.ctrl-ignoreModify').remove(); // 対象外項目（エリア）を除去
+
+        var tagName = target.prop('tagName').toLowerCase();
+        if (tagName === 'input' || tagName === 'textarea') {
+            // 制御用クラスセレクタが入力項目に直接設定された場合（PFではselectタグに対象外セレクタを直接指定できないため、elseで処理する）
+
+            // idとvalueをリストに追加
+            retArray = retArray.concat(collectDataForItem(target));
+        } else {
+            // 制御用クラスセレクタが入力項目以外に設定された場合
+
+            // ドラッグ＆ドロップテーブル（dataTable）に直接設定された場合（ctrl-checkModify と ctrl-modifiableTable を両方持つ）
+            if (target.hasClass('ctrl-modifiableTable')) {
+                retArray.push(collectDataForDraggableTable(target));
+            }
+
+            // エリアを指定している場合、入力項目の状態をリストに追加
+            var items = target.find('input,textarea,select');
+            retArray = retArray.concat(collectDataForItem(items));
+
+            // ドラッグ＆ドロップでの行移動を許可する制御用クラスセレクタを抽出し、内容を保持する。
+            var tableList = target.find('.ctrl-modifiableTable');
+            for (var j = 0; j < tableList.length; j++) {
+                retArray.push(collectDataForDraggableTable($(tableList[j])));
+            }
+        }
+    }
+
+    // チェック情報を機能独自に追加する。(※ collectOriginalData は、画面ID.js で実装するものである）
+    if (typeof collectOriginalData === 'function') {
+        retArray = retArray.concat(collectOriginalData());
+    }
+
+    // JSON形式に変換して返す
+    return JSON.stringify(retArray);
+}
+
+/**
+ * 入力項目の変更チェック用の値を取得する。
+ * ただし、PrimeFacesのコンポーネントを使用するにあたり、PFが制御用の値を保持するためにinputタグを追加する場合がある。
+ * これら制御用項目は入力値とは異なるため、チェック対象外とする。
+ *
+ * 【注意】collectDataメソッドから呼び出すもので、直接使用するものではない。
+ *
+ * 【補足】
+ * チェック対象と対象外を区別するために、PFの特徴を理解する必要がある。
+ * inputタグでtext以外の項目とselectタグには、実際の入力値を持つ項目のidに'_input'が付与される。
+ * inputタグのtextとtextareaタグは、XHTMLで指定したとおりのidで命名される。（'_input'が付与されない。）
+ * 制御用項目にはコンポーネントに振ったidに'_xxxxx'（xxxxはinput以外の文字）が付与される。
+ * ※JSFがid未指定の際に自動で割り当てる'j_idt'はこれにあたらない。
+ * また、制御用項目にはidが振られないものも存在するため、idのない項目も対象外とする。
+ * 注意点はhidden項目である。h:inputHiddenではidを指定しない場合、idは自動で振られないため、使用する場合は
+ * 必ずidを指定する必要がある。
+ *
+ * 《チェック対象とする入力項目》
+ * 入力項目（input,textarea,select問わず）のidをコロンで区切った最後のセクションが'_input'で終わるもの。
+ * またはアンダーバーを含まないもの。（ただし'j_idt'は除く）
+ *
+ * 《PFが自動で生成する項目の例》
+ * データテーブルのselectionを利用する場合のチェックボックスにはidが振られない。
+ * また、selectionの選択状態を保持する'_selection'が付与されたhidden項目が追加される。
+ *
+ * @param {Object|Object[]} items 変更チェック対象のDOMオブジェクト
+ * @returns {Object[]} 変更チェック対象の変更チェック用オブジェクト
+ */
+function collectDataForItem(items) {
+    var array = new Array();
+    for (var i = 0; i < items.length; i++) {
+
+        var item;
+
+        var id = $(items[i]).attr('id');
+        if (id != undefined) {
+            // idの内、コロンで区切った最後のセクションで判断する。（'j_idt'は削除しておく）
+            var divisionId = id.split('\\:');
+            var evalStr = divisionId[divisionId.length - 1].replace(/j_idt/g, '');   // 検証対象の文字列
+
+            // 検証値にアンダーバーを含む場合、'_input'以外であれば対象外
+            if (evalStr.indexOf('_') !== -1 && evalStr.indexOf('_input') === -1) {
+                continue;
+            }
+
+            item = $('#' + id.replace(/:/g, '\\:'));
+
+        } else {
+            // idをもたないものはnameで取得する。
+            // ※ スマホのp:selectOneMenuがselectタグにidを付けないための対応
+            var name = $(items[i]).attr('name');
+            // 両方持たないものは対象外とする。
+            if (name === undefined) {
+                continue;
+            }
+            item = $("select[name='" + name + "']");
+        }
+
+        array = array.concat(item.serializeArray());
+    }
+    return array;
+}
+
+/**
+ * ドラッグ＆ドロップテーブルの変更チェック用の値を取得する。
+ * 【注意】collectDataメソッドから呼び出すもので、直接使用するものではない。
+ *
+ * @param {Object} table ドラッグ＆ドロップテーブル（ctrl-modifiableTable）を持つDOMオブジェクト
+ * @returns {Object} ドラッグ＆ドロップテーブルの変更チェック用オブジェクト
+ */
+function collectDataForDraggableTable(table) {
+    var tds = table.find('table > tbody > tr > td');
+    var array = new Array();
+    for (var i = 0; i < tds.length; i++) {
+        var td = $(tds[i]);
+        td.find('script').remove();     // PFのscriptはテキスト扱いになるため削除
+
+        var selItems = td.find('select');
+        if (selItems.length > 0) {
+            // ドラッグ＆ドロップテーブル内のコンボはselectのvalueで判断する。（PFの特性上、テキストでは必ず差分が発生するため）
+            array.push(collectDataForItem(selItems));
+        } else {
+            array.push(td.text());
+        }
+    }
+    return {'name': table.attr('id'), 'value': array};
+}
+
+/**
+ * 変更チェック対象となる項目の値を、現在の状態で初期化する。
+ * 保存ボタンなど押下時のoncompleteで当メソッドをコールする。
+ * バリデーションエラー、ワーニング、その他の例外が発生している場合は初期化を行わない。
+ *
+ * @param {XMLHttpRequest} xhr XMLHTTPリクエスト
+ * @param {String} status ステータス
+ * @param {Object[]} args コールバックパラメータ
+ * @param {String} widgetVar 子画面のwidgetVar（親画面の場合は指定しない）
+ */
+function processSave(xhr, status, args, widgetVar) {
+    if ("success" !== status || args.validationFailed || args.exceptionFlg || args.warningFlg) {
+        // リクエスト成功以外または、バリデーションエラー、ワーニング、その他の例外が発生している場合は何もしない
+        return;
+    }
+    // 保存状態をリセット
+    if (widgetVar) {
+        initDataChildMap[widgetVar] = collectData(widgetVar);
+    } else {
+        initData = collectData();
+    }
+}
+
+/**
+ * リクエストが正常であるか判定する。
+ * バリデーションエラー、例外、ワーニングのいずれかが発生していない場合を正常とみなす。
+ * 
+ * @param {XMLHttpRequest} xhr XMLHTTPリクエスト
+ * @param {String} status ステータス
+ * @param {Object[]} args コールバックパラメータ
+ */
+function isNormalRequest(xhr, status, args) {
+    // リクエスト成功以外または、バリデーションエラー、ワーニング、その他の例外が発生している場合は何もしない
+    if ("success" !== status || args.validationFailed || args.exceptionFlg || args.warningFlg) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * 画面遷移時に未保存時の確認メッセージを表示させる。
+ * 実際には、isModified() で true が返るように状態を変更します。
+ */
+function setUnsavedConfirm() {
+    initData = {'dummy': ''};
+}
+
+/**
+ * 編集状態の判定。
+ * widgetVarが指定されている場合、子画面をターゲットとする。
+ *
+ * @param {String} widgetVar 子画面のwidgetVar（親画面の場合は指定しない）
+ * @returns {Boolean} 判定結果
+ */
+function isModified(widgetVar) {
+    var data = widgetVar ? initDataChildMap[widgetVar] : initData;
+
+    // 変更チェックエリアがない
+    if ($.isEmptyObject(data)) {
+        return false;
+    }
+    // 最新データを取得する
+    var curData = widgetVar ? collectData(widgetVar) : collectData();
+
+    // 変更チェックエリアがない
+    if ($.isEmptyObject(curData)) {
+        return false;
+    }
+    return data !== curData;
+}
+
+/**
+ * 編集内容が未保存の場合、警告を通知する。
+ * 画面遷移時は標準で使用されるが、その他のケースでも使用可能（ガイド参照）。
+ *
+ * @param {String|HTML要素} source
+ * @param {String} widgetVar 子画面のwidgetVar（親画面の場合は指定しない）
+ * @see initDialog(widgetVar)
+ */
+function confirmIfModified(source, widgetVar) {
+    if (isModified(widgetVar)) {
+        // confirmダイアログを表示する
+        PrimeFaces.confirm({source: source, message: confirmMessage, icon: "ui-icon-alert"});
+    } else {
+        var confirmSource = (typeof (source) === 'string') ? $(PrimeFaces.escapeClientId(source)) : $(source);
+        // data-pfconfirmcommandに退避したactionを実行する
+        // MEMO: primefaces-5.2-sources\META-INF\resources\primefaces\dialog\dialog.js#624～を参照
+        var fn = new Function('event', confirmSource.data('pfconfirmcommand'));
+        fn.call(confirmSource.get(0), window.event);
+        // 子、孫画面の初期データをクリアする
+        for (var widgetVar in initDataChildMap) {
+            delete initDataChildMap[widgetVar];
+        }
+        $(window).unbind();
+    }
+}
+
+/**
+ * ダイアログの初期処理を行う。
+ *
+ * ダイアログのクローズアイコンのクリックイベントをハックし、ボタン押下時に
+ * 編集内容破棄の確認メッセージを表示するようイベントを設定する。
+ *
+ * ダイアログ内の表示情報を保持する。
+ *
+ * @param {String} widgetVar
+ * @see confirmIfModified(source)
+ */
+function initDialog(widgetVar) {
+    // 初期表示位置に戻す
+    PF(widgetVar).initPosition();
+
+    // PF仕様のclickイベントを解除
+    PF(widgetVar).closeIcon.unbind('click');
+
+    // 新イベントを追加
+    PF(widgetVar).closeIcon.click(function (e) {
+        var source = PF(widgetVar + '-closeBtn').getJQ();
+        if (isModified(widgetVar)) {
+            // confirmダイアログを表示する
+            PrimeFaces.confirm({source: source, message: confirmMessage, icon: "ui-icon-alert"});
+        } else {
+            var confirmSource = (typeof (source) === 'string') ? $(PrimeFaces.escapeClientId(source)) : $(source);
+            // data-pfconfirmcommandに退避したactionを実行する
+            // MEMO: primefaces-5.2-sources\META-INF\resources\primefaces\dialog\dialog.js#624～を参照
+            var fn = new Function('event', confirmSource.data('pfconfirmcommand'));
+            fn.call(confirmSource.get(0), window.event);
+            // 子、孫画面の初期データをクリアする
+            delete initDataChildMap[widgetVar];
+        }
+        e.preventDefault();
+    });
+
+    // ダイアログ内の表示情報を保持
+    initDataChildMap[widgetVar] = collectData(widgetVar);
+}
+
+/**
+ * データテーブルの列選択イベント。
+ * ・テーブルの件数が０件のメッセージ表示列のcolspan調整。
+ * 
+ * @param {String} widgetVar
+ */
+function changeColumnToggler(widgetVar) {
+    // 件数が１件以上ならなにもしない。
+    var table = PF(widgetVar);
+    if (!table.getTbody().find('tr').hasClass('ui-datatable-empty-message')) {
+        return;
+    }
+    // 表示中の列数をカウントし、メッセージ表示部分のcolspanを変更
+    var cols = 0;
+    var ths = table.getThead().find('th');
+    for (var i = 0; i < ths.length; i++) {
+        var th = ths[i];
+        if ($(th).css('display') !== 'none') {
+            cols++;
+        }
+    }
+    table.getTbody().find('td').attr('colspan', cols);
+}
+
+/**
+ * ポーリング管理オブジェクトにポーリングオブジェクトを保持する。
+ * ポーリング開始時に当メソッドをコールすること。
+ * @param {String} widgetVar
+ */
+function addPolling(widgetVar) {
+    polls[widgetVar] = PF(widgetVar);
+}
+
+/**
+ * ポーリング管理オブジェクトに保持しているポーリングオブジェクトを削除する。
+ * ポーリング停止時に当メソッドをコールすること。
+ * @param {String} widgetVar
+ */
+function deletePolling(widgetVar) {
+    if (typeof polls[widgetVar] !== 'undefined') {
+        delete polls[widgetVar];
+    }
+}
+
+/**
+ * ポーリング管理オブジェクトにポーリングオブジェクトを保持する。
+ * ポーリング開始時に当メソッドをコールすること。
+ * @param {String} timerId
+ * @param {Object} timerObj
+ */
+function addTimerObj(timerId, timerObj) {
+    polls[timerId] = timerObj;
+}
+
+/**
+ * インターバルタイマ用管理クラス。
+ *
+ */
+RxIntervalTimer = {
+    /**
+     * インターバルタイマ起動停止用関数。のオブジェクト。
+     */
+    timerFuncArray: new Array(),
+    /**
+     * インターバルタイマを起動または停止する。
+     *
+     * @param {boolean} startflag 起動フラグ　ture:起動　false:停止
+     * @param {String} timerId 一意のインターバルタイマＩＤ
+     * @param {int} interval インターバル時間（秒）
+     * @param {String} callBackObj 　コールバック関数のオブジェクト
+     */
+    startStopTimer: function (startflag, timerId, interval, callBackObj) {
+        if (startflag) {
+            RxIntervalTimer.startTimer(timerId, interval, callBackObj);
+        } else {
+            RxIntervalTimer.stopTimer(timerId);
+        }
+    },
+    /**
+     * インターバルタイマを起動する。
+     *
+     * @param {String} timerId 一意のインターバルタイマＩＤ
+     * @param {int} interval インターバル時間（秒）
+     * @param {String} callBackObj 　コールバック関数のオブジェクト
+     */
+    startTimer: function (timerId, interval, callBackObj) {
+        // 起動中のタイマを停止する。
+        RxIntervalTimer.stopTimer(timerId);
+        // インターバルタイマ起動停止用関数を生成する。
+        var timerFuncObj = new intervalTimerFunc();
+        // インターバルタイマを起動する。
+        timerFuncObj.start(interval, callBackObj);
+        // グローバルのタイマ管理オブジェクトにインターバルタイマを登録する。
+        addTimerObj(timerId, timerFuncObj);
+        RxIntervalTimer.timerFuncArray[timerId] = timerFuncObj;
+    },
+    /**
+     * インターバルタイマを停止する。
+     *
+     * @param {String} timerId 起動中のインターバルタイマＩＤ
+     */
+    stopTimer: function (timerId) {
+        var timerFuncObj = RxIntervalTimer.timerFuncArray[timerId];
+        if (timerFuncObj) {
+            // インターバルタイマを停止する。
+            timerFuncObj.stop();
+            // グローバルのタイマ管理オブジェクトにインターバルタイマを削除する。
+            deletePolling(timerId);
+            delete RxIntervalTimer.timerFuncArray[timerId];
+        }
+    }
+};
+
+/**
+ * インターバルタイマ起動停止用関数。
+ *
+ */
+intervalTimerFunc = function () {
+
+    /**
+     * インターバルタイマのオブジェクト。
+     */
+    this.intervalObj = null;
+
+    /**
+     * インターバルタイマを起動する。
+     *
+     * @param {int} interval インターバル時間（秒）
+     * @param {String} callBackObj 　コールバック関数名
+     */
+    this.start = function (interval, callBackObj) {
+        // インターバルタイマを起動する。
+        this.intervalObj = setInterval(callBackObj, interval * 1000);
+    };
+
+    /**
+     * インターバルタイマが起動中かチェックする。
+     *
+     * @returns {boolean} true:起動中 false:停止
+     */
+    this.isActive = function () {
+        return this.intervalObj !== null;
+    };
+
+    /**
+     * インターバルタイマを停止する。
+     *
+     */
+    this.stop = function () {
+        clearInterval(this.intervalObj);
+        this.intervalObj = null;
+    };
+};
+
+// ---------------------------------------------------------
+// PrimeFacesのメソッドハック
+// ---------------------------------------------------------
+
+// PrimeFaces の PrimeFaces.ajax.Request.send を退避
+var pfRequestSend = PrimeFaces.ajax.Request.send;
+
+/**
+ * Ajaxの送信メソッドをハックする。
+ * 開発モード（cf. web.xml javax.faces.PROJECT_STAGE）であれば、Ajax通信時に常にブロック画面（blockUI）を表示する。
+ * 開発モード以外では、global=falseが指定されていないAjax通信に限りブロック画面を表示する。
+ *
+ * この理由はAjaxが暴走する場合に、それを気付かせるためである。
+ * （想定外の操作でブロック画面が表示される。ブロック画面が連続して表示されるなど。。）
+ *
+ * ※globalの指定を固定するには、クラスセレクタに "ctrl-globalFixed" を指定する。（共通部品以外での使用はNG）
+ *
+ * @param {Object} cfg コンフィグ
+ */
+PrimeFaces.ajax.Request.send = function (cfg) {
+    if (PrimeFaces.isDevelopmentProjectStage()) {
+        // pollのように scriptで実行される場合は、classが指定できない。そのような場合は指定の通りとする。
+        var source = $(PrimeFaces.escapeClientId(cfg.source));
+        if (source.length !== 0 && !source.hasClass('ctrl-globalFixed')) {
+            // ローディングアイコンを表示する。
+            showAjaxLoadingFlg = true;
+            // ajaxイベントのリッスンをglobalにしたい場合は、下記の実装を有効化する。
+//            cfg.global = true;
+        }
+    } else {
+        // ボタン、リンクの場合のみブロックを表示する
+        var source = $(PrimeFaces.escapeClientId(cfg.source));
+        if (source.length !== 0
+                && (source.prop('tagName').toLowerCase() === 'button' 
+                    || source.prop('tagName').toLowerCase() === 'a')) {
+
+            // ローディングアイコンを表示する。
+            showAjaxLoadingFlg = true;
+            // ajaxイベントのリッスンをglobalにしたい場合は、下記の実装を有効化する。
+//            cfg.global = true;
+        } else {
+            // ローディングアイコンを表示しない。
+            showAjaxLoadingFlg = false;
+            // ajaxイベントのリッスンをglobalにしたい場合は、下記の実装を有効化する。
+//            cfg.global = false;
+        }
+    }
+    // 退避したオリジナルメソッドをコール
+    pfRequestSend(cfg);
+};

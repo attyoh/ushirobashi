@@ -1,0 +1,55 @@
+192.168.3.21/24
+
+・https://www.maebashi-it.ac.jp/ → /ushirobashi
+
+・http://www.maebashi-it.ac.jp/ → /ushirobashi
+
+・https://library.maebashi-it.ac.jp → /library
+
+・https://portal.maebashi-it.ac.jp → /portal/uprx
+
+・前橋 → 後橋
+
+・群馬 → 軍魔
+
+・システム生体工学科 → システム理解しちゃうぞ！学科
+
+・建築学科 → 建築トントン学科
+
+・社会環境学科 → 社会環境破壊学科
+
+・総合デザイン学科 → そーごーでざいん学科
+
+・生命情報学科 → 生命ハッキング学科
+
+・生物工学科 →　架空生物工学科
+
+・情報・生命工学群 → ハッキング・架空生命工学
+
+・環境工学群 →　環境破壊工学群
+
+・maebashi → ushirobashi
+
+・-it.ac.jp → 削除
+
+・/etc/httpd/conf/httpd.conf
+
+・footer_logo.gif → ushiro_footer_log.gi
+
+・logo.png → ushirobashi.png
+
+・logo.gif → ushirobashi.gif
+
+・ishikawa.png → kali_abe.png
+
+・zhu.png → arai_abe.png
+
+・mitlogo.png → library.png
+
+NameVirtualHost http://192.168.3.21/:80
+<VirtualHost http://192.168.3.21/:80>
+ ServerAdmin root@localhost
+ DocumentRoot /var/www/html/potal/uprx
+ ServerName potal.ushirobashi
+</VirtualHost>
+

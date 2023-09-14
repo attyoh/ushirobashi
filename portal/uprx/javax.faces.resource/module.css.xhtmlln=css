@@ -1,0 +1,3572 @@
+@charset "utf-8";
+
+/*======================================================
+ * module.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * 汎用スタイル
+======================================================*/
+
+/*===== 文字揃え =====*/
+
+/* 左寄せ */
+.alignLeft {
+    text-align: left;
+}
+
+/* 中央揃え */
+.alignCenter {
+    text-align: center;
+}
+
+/* 右寄せ */
+.alignRight {
+    text-align: right;
+}
+
+/*===== 行内垂直揃え =====*/
+
+/* 上端揃え */
+.alignTop {
+    vertical-align: top;
+}
+
+/* 中央揃え */
+.alignMiddle {
+    vertical-align: middle;
+}
+
+/* 下端揃え */
+.alignBottom {
+    vertical-align: bottom;
+}
+
+/*===== インデント =====*/
+
+/* 段落の字下げ */
+.indentEm {
+    text-indent: 1em;
+}
+
+/*===== スペーサー =====*/
+
+/* 全角スペース */
+.spaceEm {
+    width: 1em;
+}
+
+/* 半角スペース */
+.spaceHalfEm {
+    width: 0.5em;
+}
+
+/*===== フロート =====*/
+
+/* 左フロート */
+.floatLeft {
+    float: left;
+}
+
+/* 右フロート */
+.floatRight {
+    float: right;
+}
+
+/*===== 表示変更 =====*/
+
+/* オーバーフローした末尾を三点リーダー（…）にする */
+.textOf {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 三点リーダーを解除し、折り返す */
+.wsNormal {
+    white-space: normal !important;;
+}
+
+/* 非表示（領域維持） */
+.hiddenStyle, .hiddenStyle * {
+    visibility: hidden !important;
+}
+
+/* インラインブロック */
+.inlineBlock {
+    display: inline-block;
+}
+
+/* ブロック */
+.dispBlock {
+    display: block;
+}
+
+/* インライン */
+.dispInline {
+    display: inline;
+}
+
+/* 非表示 */
+.dispNone {
+    display: none;
+}
+
+/* 字間0.5em */
+.letterSpaceHalf {
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+}
+
+/*===== 文字装飾 =====*/
+
+/* 太字 */
+.fontBold {
+    font-weight: bold;
+}
+
+/* 注意文言（赤字） */
+.fontAttention {
+    color: #cc0000;
+}
+
+/*===== その他 =====*/
+
+/* ぶら下げインデント */
+.hangIndent {
+    padding-left: 1em !important;
+    text-indent: -1em !important;
+}
+
+/*======================================================
+ * 検索エリア
+======================================================*/
+
+/*===== 検索エリア全体 =====*/
+
+/* 高さ可変 */
+.searchArea {
+    min-height: 2.7em;
+    position: relative;
+}
+
+/* 高さ固定（検索項目行が二行以下の場合） */
+.searchAreaHeight {
+    height: 6.5em;
+    margin-bottom: 0.3em;
+    position: relative;
+}
+
+/*===== 検索項目部全体 =====*/
+
+.searchItem {
+    display: inline-block;
+}
+
+/*===== 検索項目行 =====*/
+
+/* 通常 */
+.searchItemRow {
+    margin: 0 0 0.3em 0;
+}
+
+/* 最下行 */
+.searchItemRowBottom {
+    margin: 0;
+}
+
+/* 検索項目行が二行以下の場合の検索項目位置設定用の追加スタイル */
+.searchItemFixed {
+    bottom: 0;
+    position: absolute;
+}
+
+/*===== 検索項目セル =====*/
+
+/* 見出しセル、データセル */
+.searchItem dt, .searchItem dd {
+    display: inline-block;
+    /*height: 2.3em;*/
+    vertical-align: middle;
+}
+
+/* 見出しセル */
+.searchItem dt {
+    /*background: #efefef;*/ /* カラーテーマでの指定 */
+    /*line-height: 2.4;*/
+    line-height: 2.2;
+    margin: 0 0.3em 0 0;
+    padding: 0 0.5em;
+}
+
+/* 見出しセル（2列目以降）*/
+.searchItem dt.searchItemCell {
+    margin: 0 0.3em 0 0.5em;
+}
+
+/* 見出しセル（個別設定） */
+.searchItem dt.dtWidth {
+    /* 1列目の最大文字数の項目横幅を画面別cssにて設定。（複数行の場合のみ） */
+}
+
+/* データセルが複数行になる場合の見出し位置調整 */
+.searchItem dt.multiLabel {
+    vertical-align: top;
+}
+
+/* データセルが複数行になる場合の項目間（上下間隔）調整 */
+.searchItem .adjustMultiData  {
+    margin-bottom: 0.25em;
+}
+
+.searchItem .adjustMultiData:last-child  {
+    margin-bottom: 0;
+}
+
+/* 必須マーク（単票） */
+.requiredMark::after {
+    background: url("../images/required.png");
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 1.3em;
+    margin: 0 0.4em 0 0.6em;
+    width: 1.3em;
+    vertical-align: middle;
+}
+/*
+.requiredMark::after {
+    position: relative;
+    left: 0.3em;
+    content: '*';
+}
+*/
+/*
+.requiredMark::after {
+    background: #ffffff;
+    border-radius: 0.3em;
+    content: '必須';
+    color: #cc0000;
+    display: inline-block;
+    font-size: 0.9em;
+    margin: 0 0.4em 0 0.6em;
+    padding: 0.1em 0.4em;
+}
+*/
+
+/* 必須マーク（データテーブル） */
+.ui-datatable th.colRequiredMark .ui-column-title::after {
+    background: url("../images/required.png");
+    background-size: auto auto;
+    background-size: contain;
+    content: " ";
+    display: inline-block;
+    height: 1.3em;
+    margin: 0 0.4em 0 0.2em;
+    width: 1.3em;
+    vertical-align: middle;
+}
+
+/*======================================================
+ * フォーム部品
+======================================================*/
+
+/*===== 共通設定 =====*/
+
+.ui-widget {
+    vertical-align: middle;
+}
+
+/*===== ワンラジオ、複数チェックボックス共通 =====*/
+
+.ui-radiobutton,
+.ui-chkbox {
+    padding-right: 0.2em;
+}
+
+.ui-selectoneradio label,
+.ui-selectmanycheckbox label {
+    margin-right: 0.75em;
+}
+
+.ui-chkbox .ui-chkbox-label {
+    margin: 0 0 0 0.2em !important;
+}
+
+/*===== 単一チェックボックス共通 =====*/
+
+.boolchkbox {
+    margin: 0 0.4em 0 0;
+}
+
+/*===== 入力フィールド共通 =====*/
+
+.ui-inputfield {
+    padding: 0.2em 1em 0.2em 0.3em !important;
+}
+
+/*===== インプットテキスト横幅 =====*/
+/* 基本設定で問題がある場合は、適宜画面別CSSにて個別対応する */
+
+/* 基本設定（検索項目） */
+.ui-inputtext {
+    width: 12em;
+}
+
+/* 基本設定（登録項目） */
+.registInputtext {
+    width: 95%;
+}
+
+/* 氏名用（検索／登録） */
+.inputtextName {
+    width: 16em;
+}
+
+/*===== スピナー幅調整 =====*/
+
+/* スピナー入力余白調整 */
+.ui-spinner-input {
+    padding: 0.3em 1.6em 0.3em 0.3em !important;
+    /*font-family: 'メイリオ', Meiryo, sans-serif !important;*/
+    /* テーマによってスピナーのフォントが変更されるが、sans-serifが適用されるとスピナーの横幅が大きくなってしまう為、保留 */
+}
+
+/*===== チェックボックスメニュー =====*/
+
+/* 選択済リスト */
+.chkBoxMenuList {
+    border: 1px solid #cccccc;
+    display: inline-block;
+    overflow-y: scroll;
+    max-height: 100px;
+}
+
+.chkBoxMenuList .ui-datalist-content {
+    border: 0;
+}
+
+.ui-selectcheckboxmenu-label {
+    font-weight: normal !important;
+}
+
+/*===== RXカレンダーの入力幅調整 =====*/
+
+/* 初期化 */
+.hasDatepicker {
+    width: auto;
+}
+
+/* 日付の場合 */
+/*.datepickerDate .hasDatepicker {*/
+.datepickerDate .ui-inputfield {
+    width: 7.5em;
+}
+
+/* 日時の場合 */
+/*.datepickerDatetime .hasDatepicker {*/
+.datepickerDatetime .ui-inputfield {
+    width: 11em;
+}
+
+/* 時間の場合 */
+.datepickerTime .ui-inputfield {
+    width: 4em;
+}
+
+/*===== RX時刻入力の入力幅調整 =====*/
+
+.inputTime3 {
+    /*text-align: center;*/
+    width: 3.5em;
+}
+.inputTime4 {
+    /*text-align: center;*/
+    width: 4.5em;
+}
+
+/*===== RXインプットナンバー =====*/
+
+.inputNumber {
+    ime-mode: disabled;
+}
+
+/*===== 郵便番号入力 =====*/
+
+/* エラーメッセージ */
+/*.ui-autocomplete-emptyMessage {
+    background: #fef1ec;
+    border: 1px solid #cd0a0a;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #cd0a0a;
+}*/
+
+/*===== サイズラベル =====*/
+
+.sizeLabel {
+    /*color: #795548;*/ /* テーマに移行 */
+    display: inline-block; /* 途中で折り返さない */
+}
+
+/*===== その他 =====*/
+
+/* ～の定義 */
+.fromto {
+    margin: 0 0.3em;
+}
+
+/* 複数選択コンボ出力パネル横幅 */
+.ui-outputpanel {
+    min-width: 300px;
+}
+
+/* 年度入力欄 */
+.inputYear {
+    width: 5em;
+}
+
+/*======================================================
+ * ボタン
+======================================================*/
+
+/*===== ボタン共通 =====*/
+
+.ui-button {
+    white-space: nowrap;
+}
+
+/*===== ボタンサイズ =====*/
+
+/* ボタンサイズ大 */
+.btnL span {
+    font-size: 1.3em;
+}
+
+/* ボタンサイズ大FontAwesome調整 */
+.btnL .ui-icon {
+    margin-top: 0 !important;
+    margin-top: -0.5em !important;
+}
+
+/*===== ボタンスタイル（全テーマ共通） =====*/
+
+/* 削除系ボタンhover時スタイル変更 */
+.btnCommonDelete:hover{
+    background: #FF3939 !important;
+    border: 1px solid red !important;
+    color: #ffffff !important;
+}
+
+/*===== イメージ付きテキストボタン =====*/
+
+/* 検索 */
+.btnSearch span::before {
+    bottom: 0.08em;
+    content: "5";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 確定、一括確定 */
+.btnKakutei span::before {
+    bottom: 0.06em;
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 新規 */
+.btnNew span::before {
+    content: "=";
+    font-family: unipa_pc !important;
+    font-size: 1.2em;
+    padding-right: 0.2em;
+    position: relative;
+    /*top: -0.05em;*/
+}
+
+/* 配信内容確認 */
+.btnDeliveryChk span::before {
+    content: "$";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 配信 */
+.btnDelivery span::before {
+    content: "0";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 送信 */
+.btnSending span::before {
+    content: "0";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 申込、申請 */
+.btnApply span::before {
+    bottom: 0.06em;
+    content: "1";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+}
+
+/* 印刷 */
+.btnPrint span::before {
+    content: "2";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 差戻し、申込取消、申請取消、申請取下げ、キャンセル、取消、否認 */
+.btnCancel span::before {
+    bottom: 0.08em;
+    content: "7";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 承認 */
+.btnApproval span::before {
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 回答 */
+.btnAnswer span::before {
+    content: "+";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 最終確認へ */
+.btnFinalConfirm span::before {
+    content: "9";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* コピー、一括コピー */
+.btnCopy span::before {
+    content: "'";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* ダウンロード */
+.btnDownload span::before {
+    content: "4";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* CSV(UTF-8) */
+.btnCsvU span::before {
+    content: ":";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* CSV(Shif_JIS) */
+.btnCsvS span::before {
+    content: ":";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* Excel */
+.btnExcel span::before {
+    content: ";";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 一括登録 */
+.btnBatchRegist span::before {
+    content: "R";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 選択した行を削除 */
+.btnSelectDelete span::before {
+    content: "6";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 設問と回答 */
+.btnQA span::before {
+    content: "&";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* テキスト */
+.btnText span::before {
+    content: "(";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 空行 */
+.btnEmptyRow span::before {
+    content: ")";
+    font-family:unipa_pc;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 水平線 */
+.btnHrLine span::before {
+    content: "*";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* テンプレートで掲示内容を最新化 */
+.btnNewPost span::before {
+    content: "8";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 件名に追加 */
+/*
+.btnAddName span::before {
+    content: "=";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+*/
+
+/* 差出人に追加 */
+/*
+.btnAddSender span::before {
+    content: "=";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+*/
+
+/* 本文に挿入 */
+/*
+.btnAddText span::before {
+    content: "=";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+*/
+
+/* 一時保存 */
+.btnTmpSave span::before {
+    content: "3";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* プレビュー */
+.btnPreview span::before {
+    content: "$";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 削除、一括削除 */
+.btnDelete span::before {
+    content: "6";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 更新 */
+.btnUpdate span::before {
+    content: "8";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 編集 */
+.btnEdit span::before {
+    content: "%";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 登録 */
+.btnRegist span::before {
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 公開 */
+.btnKokai span::before {
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 公開待ち */
+.btnKokaiYet span::before {
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 追加 */
+.btnAdd span::before {
+    content: "=";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+}
+
+/* 対象として更新 */
+.btnInclude span::before {
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 対象外として更新 */
+.btnExclude span::before {
+    bottom: 0.08em;
+    content: "7";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/* 取消解除 */
+.btnRelease span::before {
+    content: "/";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 0.03em;
+}
+
+/*===== イメージボタン =====*/
+
+/* ユーザー情報（単一） */
+.btnUser span::before {
+    content: "A";
+    font-family: unipa_pc !important;
+    font-size: 1.3em;
+}
+
+/* ユーザー情報（複数） */
+.btnUsers span::before {
+    content: "B";
+    font-family: unipa_pc !important;
+    font-size: 1.3em;
+}
+
+/*===== イメージ付きテキストボタン（オリジナルフォント） =====*/
+
+.ui-button-text-only .ui-button-text {
+    padding: .2em .7em !important;
+}
+
+/*===== イメージ付きテキストボタン（FontAwesome） =====*/
+
+/* 標準ボタン */
+.existenceText .ui-button-text {
+    /*padding: .45em 1em .3em 2.1em !important;*/
+    padding: .28em 1em .2em 2.1em !important;
+}
+
+/* 大ボタン */
+.existenceText.btnL .ui-button-text {
+    padding: .2em .8em .2em 2em !important;
+}
+
+/*===== イメージボタン（FontAwesome） =====*/
+
+.noText .ui-button-text {
+    height: 20px;
+    padding: .3em .3em .4em 2.1em !important;
+}
+
+/* イメージ位置微調整 */
+.ui-button-icon-only .ui-icon {
+    margin-left: -0.6em !important;
+}
+
+.ui-button-text-icon-left .ui-button-text {
+    padding: .2em 1em .2em 2.1em;
+}
+
+/*===== 切替ボタン（SelectBooleanButton） =====*/
+
+/* 既読にする/未読にする、あとで読む/もどす */
+.btnRead {
+    min-width: 8em;
+}
+
+/* パスワードを表示する／パスワードを隠す */
+.btnPwChange {
+    min-width: 12em;
+}
+
+/*===== 単列データテーブル用一行削除ボタン =====*/
+
+/* 一行削除ボタン配置基準 */
+.ui-datatable-data td {
+    position: relative;
+}
+
+/*===== 特殊ボタン =====*/
+
+/* NEXT,PREVボタン用 */
+.btnMin {
+    border-radius: 2em;
+    height: 1.5em;
+}
+
+.btnMin .ui-button-text {
+    display: none !important;
+}
+
+/* カレンダー専用クリアボタン配置 */
+/* calendar部品は属性の設定により生成されるHTML構造が異なるため、ケース別の対応が必要 */
+
+.utilBox {
+    position: relative;
+}
+
+.btnDateClear {
+    background:none !important;
+    border:0 !important;
+    /*color:#999999 !important;*/
+    height: 1em;
+    outline: none;
+    position: absolute;
+    right: 0.5em;
+    bottom: -0.3em;
+    width: 1em;
+}
+
+.btnDateClear .ui-button-text {
+    display: none;
+}
+
+.utilBox .ui-button span:before {
+    color: #999999 !important;
+}
+
+/*======================================================
+ * アイコン
+======================================================*/
+
+/*===== アイコンサイズ調整 =====*/
+
+/* アイコン大 */
+.iconSizeL {
+    font-size: 1.5em;
+}
+
+/* アイコン中 */
+.iconSizeLM {
+    font-size: 1.2em;
+}
+
+/*===== アイコン色調整 =====*/
+
+/* 重要 */
+.iconColorAttention {
+    color: #cc0000;
+}
+
+/* 警告 */
+.iconColorWarning {
+    color: #ffc125;
+}
+
+/* 新着 */
+.iconColorNew {
+    color: #ffc125;
+}
+
+/*===== アイコン =====*/
+
+/* 未回答 */
+.iconAnswerYet::before {
+    content: ",";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+}
+
+/* 回答中 */
+.iconAnswerIn::before {
+    content: "-";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+}
+
+/* 回答済 */
+.iconAnswerEnd::before {
+    content: ".";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+}
+
+/* マーク */
+.iconMark::before {
+    content: ">";
+    font-family: unipa_pc !important;
+    font-size: 1.4em;
+}
+
+/* Good */
+.iconGood::before {
+    content: "\f087";
+}
+
+/* No Good */
+.iconNogood::before {
+    content: "\f088";
+}
+
+/*===== アイコンほか（特殊） =====*/
+
+/* 矢印（下向き） */
+.iconArrowDown {
+    border-top: 2.3em solid #dddddd;
+    border-right: 3em solid transparent;
+    border-bottom: 2.3em solid transparent;
+    border-left: 3em solid transparent;
+    height: 0;
+    margin: 0 auto;
+    position: relative;
+    top: 1.2em;
+    width: 0;
+}
+
+/* 矢印（下向き）小 */
+.iconArrowDownMin {
+    border-top: 1.5em solid #dddddd;
+    border-right: 2em solid transparent;
+    border-bottom: 1.5em solid transparent;
+    border-left: 2em solid transparent;
+    height: 0;
+    margin: 0 auto;
+    position: relative;
+    top: 0.5em;
+    width: 0;
+}
+
+/* 顔写真がない場合の代替表現（標準） */
+.noImage {
+    background: #cccccc;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 200px;
+    text-align: center;
+    width: 150px;
+    /* サイズが異なる場合は画面固有CSSにてheight,widthを調整のこと */
+}
+
+.noImage p {
+    color: #ffffff;
+    font-size: 1.8em;
+    font-weight: bold;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ローディングイメージ */
+.loading {
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+
+/*======================================================
+ * アイコン（その他）
+======================================================*/
+
+/*===== 文字アイコン =====*/
+
+/* 共通設定（サイズ可変） */
+.sign {
+    border-radius: 0.4em;
+    display: inline-block;
+    margin-bottom: 0.1em;
+    max-width: 10em;
+    overflow: hidden;
+    padding: 0 0.7em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* 共通設定（サイズ固定タイプ） */
+.signFixed {
+    border-radius: 0.4em;
+    display: inline-block;
+    margin-bottom: 0.1em;
+    overflow: hidden;
+    padding: 0 0.7em;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*width: 6.5em;*/
+    vertical-align: middle;
+}
+
+/* 必須、選択必須、入力必須 */
+.hissu {
+    background-color: #cc0000;
+    color: #ffffff;
+    margin-right: 0.15em;
+}
+
+/* 時間割 */
+.signClass {
+    background: #4b474d;
+    color: #ffffff;
+}
+
+/* セット授業1 */
+.signClassset1 {
+    background: #4b474d;
+}
+
+/* セット授業2 */
+.signClassset2 {
+    background: #e9967a;
+}
+
+/* セット授業3 */
+.signClassset3 {
+    background: #bdb76b;
+}
+
+/* セット授業4 */
+.signClassset4 {
+    background: #9acd32;
+}
+
+/* セット授業5 */
+.signClassset5 {
+    background: #66cdaa;
+}
+
+/* セット授業6 */
+.signClassset6 {
+    background: #4682b4;
+}
+
+/* セット授業7 */
+.signClassset7 {
+    background: #6a5acd;
+}
+
+/* セット授業8 */
+.signClassset8 {
+    background: #ffb6c1;
+}
+
+/* セット授業9 */
+.signClassset9 {
+    background: #b0c4de;
+}
+
+/* セット授業10 */
+.signClassset10 {
+    background: #8b0000;
+}
+
+/* 申請中 */
+.signApply {
+    background: #1e90ff;
+    color: #ffffff;
+}
+
+/* 登録済 */
+.signRegist {
+    background: #4b474d;
+    color: #ffffff;
+}
+
+/* 定期試験 */
+.rTest {
+    background: #777777;
+    color: #ffffff;
+}
+
+/* 追試験 */
+.tTest {
+    background: #663300;
+    color: #ffffff;
+}
+
+/* 再試験 */
+.sTest {
+    background: #336600;
+    color: #ffffff;
+}
+
+/* 未回答 */
+.signStillAns {
+    background: #ad491e;
+    color: #ffffff;
+}
+
+/* 回答中 */
+.signInAns {
+    background: #4ca20b;
+    color: #ffffff;
+}
+
+/* 回答済み */
+.signAlreadyAns {
+    background: #1987e5;
+    color: #ffffff;
+}
+
+/*===== 説明画面機能名称 =====*/
+
+/* 共通 */
+.kinou {
+    background: #ffffff;
+    border: solid 2px #555555;
+    border-radius: 0.5em;
+    display: inline-block;
+    font-size: 1.4em;
+    padding: 0.5em 1em;
+    text-align: left;
+    text-indent: -1em;
+    padding-left: 2em;
+    width: 12em;
+}
+
+/* 選択中 */
+.kinouCurrent {
+    background: #fffacd;
+    border: solid 2px #555555;
+}
+
+/* 利用不可 */
+.kinouNg {
+    background: #eeeeee;
+    border: solid 2px #aaaaaa;
+}
+
+/*===== 掲示板 =====*/
+
+/* カテゴリ表示名表示 */
+.keijiCategory {
+    border-radius: 0.2em;
+    display: inline-block;
+    font-weight: normal;
+    padding: 0 0.4em;
+}
+
+/*===== 教員業績 =====*/
+
+/* 非公開 */
+.workPrivate {
+    background: #cc0000;
+    color: #ffffff;
+}
+
+/* 一時保存中 */
+.workTemp {
+    background: #ad491e;
+    color: #ffffff;
+}
+
+/* リサーチマップ */
+.workResearchmap {
+    background: #ffffff;
+    border: solid 2px #aaaaaa;
+    color: #222222;
+}
+
+/*===== 課題提出（データテーブル内） =====*/
+
+/* 受付開始前 */
+.signStillAccept {
+    background: #00bfff	;
+    color: #ffffff;
+    width: 6em;
+}
+
+/* 提出受付中 */
+.signAccepting {
+    background: #9acd32;
+    color: #ffffff;
+    width: 6em;
+}
+
+/* 再提出受付中 */
+.signResubmit {
+    background: #ff1493;
+    color: #ffffff;
+    width: 6em;
+}
+
+/* 提出終了 */
+.signEndSubmit {
+    background: #969696;
+    color: #ffffff;
+    width: 6em;
+}
+
+/* 受付終了 */
+.signEndAccept {
+    background: #696969;
+    color: #ffffff;
+    width: 6em;
+}
+
+/* 結果公開中 */
+.signNowAvailable {
+    background: #9932cc;
+    color: #ffffff;
+    width: 6em;
+}
+
+/*===== クリッカー（データテーブル内） =====*/
+
+/* 未実施 */
+.signClickerBefore {
+    background: #00bfff	;
+    color: #ffffff;
+    width: 3em;
+}
+
+/* 実施中 */
+.signClickerMid {
+    background: #ff1493;
+    color: #ffffff;
+    width: 3em;
+}
+
+/* 終了 */
+.signClickerEnd {
+    background: #696969;
+    color: #ffffff;
+    width: 3em;
+}
+
+/*===== 小テスト解答（データテーブル内） =====*/
+
+/* テスト準備中 */
+.signTestBefore {
+    background: #00bfff	;
+    color: #ffffff;
+    width: 7em;
+}
+
+/* テスト受付中 */
+.signTestAccepting {
+    background: #9acd32;
+    color: #ffffff;
+    width: 7em;
+}
+
+/* 再テスト受付中 */
+.signTestReaccepting {
+    background: #ff1493;
+    color: #ffffff;
+    width: 7em;
+}
+
+/* テスト中断中 */
+.signTestAbort {
+    background: #f5a346;
+    color: #ffffff;
+    width: 7em;
+}
+
+/* テスト完了 */
+.signTestEnd {
+    background: #969696;
+    color: #ffffff;
+    width: 7em;
+}
+
+/* 受付終了 */
+.signTestEndaccept {
+    background: #696969;
+    color: #ffffff;
+    width: 7em;
+}
+
+/* 結果公開中 */
+.signTestAvailable {
+    background: #9932cc;
+    color: #ffffff;
+    width: 7em;
+}
+
+/*===== シラバス公開（データテーブル内） =====*/
+
+/* 編集状況 未作成 */
+.signSylEdit0 {
+    background: #4b474d;
+    color: #ffffff;
+}
+
+/* 編集状況 未編集 */
+.signSylEdit1 {
+    background: #ad491e;
+    color: #ffffff;
+}
+
+/* 編集状況 編集中 */
+.signSylEdit2 {
+    background: #4ca20b;
+    color: #ffffff;
+}
+
+/* 編集状況 公開待 */
+.signSylEdit3 {
+    background: #1987e5;
+    color: #ffffff;
+}
+
+/* 編集状況 公開済 */
+.signSylEdit4 {
+    background: #673ab7;
+    color: #ffffff;
+}
+
+/* 公開状況 未公開 */
+.signSylOpen1 {
+    background: #807d82;
+    color: #ffffff;
+}
+
+/* 公開状況 公開中 */
+.signSylOpen2 {
+    background: #e91e63;
+    color: #ffffff;
+}
+
+/*===== マイステップ =====*/
+
+/* 未公開 */
+.signUnlisted {
+    background: #807d82;
+    color: #ffffff;
+}
+
+/* 公開中 */
+.signListed {
+    background: #e91e63;
+    color: #ffffff;
+}
+
+/*===== プロジェクト（データテーブル内） =====*/
+
+/* 未実施 */
+.signPjBefore {
+    background: #00bfff	;
+    color: #ffffff;
+    width: 3em;
+}
+
+/* 実施中 */
+.signPjMid {
+    background: #ff1493;
+    color: #ffffff;
+    width: 3em;
+}
+
+/* 終了 */
+.signPjEnd {
+    background: #696969;
+    color: #ffffff;
+    width: 3em;
+}
+
+/*======================================================
+ * 機能フッタボタン配置
+======================================================*/
+
+/*===== ボタンエリア =====*/
+
+/* 共通設定 */
+.btnAreaBottom {
+    display: table;
+    overflow: hidden;
+    padding: 0 0 8px 0;
+    position: relative;
+    margin-top: 8px !important;
+    /*min-height: 55px;*/
+    min-height: 40px;
+    width: 100%;
+}
+
+/*===== ボタンエリア（通常） =====*/
+
+/* ボタンエリアテーブル行 */
+.btnAreaRow {
+    display: table-row;
+}
+
+/* ボタンエリアテーブルセル */
+.btnAreaCell {
+    display: table-cell;
+}
+
+/* ボタンエリアテーブル3列均等左右セルサイズ */
+.btnAreaCellSizeLR {
+    width: 33%;
+}
+
+/* ボタンエリアテーブル3列均等中央セルサイズ */
+.btnAreaCellSizeCnt {
+    width: 34%;
+}
+
+/*===== ボタンエリア（検索機能系） =====*/
+
+/* 検索ボタン */
+.btnAreaBottom .btnSearchArea {
+    text-align: center;
+}
+
+/* クリアボタン */
+.btnAreaBottom .btnSearchArea .btnClear {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+/*======================================================
+ * ボタン配置
+======================================================*/
+
+/*===== 各種パターン別配置 =====*/
+
+/* ボタン横並び時のボタン間隔（ボタン右マージン） */
+.rightBtnMargin {
+    margin: 0 0.3em 0 0 !important;
+}
+
+/* ボタン横並び時のボタン間隔（ボタン左マージン） */
+.leftBtnMargin {
+    margin: 0 0 0 0.3em !important;
+}
+
+/* ボタン横並び時のボタン間隔（ボタン左右マージン） */
+.lrBtnMargin {
+    margin: 0 0.3em 0 0.3em !important;
+}
+
+/* ボタン複数行時の余白調整 */
+.bottomBtnMargin {
+    margin-bottom: 0.3em;
+}
+
+/* ボタン横並び時の余白調整 */
+.bottomBtnRightMargin {
+    margin-right: 0.3em;
+}
+
+/* 検索エリア検索ボタンの右下配置 */
+.btnSearchLocation {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+}
+
+/* 検索エリア新規ボタンの右上配置 */
+.btnNewLocation {
+    /*bottom: 0;*/
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* 列選択ボタン・保存ボタンの配置 */
+.btnSelectColLocation {
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*top: -0.1em;*/
+    float: right;
+}
+
+.btnSelectColLocation .ui-button {
+    font-size: 0.9em;
+}
+
+.btnSelectColLocation .ui-button .ui-button-text {
+    padding: 0 .7em !important
+}
+
+.btnSelectColLocation .ui-button .ui-button-text:nth-child(2) {
+    padding: 0 1em 0 2.1em !important;
+}
+
+/* 列選択ボタン・保存ボタンの配置（ページャなし） */
+
+.ui-datatable .ui-datatable-header {
+    padding: 0 !important;
+    visibility: hidden !important;
+}
+
+.btnSelectColArea {
+    /*height: 2.6em;*/
+    /*position: relative;*/
+    overflow: hidden;
+}
+
+.btnSelectColArea .btnSelectColLocation {
+    margin-bottom: 0.2em;
+}
+
+/* 列選択ボタン・保存ボタンのposition基準値 */
+.ui-paginator-top {
+    position: relative;
+    visibility: hidden !important;
+}
+
+/* ページャーフッター内の列選択ボタン・保存ボタンの非表示 */
+.ui-paginator-bottom .btnSelectColLocation {
+    display: none;
+}
+
+/*===== フロートボタン =====*/
+
+/* フロートボタンボックス */
+.btnFloatArea {
+    bottom: 50px;
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.7);
+    position: fixed;
+    right: 50px;
+    z-index: 999;
+}
+
+/*======================================================
+ * フロート画面
+======================================================*/
+
+/*===== 基本画面レイアウト =====*/
+
+/* 小サイズ */
+.floatDispS {
+    min-height: 480px;
+    min-width: 679px !important;
+}
+
+/* 大サイズ */
+.floatDispL {
+    min-height: 600px;
+    min-width: 800px !important;
+}
+
+/*===== 例外（アイコン凡例） =====*/
+
+/* レイアウト */
+.floatDispIcon {
+    bottom: 30px;
+    left: inherit !important;
+    min-width: 300px !important;
+    right: 50px !important;
+    top: inherit !important;
+}
+
+/* リスト横並び */
+.hanreiList dt, .hanreiList dd {
+    display: inline-block;
+}
+
+/* 余白調整 */
+.hanreiList dd {
+    padding-right: 0.6em;
+}
+
+/* 余白調整 */
+.hanreiList div {
+    margin-bottom: 0.4em;
+}
+
+/* 余白調整 */
+.ui-dialog-content .btnAreaBottom {
+    padding: 0;
+}
+
+/*======================================================
+ * メッセージダイアログ（基本）
+======================================================*/
+
+/*===== レイアウト調整 =====*/
+
+/* ダイアログ横幅 */
+
+.ui-confirm-dialog {
+    max-width: 400px;
+    min-width: 240px;
+}
+
+/* ボタン位置 */
+.ui-dialog .ui-dialog-buttonpane {
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+/* ボタン上部のボーダー削除 */
+
+.ui-dialog .ui-dialog-footer {
+    border-width: 0 !important;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    margin: .5em 0 .5em 0 !important;
+}
+
+/*===== アイコン変更 =====*/
+
+/* デフォルトアイコン非表示 */
+.ui-confirm-dialog-severity {
+    display: none !important;
+}
+
+/* アイコン設定（問い合わせ） */
+.dlgQuestion span.ui-confirm-dialog-message::before {
+    color: #1987e5;
+    content: "K";
+    font-family: unipa_pc !important;
+    font-size: 3em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 3px;
+}
+
+/* アイコン設定（案内） */
+.dlgInfo span.ui-confirm-dialog-message::before {
+    color: #1987e5;
+    content: "I";
+    font-family: unipa_pc !important;
+    font-size: 3em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 3px;
+}
+
+/* アイコン設定（警告） */
+.dlgWarning span.ui-confirm-dialog-message::before {
+    color: #ffe77a;
+    content: "L";
+    font-family: unipa_pc !important;
+    font-size: 3em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 3px;
+}
+
+/* アイコン設定（注意） */
+.dlgCaution span.ui-confirm-dialog-message::before {
+    color: #ffe77a;
+    content: "J";
+    font-family: unipa_pc !important;
+    font-size: 3em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 3px;
+}
+
+/*======================================================
+ * メッセージダイアログ（特殊）
+======================================================*/
+
+/*===== ボタンが3つのパターンほか =====*/
+
+/* ダイアログ全体 */
+.dialogAlt {
+    max-width: 460px;
+}
+
+/* メインメッセージ */
+.dialogAlt .dialogMessageMain {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.dialogAlt .dialogMessageMain::before {
+    color: #1987e5;
+    content: "K";
+    font-family: unipa_pc !important;
+    font-size: 3em;
+    padding-right: 0.2em;
+    position: relative;
+    top: 3px;
+}
+
+/* サブメッセージ */
+.dialogAlt .dialogMessageSub {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+/* ボタンエリア */
+.dialogAlt .dialogBtnArea {
+    padding: 10px;
+    text-align: center;
+}
+
+/*===== 非同期処理通知メッセージダイアログ =====*/
+
+.asyncMessageDlgAlt {
+    outline: none;
+    left: 50% !important;
+    top: 250px !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1130;
+}
+
+.asyncMessageDlgAlt ul {
+    list-style-type: disc;
+    margin: 5px 15px 5px 80px;
+}
+
+.asyncMessageDlgAlt .ui-dialog-titlebar-close {
+    background: transparent;
+    border: 0;
+}
+
+.asyncMessageDlgAlt .ui-corner-all {
+    border-radius: 5px 5px 0 0;
+}
+
+.asyncMessageDlgAlt .ui-dialog-titlebar-close {
+    outline: none;
+}
+
+.asyncMessageDlgAlt ul li {
+    color: #003366;
+    list-style: none;
+}
+
+.asyncMessageDlgAlt .ui-dialog-titlebar {
+    background: #dddddd;
+    color: #003366;
+}
+
+.asyncMessageDlgAlt.ui-widget-content {
+    border: solid 1px #dddddd;
+}
+
+.asyncMessageDlgAlt ul::before {
+    color: #003366;
+    content: "J"; /* 暫定（アイコンがないため、要作成） */
+    font-family: unipa_pc !important;
+    font-size: 4em;
+    left: 30px;
+    position: absolute;
+    top: 8px;
+}
+
+/************** 未検討201604 start **************/
+
+/* 非同期処理　終了処理中アイコン */
+.asyncNoticeIcon {
+    background: url(../images/processing.gif) no-repeat center center;
+    background-size: contain;
+    display: none;
+    height: 5em; /* emに変更すること */
+    right: 5px;
+    position: fixed;
+    text-align: center;
+    top: 115px;
+    width: 5em; /* emに変更すること */
+    z-index: 1000;
+}
+/*
+.asyncNoticeIcon {
+    background: url(../images/asyncNotice.gif) no-repeat center center rgba(255,255,255,0.5);
+    background-size: contain;
+    display: none;
+    height: 56px;
+    left: 600px;
+    position: absolute;
+    top: 2px;
+    z-index: 1000;
+    width: 56px;
+}
+*/
+
+.asyncNoticeIcon p {
+    background: rgba(255,255,255,0.3);
+    color: #cc0000;
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 1.7em;
+    text-align: center;
+}
+
+/************** 未検討201604 end **************/
+
+/*======================================================
+ * 単票
+======================================================*/
+
+/*===== 基本設定 =====*/
+
+/* 基本 */
+.singleTable {
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 小サイズ */
+.smallSingleTable {
+    margin: 0 auto;
+    min-width: 740px;
+    width: 70%;
+}
+
+/*===== 行見出し型 =====*/
+
+/* 基本 */
+.singleTableAlt {
+    margin: 0 auto;
+    /* widthは別途画面別CSSにて設定する */
+}
+
+/* 見出しセル */
+.singleTableAlt .ui-widget-header {
+    text-align: center;
+}
+
+/*===== 各種調整 =====*/
+
+/* 見出し列調整 */
+.singleTable td.ui-widget-header:first-child {
+    font-weight: normal;
+    min-width: 100px;
+    vertical-align: middle;
+    /*white-space: nowrap;*/
+    width: 25%;
+}
+
+.smallSingleTable td.ui-widget-header {
+    font-weight: normal;
+    vertical-align: middle;
+    /*white-space: nowrap;*/
+    width: 25%;
+}
+
+.dataProcessArea  td.ui-widget-header {
+    font-weight: normal;
+    vertical-align: middle;
+    /*white-space: nowrap;*/
+    width: 25%;
+}
+
+/* 見出し列調整（データ処理部（小）のみ調整対象の例外） */
+.dataProcessArea .smallSingleTable .ui-widget-header {
+    width: inherit !important;
+}
+
+/* 入力チェックエラー時のラベル設定 */
+.ui-widget-header .ui-state-error {
+    display: block;
+    font-weight: bold;
+}
+
+/* 必須文言 */
+.requiredText {
+    color: #cc0000;
+}
+
+/* 必須文言のイメージ付加 */
+.requiredText::before {
+    background: url("../images/required.png");
+    background-size: contain;
+    bottom: 0.1em;
+    content: " ";
+    display: inline-block;    
+    height: 1.2em;
+    position: relative;
+    width: 1.2em;
+    vertical-align: middle;
+}
+
+/* プレースホルダの文字色統一 */
+.ui-inputfield::-webkit-input-placeholder {
+    color: #999999;
+}
+
+.ui-inputfield:-ms-input-placeholder {
+    color: #999999;
+}
+
+.ui-inputfield::-moz-placeholder {
+    color: #999999;
+}
+
+/*======================================================
+ * データテーブル
+ * 代表的な固定長項目のみ定義（その他は任意、画面毎のCSSにて設定）
+======================================================*/
+
+/*===== デザイン調整（しましま対応） =====*/
+
+/* 通常のデータテーブル */
+/* .ui-datatable tr.ui-widget-content:nth-child(even) { */
+.ui-datatable tr.ui-widget-content.ui-datatable-odd { /* nth-childの利用でも問題ないが既存classを利用 */
+    background: #f7f7f7;
+}
+
+.ui-datatable tr, .ui-datatable td {
+    /* border: 0 !important; */
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+}
+
+/* ツリーテーブル */
+.ui-treetable tr.ui-widget-content:nth-child(even) {
+    background: #f7f7f7;
+}
+.ui-treetable tr, .ui-treetable td {
+    /* border: 0 !important; */
+    border-top: 0 !important;
+    border-bottom: 0  !important;
+}
+
+/*===== 各種調整 =====*/
+
+/* 件数表示接尾語 */
+/*.dataCounts::after {
+    content: "件";
+}*/
+
+/* セル内文字列オーバーフロー対応（データセルのみ） */
+.ui-datatable td, .ui-datatable td div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 件数表示 */
+.ui-paginator-current, .dataCounts {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 !important;
+}
+
+/* 件数切替部 */
+.ui-paginator-rpp-options {
+    padding: 0;
+}
+
+/* 非活性の選択チェックボックス非表示 */
+.disabledHide .ui-state-disabled {
+    visibility: hidden !important;
+}
+
+/* 列選択機能での無駄スペース回避用 */
+.layoutAuto table {
+    table-layout: auto;
+}
+
+/* 見出しセル折り返し禁止 */
+.ui-datatable th {
+    white-space: nowrap;
+}
+
+/*===== データテーブルセル横幅 =====*/
+/*
+・選択列以外で固定長データ列のみを対象とする（可変長データ列は適切なものを選択するか、特殊な項目については画面固有CSSにて設定）
+・列見出し、固定長データの最大文字数を目安に設定する（ソートボタンは1emとカウント）
+　例）最大文字数4文字の場合、colSize4を設定
+*/
+
+/* 最小横幅 */
+.ui-datatable th, .ui-datatable td, ui-datatable-tablewrapper th, .ui-datatable-tablewrapper td {
+    min-width: 4em;
+}
+
+.ui-datatable td td, .ui-datatable-tablewrapper td td {
+    min-width: 0;
+}
+
+/* 選択 */
+.colSizeCheckbox {
+    width: 2em !important;
+    min-width: 2em !important;
+    text-overflow: clip !important;
+}
+
+/* 未設定幅（初期化） */
+.colSizeInitial {
+    width: auto !important;
+}
+
+/* 2文字幅（最小値）*/
+.colSize2 {
+    width: 3em;
+}
+
+/* 3文字幅 */
+.colSize3 {
+    width: 5em;
+}
+
+/* 4文字幅 */
+.colSize4 {
+    width: 6em;
+}
+
+/* 5文字幅 */
+.colSize5 {
+    width: 7em;
+}
+
+/* 6文字幅 */
+.colSize6 {
+    width: 8em;
+}
+
+/* 7文字幅 */
+/* 年月日（曜日） */
+.colSize7 {
+    width: 9em;
+}
+
+/* 8文字幅 */
+.colSize8 {
+    width: 10em;
+}
+
+/* 9文字幅 */
+.colSize9 {
+    width: 11em;
+}
+
+/*===== 学生時間割表、履修登録、成績照会 =====*/
+
+/* 科目分類レベル分け */
+.kamokuLevel1 {
+    /*text-indent: 0;*/
+    padding-left: 0.5em !important;
+}
+
+.kamokuLevel2 {
+    /*text-indent: 1em;*/
+    padding-left: 1.0em !important;
+}
+
+.kamokuLevel3 {
+    /*text-indent: 2em;*/
+    padding-left: 1.5em !important;
+}
+
+.kamokuLevel4 {
+    /*text-indent: 3em;*/
+    padding-left: 2.0em !important;
+}
+
+.kamokuLevel5 {
+    /*text-indent: 4em;*/
+    padding-left: 2.5em !important;
+}
+
+.kamokuLevel6 {
+    /*text-indent: 5em;*/
+    padding-left: 3.0em !important;
+}
+
+.kamokuLevel7 {
+    /*text-indent: 6em;*/
+    padding-left: 3.5em !important;
+}
+
+/*======================================================
+ * 引継情報
+======================================================*/
+
+/*===== ラベルあり =====*/
+
+/* エリア全般 */
+.inheritInfo {
+    display: table;
+    table-layout: fixed;
+}
+
+/* リストのテーブルセル化 */
+.inheritInfo dt, .inheritInfo dd {
+    display: table-cell;
+}
+
+/* 区切りマークの挿入 */
+.inheritInfo dd::before {
+    content: ": ";
+}
+
+/* ラベル部の幅調整 */
+.inheritInfo dt {
+    padding-right: 0.6em;
+    /* 1列目の最大文字数の項目横幅を画面独自cssにて設定。（複数行の場合のみ）　例)width:8em; */
+}
+
+/*===== ラベルなし =====*/
+
+/* エリア全般 */
+.inheritInfoSimple {
+    /*display: table;*/
+    /*table-layout: fixed;*/
+}
+
+/* リストのテーブルセル化 */
+/*
+.inheritInfoSimple li {
+    display: table-cell;
+}
+*/
+
+/*======================================================
+ * データテーブル出力
+======================================================*/
+
+/* エリア余白調整 */
+.outputFileArea {
+    margin-bottom: 0.3em;
+}
+
+/*======================================================
+ * 一括処理部
+======================================================*/
+
+/*===== 処理部基本設定 =====*/
+
+/* エリア横幅自動調整 */
+.dataProcessArea {
+    display: table;
+}
+
+/* エリア上部 */
+.dataProcessArea .dataProcessText, .dataProcessArea .dataProcessBtn {
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+}
+
+/* 余白調整 */
+.dataProcessArea .dataProcessText, .dataProcessArea .dataProcessHeader, .dataProcessArea .dataProcessOutput {
+    margin-bottom: 0.4em;    
+}
+
+
+/* エリア上部の文言部 */
+.dataProcessArea .dataProcessMainText {
+    font-size: 1.0em;
+    margin-right: 0.4em;
+}
+
+.dataProcessArea .dataProcessSubText {
+    font-size: 0.9em;
+    padding-left: 1.0em;
+}
+
+/* エリア下部レイアウト調整 */
+.dataProcessArea .ui-fieldset {
+    margin-top: 0.75em;
+}
+
+/*======================================================
+ * ファイルアップロード（対象コード指定）
+======================================================*/
+
+/*===== 基本設定 =====*/
+
+/* 表示形式の変更 */
+.targetSelectArea {
+    display: table;
+}
+
+/* 見出し部（追加種別） */
+.targetSelectTitle {
+    /*background: #efefef;*/ /* カラーテーマでの指定 */
+}
+
+/* データ処理部 */
+.targetSelectData {
+    display: table-cell;
+    padding: 0 8px;
+    width: auto;
+}
+
+.targetSelectTop {
+    margin-bottom: 5px;
+}
+
+.targetSelectMid {
+}
+
+.targetSelectBottom {
+}
+
+/* 見出し部（ファイル指定） */
+.fileDesignation {
+    /*background: #efefef;*/ /* カラーテーマでの指定 */
+    display: flex !important;
+    padding: 0.5em !important;
+    align-items: center;
+    width: 7em;
+}
+
+/* ファイル処理部 */
+.fileUpload {
+    display: table-cell;
+    padding: 0 8px;
+    width: 600px;
+}
+
+.fileUpload .ui-datatable {
+    margin-top: 5px;
+}
+
+/* アップロードキャンセルボタン */
+.ui-fileupload-content .ui-button{
+    display: none;
+    /* 自動アップロード中にキャンセルをされた場合、次アップロードがfileLimitに引っかかることがあるので非表示とする。*/
+}
+
+/*===== ファイルアップロード部品 =====*/
+
+/* 一覧部テーブル表示 */
+.tableDownload {
+    border-collapse: separate;
+    border-spacing: 20px 0px;
+    display: table;
+    /*margin: 20px 0px 20px 20px;*/
+    margin: 20px 0px;
+    width: 60%;
+}
+/* 一覧部行 */
+.tableDownloadRow {
+    display: table-row;
+}
+
+/* 一覧部列 */
+.tableDownloadCell {
+    display: table-cell;
+    /*min-width: 120px;*/
+    padding: 3px;
+}
+
+/* 一覧部列ファイル名 */
+.downLoadCellFilNm {
+    min-width: 200px;
+}
+
+/* 一覧部列ファイルサイズ */
+.downLoadCellFilSz {
+    min-width: 50px;
+}
+
+/*======================================================
+ * 自動保存
+======================================================*/
+
+.autoSave {
+    display: inline-block;
+}
+
+.autoSave .ui-outputpanel {
+    min-width: 0;
+}
+
+.autoSave.ui-panel .ui-panel-content {
+    padding: 0.1em 0.5em;
+}
+
+.autoSave .ui-spinner {
+    margin-right: 5px;
+}
+
+/*======================================================
+ * 自動更新
+======================================================*/
+
+.btnAsArea .ui-outputpanel {
+    min-width: auto;
+}
+
+/*======================================================
+ * ページ内索引
+======================================================*/
+
+#slideR {
+    /*background: #005882;*/ /* テーマで設定 */
+    /*border: solid 4px #005882;*/ /* テーマで設定 */
+    border-right: 0;
+    border-top-left-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-bottom-left-radius: 10px;
+    color: #333333;
+    cursor: pointer;
+    padding: 0 0 0 30px;
+    position: fixed;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform:  translateY(-50%);
+    top: 50%;
+    height: 500px;
+    right: 0px;
+    width: 400px; /* javascriptの移動値と合わせること */
+    z-index: 999;
+}
+
+#slideR .slide-inner {
+    background: #ffffff;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 0.8em 1.2em;
+    position: relative;
+}
+
+#slideR a {
+    /*display: block;*/
+    color: #333333;
+}
+
+#slideR .slide-inner ul {
+    position: relative;
+}
+
+#slideR .slide-inner li {
+    margin-bottom: 0.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#slideR .slide-inner a {
+    text-decoration: none;
+}
+
+#slideR .slide-inner a:hover {
+    color: #cc0000;
+}
+
+#slideR .slide-inner li a::before {
+    /*color: #005882;*/ /* テーマで設定 */
+    content: "\f0e6";
+    font-family: "fontawesome";
+    /*font-weight: bold;*/
+    margin-right: 0.5em;
+}
+
+#slideR .slide-inner li:first-child a::before {
+    color: #9f9f9f;
+    content: "\f062";
+}
+
+#slideR .nav-icon {
+    left: 5px;
+    position: absolute;
+    top: 0.8em;
+}
+
+#slideR .nav-icon i {
+    color: #ffffff;
+}
+
+#slideR .slideLevel1 {
+    padding-left: 1em;
+}
+
+/*======================================================
+ * ステップス ※PrimeFaces参考
+======================================================*/
+
+/*
+.ui-steps .ui-steps-item {
+    width: 24%;
+}
+
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+
+.ui-steps.customSteps {
+    margin:20px 0 50px 0;
+}
+
+.ui-steps.customSteps .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+
+.ui-steps.customSteps .ui-steps-item .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+*/
+
+/*======================================================
+ * バルーン
+======================================================*/
+
+.balloon .ui-overlaypanel-content {
+    padding: 0;
+    text-align: center;
+}
+
+.balloon .ui-outputpanel {
+    max-width: 260px;
+    min-width: 260px;
+    width: 260px;
+}
+
+/* メインエリア */
+.balloon .balloonMainArea {
+    background: #999999;
+    border-bottom: 1px solid #aaaaaa;
+    border-top: 1px solid #aaaaaa;
+    color: #ffffff;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+/* サブエリア */
+.balloon .balloonAltArea {
+    margin-top: 10px;
+}
+
+/* ボタンエリア */
+.balloon .balloonBtnArea {
+    padding: 15px 0;
+}
+
+.balloon .balloonBtnArea button:first-child {
+    margin-right: 20px;
+}
+
+.balloon .balloonMainArea div {
+    /*padding: 0 1em;*/
+    width: 90%;
+}
+
+/*======================================================
+ * RX一括登録指定
+======================================================*/
+
+.multiRegist {
+    width: 100%;
+}
+
+/*======================================================
+ * RX並び順指定
+======================================================*/
+
+.ordDesignation .ui-datatable table table {
+    margin: 0 auto;
+    width: auto;
+}
+
+.ordDesignation .colSizeOrd {
+    width: 12em !important;
+}
+
+.ordDesignation .ui-selectoneradio td {
+    padding: 0;
+}
+
+/*======================================================
+ * RX画面スクロール
+======================================================*/
+
+.btScroll { 
+    position: relative; 
+    z-index: 100; 
+    margin: 0; 
+    padding: 0; 
+}
+
+.btScroll .page {
+    display: block;
+    height: 35px;
+    position: fixed;
+    right: 15px;
+    width: 35px;
+    z-index: 9999;
+}
+
+.pagetop {
+    bottom: 90px;
+    opacity: 0.5;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+.pagebottom {
+    bottom: 50px;
+    opacity: 1;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+/*
+.pagetop:hover{ 
+    transform: translateY(-5px);
+}
+*/
+
+/*
+.pagebottom:hover{ 
+    transform: translateY(5px);
+}
+*/
+
+/*======================================================
+ * その他
+======================================================*/
+
+/*===== 承認状況関連 =====*/
+.approvalStatus {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 1.4em;
+    padding: 0.3em 0;
+    text-align: center;
+    width: 7em;
+}
+
+/* 英語表示用 */
+.approvalStatusEng {
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 1.2em;
+    padding: 0.3em 0;
+    text-align: center;
+    width: 6em;
+}
+
+/* 字間調整（承認状況が2文字の場合に使用する） */
+.approvalStatusSpace {
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+}
+
+/* 申請中 */
+.shinseiMid {
+    background: #1e90ff;
+    color: #ffffff;
+}
+
+/* 承認・承認済 */
+.shoninOk {
+    background:#000000;
+    color: #ffffff;
+}
+
+/* 未承認 */
+.shoninYet {
+    background: #999999;
+    color: #ffffff;
+}
+
+/* 差戻し・却下 */
+.shoninNg {
+    background: #ff0000;
+    color: #ffffff;
+}
+
+/* 未申請 */
+.shinseiYet {
+    background: #eeeeee;
+    color: #000000;
+}
+
+/*===== 掲示登録状況関連 =====*/
+.keijiSt {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0.4em 0;
+    text-align: center;
+    width: 6em;
+}
+
+/* 新規 */
+.keijiStNew {
+    background: #000000;
+    color: #ffffff;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+}
+
+/* 作成中 */
+.keijiStTemp {
+    background: #000000;
+    color: #ffffff;
+}
+
+/* 承認待ち */
+.keijiStShoninYet {
+    background: #336600;
+    color: #ffffff;
+}
+
+/* 差戻し */
+.keijiStShoninNg {
+    background: #336600;
+    color: #ffffff;
+}
+
+/* 公開待ち */
+.keijiStKokaiYet {
+    background: #ad491e;
+    color: #ffffff;
+}
+
+/* 公開中 */
+.keijiStKokaiMid {
+    background: #ad491e;
+    color: #ffffff;
+}
+
+/* 公開終了 */
+.keijiStKokaiEnd {
+    background: #ad491e;
+    color: #ffffff;
+}
+
+/*===== 学籍情報変更申請状況 =====*/
+
+.applySt {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0.4em 0;
+    text-align: center;
+    width: 6em;
+}
+
+/* 申請中 */
+.applyStMid {
+    background: #1e90ff;
+    color: #ffffff;
+}
+
+/* 差戻し */
+.applyStReturn {
+    background: #cc0000;
+    color: #ffffff;
+}
+
+/* 取下げ */
+.applyStCancel {
+    background: #4b474d;
+    color: #ffffff;
+}
+
+/* 承認済 */
+.applyStApproval {
+    background: #336600;
+    color: #ffffff;
+}
+
+/*===== 履修カルテ提出状況 =====*/
+
+.risyukarteSt {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0.4em 0;
+    text-align: center;
+    width: 6em;
+}
+
+/* 提出受付中 */
+.risyukarteStMid {
+    background: #000000;
+    color: #ffffff;
+}
+
+/* 提出終了 */
+.risyukarteStSmt {
+    background: #336600;
+    color: #ffffff;
+}
+
+/* 受付期間外 */
+.risyukarteStOut {
+    background: #777777;
+    color: #ffffff;
+}
+
+/*===== 教室予約区分 =====*/
+
+/* 帯ベース */
+.timezone {
+    border-bottom: solid 1px #ffffff;
+    border-top: solid 1px #ffffff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 4px;
+    position: absolute;
+    height: 30px;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    z-index: 998;
+}
+
+/* 帯（1.ユーザ予約） */
+.zoneRes, .zoneRes a {
+    background: #008000 !important;
+    color: #ffffff !important;
+}
+
+/* 帯（2.ユーザ仮予約） */
+.zonePreRes, .zonePreRes a {
+    background: #d8ffb2 !important;
+    color: #222222 !important;
+}
+
+/* 帯（3.ユーザ仮取消） */
+.zonePreCancel, .zonePreCancel a {
+    background: #ffffb2 !important;
+    color: #222222 !important;
+}
+
+/* 帯（4.授業） */
+.zoneJugyo, .zoneJugyo a {
+    background: #ffb2ff !important;
+    color: #222222 !important;
+}
+
+/* 帯（5.補講授業） */
+.zoneHokou, .zoneHokou a {
+    background: #ffb2d8 !important;
+    color: #222222 !important;
+}
+
+/* 帯（6.試験） */
+.zoneTest, .zoneTest a {
+    background: #d8b2ff !important;
+    color: #222222 !important;
+}
+
+/* 帯（7.時間割申請） */
+.zoneTimetable, .zoneTimetable a {
+    background: #ffb2b2 !important;
+    color: #222222 !important;
+}
+
+/* 帯（8.教室利用不可日） */
+.zoneUnavailable, .zoneUnavailable a {
+    background: #d8d8d8 !important;
+    color: #222222 !important;
+}
+
+/* 帯（9.他ユーザ予約） */
+.zoneResOther, .zoneResOther a {
+    background: #b2b2ff !important;
+    color: #222222 !important;
+}
+
+/* 帯（10.他ユーザ仮予約） */
+.zonePreResOther, .zonePreResOther a {
+    background: #b2d8ff !important;
+    color: #222222 !important;
+}
+
+/* 帯（11.他ユーザ仮取消） */
+.zonePreCancelOther, .zonePreCancelOther a {
+    background: #b2ffff !important;
+    color: #222222 !important;
+}
+
+/* 帯（12.出欠イベント） */
+.zoneAttendanceEvent, .zoneAttendanceEvent a {
+    background: #ffd8b2 !important;
+    color: #222222 !important;
+}
+
+/* 帯（13.セミナー情報） */
+.zoneSeminarInfo, .zoneSeminarInfo a {
+    background: #e0ae82 !important;
+    color: #222222 !important;
+}
+
+/*===== 各種設定 =====*/
+
+/* 文中の余白調整 */
+.spacing {
+    width: 2em;
+}
+
+/* columnTogglerの設定 */
+.ui-columntoggler {
+    height: auto !important;
+    max-height: 400px;
+    width: 180px;
+}
+
+/* インプレイス編集アイコン表示 */
+.inplaceMark {
+    float: right;
+}
+
+/* データテーブル上部絞り込み項目エリア */
+.squeezeArea {
+    margin-bottom: 0.4em;
+}
+
+/* 単票等の見出し */
+.singleTableTitle {
+}
+
+/* データテーブルヘッダー部調整 */
+.ui-paginator {
+    padding-top: 0 !important;
+    /*padding-bottom: 0 !important;*/
+}
+
+/* データテーブルヘッダー部の文字太さ調整、高さ固定 */
+.ui-datatable .ui-widget-header {
+    font-weight: normal !important;
+    /*min-height: 30px;*/
+}
+
+/* データテーブルヘッダー部のパーツ位置調整 */
+/*
+.ui-datatable .ui-paginator-prev, .ui-datatable .ui-paginator-next {
+    margin: 0.15em;
+}
+*/
+/*
+.ui-paginator .ui-paginator-current, .ui-paginator .ui-paginator-rpp-options {
+    margin-bottom: 0.2em;
+}
+*/
+
+.ui-paginator-top {
+    /*height: 1.7em;*/
+    overflow: hidden;
+}
+
+.ui-paginator-top .ui-paginator-current, .ui-paginator-top .ui-paginator-first, .ui-paginator-top .ui-paginator-prev, .ui-paginator-top .ui-paginator-next, .ui-paginator-top .ui-paginator-last, .ui-paginator-top .ui-paginator-pages, .ui-paginator-top .ui-paginator-rpp-options {
+    display: none !important;
+}
+
+.ui-paginator-first, .ui-paginator-prev, .ui-paginator-next, .ui-paginator-last {
+    padding: 1px 6px !important;
+}
+
+.ui-paginator-first .ui-icon, .ui-paginator-prev .ui-icon, .ui-paginator-next .ui-icon, .ui-paginator-last .ui-icon {
+    font-size: 0.6em;
+}
+
+.ui-paginator-bottom {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+/* データテーブルヘッダー部調整（IE,Edgeのみ調整）CSS hack */
+@media all and (-ms-high-contrast: none) {
+    .ui-paginator-first, .ui-paginator-prev, .ui-paginator-next, .ui-paginator-last {
+        padding: 2px 6px !important;
+    }
+    .ui-paginator-first .ui-icon, .ui-paginator-prev .ui-icon, .ui-paginator-next .ui-icon, .ui-paginator-last .ui-icon {
+        font-size: 0.72em;
+    }
+    .ui-paginator-page {
+        font-size: 0.8em !important;
+        padding: 1px 6px !important;
+    }
+    .ui-paginator .ui-paginator-rpp-options {
+        position: relative !important;
+        top: 0.2em !important;
+    }
+    .btnSelectColLocation .ui-button {
+        font-size: 0.85em !important;
+    }
+    .ui-paginator-rpp-options.ui-widget {
+        font-size: 0.8em !important;
+    }
+}
+
+/* データテーブルヘッダー部調整（Firefoxのみ調整）CSS hack */
+@-moz-document url-prefix() {
+    .ui-paginator-first .ui-icon, .ui-paginator-prev .ui-icon, .ui-paginator-next .ui-icon, .ui-paginator-last .ui-icon {
+        font-size: 0.7em;
+    }
+    .ui-paginator-page {
+        font-size: 0.7em !important;
+        padding: 1px 6px !important;
+    }
+    .ui-paginator-rpp-options.ui-widget {
+        font-size: 0.7em !important;
+    }    
+}
+
+.ui-paginator-page {
+    font-size: 0.6em;
+    padding: 1px 6px !important;
+}
+
+.ui-paginator .ui-paginator-pages {
+    padding: 0 0.4em !important;
+}
+
+.ui-paginator-rpp-options.ui-widget {
+    font-size: 0.9em;
+}
+
+/* データテーブル縦スクロール設定時の表示調整 */
+.ui-datatable .ui-datatable-scrollable-footer {
+    display: none;
+}
+
+.ui-datatable .ui-datatable-scrollable-body {
+    border-bottom: solid 1px #a6c9e2; /* カラーテーマによりボーダーカラーを変更すること */
+    border-right: solid 1px #a6c9e2; /* カラーテーマによりボーダーカラーを変更すること */
+}
+
+/* データテーブル見出し行非表示用 */
+.noThead thead {
+    display: none;
+}
+
+/* データテーブル縦スクロール時、ヘッダー部調整 */
+.ui-datatable .ui-datatable-scrollable-header {
+    background: #cccccc;
+    min-height: 0;
+}
+
+/* データリストの背景色初期化 */
+.ui-datalist-content {
+    background: transparent !important;
+}
+
+/* コンファームダイアログ内の余白調整 */
+.ui-confirm-dialog .ui-dialog-content {
+    padding: 0.5em 2em !important;
+}
+
+/* メッセージ（案内）の文字表示調整 */
+.ui-growl-title {
+    padding: 0.5em 0 0.5em 0 !important;
+}
+
+/* セレクトワンメニューの横幅調整 */
+.ui-selectonemenu {
+    padding-right: 1.5em;
+}
+
+/* lightboxのnext,prevボタン非表示（グループ化しない前提） */
+.ui-lightbox-nav-right, .ui-lightbox-nav-left {
+    /*display: none !important;*/
+}
+
+/* lightboxで表示されるオリジナル画像サイズの最大横幅設定 */
+.ui-lightbox-content .ui-lightbox-inline img {
+    max-width: 720px;
+}
+
+/* セレクトチェックボックスメニューのヘッダー幅固定 */
+.ui-selectcheckboxmenu-header {
+    min-width: 18em;
+}
+
+/* セレクトチェックボックス(内部) */
+.selectCheckboxMenu{
+    overflow:visible !important
+}
+
+/*===== editorの調整 =====*/
+
+/* editor背景統一 */
+.ui-editor {
+    background: #ffffff;
+}
+
+/*===== RX-Editor調整 =====*/
+
+/* エディター共通 */
+.editorTextarea .sceditor-container, .editorText .sceditor-container {
+    min-width: 560px;
+    width: 99% !important;
+}
+
+/* エディター入力エリア（テキストエリア） */
+.editorTextarea .sceditor-container iframe {
+    width: 98% !important;
+    height: 160px !important;
+}
+
+/* エディター入力エリア（1行テキスト） */
+.editorText .sceditor-container iframe {
+    width: 98% !important;
+    height: 1.6em !important;
+}
+
+/*===== RX-htmlEditor（froala-Editor）調整 =====*/
+
+/* エリア全体 */
+.htmlEditorArea {
+    margin: 0.4em 0;
+}
+
+.fr-box.fr-basic .fr-element {
+    /*word-break: break-all;*/
+    /*z-index: 2000;*/ /* 要確認 */
+}
+
+/* ツールバー */
+.fr-toolbar.fr-top {
+    background: #f0f0f0;
+    border-top-color: #cccccc;
+    border-top-width: 1px;
+}
+
+/* リスト */
+.fr-box ol, .fr-box ul {
+    list-style: initial;
+    margin-left: 1em;
+    padding: 0.2em 0.4em;
+}
+
+.fr-box ol {
+    list-style: decimal;
+}
+
+.fr-box ul {
+    list-style: disc;
+}
+
+/* 入出力エリア */
+.fr-box {
+    line-height: 1.4;
+    overflow: visible !important;
+    white-space: normal !important;
+}
+
+/* 段落 */
+.fr-box p {
+    margin-bottom: 0.5em;
+}
+
+/* リンク */
+.fr-box a {
+    color: #0000ff;
+}
+
+.fr-box a:visited {
+    color: #800080;
+}
+
+/* 表（機能固有CSSでの上書き回避） */
+.fr-view table td, .fr-view table th {
+    border: 1px solid #dddddd !important;
+    padding: 0 !important;
+}
+
+/* テキストエリア用 */
+.editorTextarea .fr-box.fr-basic .fr-element {
+    max-height: 44em; /* 最大約30行 */
+    min-height: 23em; /* 最小約15行 */
+    overflow-y: auto;
+}
+
+/* 1行テキスト用 */
+.editorText .fr-element {
+    height: 1em;
+}
+
+/* インラインモード共通 */
+.editorTextarea .fr-inline .fr-element, .editorText .fr-inline .fr-element {
+    border: solid 1px rgb(187, 187, 187);
+    border-radius: 5px;
+    -moz-box-shadow: inset 0 1px 1px #8f8f8f;
+    -webkit-box-shadow: inset 0 1px 1px #8f8f8f;
+    box-shadow: inset 0 1px 1px #8f8f8f;
+    padding: 10px;
+}
+
+/* テキストエリア用（インラインモード） */
+.editorTextarea .fr-inline .fr-element {
+    max-height: 44em; /* 最大約30行 */
+    min-height: 23em; /* 最小約15行 */
+    overflow-y: auto;
+}
+
+/* 1行テキスト用（インラインモード） */
+.editorText .fr-inline .fr-element {
+    height: 1em;
+}
+
+/* ツールバー */
+.ui-dialog-content .fr-toolbar {
+    /*z-index: 1129 !important;*/
+    z-index: 999991 !important;
+}
+
+/* 重なり調整（子画面表示時） */
+.ui-dialog-content .fr-element {
+    /*z-index: 1128 !important;*/
+    z-index: 999990 !important;
+}
+
+.ui-tooltip + .fr-toolbar {
+    /*z-index: 1129 !important;*/
+    z-index: 999991 !important;
+}
+
+/* 印刷時、水平線での改頁をやめる */
+.fr-view hr {
+    page-break-after: auto !important;
+}
+
+/* 画像挿入のオプション、参照ボタン非表示 */
+.fr-popup .fr-buttons button[data-cmd='imageManager'] {
+    display: none !important;
+}
+
+/* froala editorでリンクの編集パネルが隠れる問題の対応 */
+.fr-popup {
+    z-index: 999989 !important;
+}
+
+/*
+.fr-popup .fr-input-line input[type="text"], .fr-popup .fr-input-line textarea {
+    z-index: 9999 !important;
+}
+*/
+
+/*===== ファイル一覧（Pkx022）のスタイル =====*/
+
+/* 一覧部テーブル表示 */
+.fileListArea .fileList {
+    display: table;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+/* 一覧部列 */
+.fileListArea .fileList .fileListCell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3px;
+}
+
+/* ファイル名 */
+.fileListArea .fileList .downLoadCellFilNm {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+/* 容量表示の余白 */
+.fileListArea .fileList .capacityUnitMargin {
+    margin-left: 5px;
+}
+
+/* サムネイル画像 */
+.fileListArea .thumbList .picThumb {
+    height: 5em;
+    margin-right: 0.2em;
+}
+
+/* サムネイル不要ファイル非表示 */
+.fileListArea .thumbList .picThumb[src='data:'] {
+    display: none;
+}
+
+/*======================================================
+ * PF不具合対応
+======================================================*/
+
+/* フォントを変更することにより、Datepickerの入力値がオーバーフローする現象を対応 */
+/*
+.hasDatepicker {
+    width: 6em;
+}
+*/
+
+/* inputSwitchのchrome不具合対応後、IEで文字がずれる件の対応 */
+.ui-inputswitch-off span {
+    /*margin-right: -1px !important;*/
+}
+
+/* fieldSet内のaccordionPanelに不要なborderが入る件の対応 */
+.ui-fieldset .ui-accordion-header.ui-state-active {
+    border: 0;
+}
+
+/* ダイアログ内のaccordionPanelに不要なborderが入る件の対応 */
+.ui-dialog-content .ui-accordion-header {
+    border: 0;
+}
+
+/* tab内のaccordionPanelに不要なborderが入る件の対応 */
+.ui-accordion .ui-accordion-header {
+    border: 0;
+}
+
+/* コンファームダイアログ文字色のブラウザ間統一 */
+.ui-dialog .ui-confirm-dialog-message {
+    color: #222222;
+}
+
+/* レンダリング時のチラつき防止 */
+.ui-columntoggler {
+    display: none;
+}
+
+/* データテーブルの列リサイズdraggable-handleの位置調整 */
+.ui-draggable-handle {
+    right: 0 !important;
+}
+
+/* データテーブルのサイズ固定化解除（列選択不具合対応） */
+.inclColToggler table {
+    table-layout: auto !important;
+}
+
+/* ブラウザ横スクロール発生時のモーダル用ブロックエリア調整 */
+.ui-blockui {
+    min-width: 994px;
+}
+
+/* ブラウザ横スクロール発生時のモーダル用ブロックエリア調整（例外） */
+.ui-chkbox .ui-blockui {
+    min-width: initial;
+    min-width: auto;
+}
+
+/* selectCheckboxMenuの下余白が必要 */
+.ui-selectcheckboxmenu {
+    margin-bottom: 0.25em;
+}
+
+/* scheduleコンポーネントの縦スクロールを止める */
+.fc-scroller {
+    height: auto !important;
+    overflow-y: visible !important;
+}
+
+/*======================================================
+ * theme.cssの暫定初期スタイル
+======================================================*/
+
+/*===== データテーブル行背景色 =====*/
+
+/* エラー行（テーマ共通） */
+.rowError {
+    background: #f2dede !important;
+    /*background: linear-gradient(to bottom, #f2dede, #f3e2e2) !important;*/
+    color: #b94a48 !important;
+}
+
+.rowError a {
+    color: #b94a48 !important;
+}
+
+/* 無効行（テーマ共通） */
+.rowInvalid {
+    background: #bbbbbb !important;
+    /*background: linear-gradient(to bottom, #bfbfbf, #cccccc) !important;*/
+    color: #222222 !important;
+}
+
+.rowInvalid a {
+    color: #222222 !important;
+}
+
+/* 警告行 */
+.rowWarning {
+    background: #ffcc99 !important;
+    /*background: linear-gradient(to bottom, #ffcc99, rgba(255, 204, 153, 0.9)) !important;*/
+    color: #222222 !important;
+}
+
+.rowWarning a {
+    color: #222222 !important;
+}
+
+/* 編集行 */
+.rowEdit {
+    /*background: #d7ecfc !important;*/ /* カラーテーマでの指定 */
+}
+
+.rowEdit a {
+    /* カラーテーマでの指定 */
+}
+
+/* その他行 */
+.rowOther {
+    /*background: #ffefdb !important;*/ /* カラーテーマでの指定 */
+}
+
+.rowOther a {
+    /* カラーテーマでの指定 */
+}
+
+/* 無効セル */
+.cellInvalid {
+    /*background: #bbbbbb;*/
+    background: linear-gradient(to bottom, #bfbfbf, #cccccc);
+    color: #222222;
+}
+
+/* ホバー時、選択時には無効セルスタイルをリセット */
+.ui-state-hover .cellInvalid, .ui-state-highlight .cellInvalid {
+    background: none;
+    color: initial;
+}
+
+/* fieldset内コンテンツ */
+.ui-fieldset.ui-widget-content {
+    background: transparent !important;
+    color: inherit;
+}
+
+/* dialog内コンテンツ */
+.ui-dialog-content.ui-widget-content {
+    background: #ffffff !important;
+    color: inherit;
+}
+
+/* 高さが1024未満のブラウザでコンテンツが表示されないことを回避 */
+.ui-dialog.rx-dialog:not(.ui-dialog-maximized) .ui-dialog-content.ui-widget-content {
+    max-height: 75vh !important;
+}
+
+/* 最大化した際、コンテンツが表示されないことを回避（高さ768未満は非対応） */
+.ui-dialog.ui-dialog-maximized.rx-dialog  {
+    height: 99vh !important;
+}
+
+.ui-dialog.rx-dialog .ui-dialog-content.ui-widget-content {
+    max-height: 85vh !important;
+}
+
+.ui-dialog.rx-dialog {
+    height: initial !important;
+    height: auto !important;
+}
+
+.ui-dialog-buttonpane.ui-widget-content {
+    background: #ffffff !important;
+    color: inherit;
+}
+
+.ui-confirm-dialog.ui-widget-content {
+    background: #ffffff !important;
+    color: inherit;
+}
+
+/* Loading */
+.ui-blockui-content.ui-widget-content {
+    border: 1px solid #aaaaaa !important;
+    background: #ffffff !important;
+    color: #222222 !important;
+}
+
+/*===== 例外ボタンカラー =====*/
+
+/* 大ボタン（検索）および大ボタン（検索以外）は各テーマにて設定 */
+
+
+/* 暫定スタイルのため、後ほど場所を考える */
+
+/*======================================================
+　* PrimefacesデフォルトCSSの調整
+======================================================*/
+
+/* growlを画面中央に表示する */
+.ui-growl.common-growl {
+    top: 45%;
+    left: 50%;
+    margin-left: -150px;
+}
+
+/* メッセージダイアログのスタイル */
+.rx-messageDialog .ui-messages-warn {
+    border: 0;
+    background-color: transparent;
+    color: #000000;
+}
+
+.rx-messageDialog .ui-messages-error {
+    border: 0;
+    background-color: transparent;
+    color: #000000;
+}
+
+/* メッセージとアイコンの頭を揃うため */
+.ui-dialog .ui-confirm-dialog-message {
+    margin-top: 0;
+}
+
+/* footerの枠を消す */
+.ui-dialog .ui-dialog-footer {
+    border-width: 0;
+}
+
+/* footer文字を中央揃え */
+.ui-dialog .ui-dialog-buttonpane {
+    text-align: center;
+    padding: 0;
+}
+
+/* フロート画面の余白調整 */
+.ui-dialog .ui-dialog-content {
+    padding: 1.5em 1em;
+}
+
+/* 文字の太さを通常に変更 */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    font-weight: normal;
+}
+
+/* 文字の太さを通常に変更（スウィッチ） */
+.ui-inputswitch .ui-inputswitch-on,.ui-inputswitch .ui-inputswitch-off {
+    font-weight: normal !important;
+}
+
+/* 文字の太さを通常に変更（ヘッダー） */
+.ui-widget-header {
+    font-weight: normal;
+}
+
+.ui-widget {
+    font-size: 1em;
+}
+
+/* フロート画面の位置固定強化 */
+.ui-dialog {
+    position: fixed !important;
+}
+
+/* グロウルの調整 */
+.ui-growl-title {
+    font-weight: normal;
+}
+
+/* フィールドセットの調整 */
+.ui-fieldset .ui-fieldset-legend {
+    padding: 0.2em 1em 0.2em 0.5em;
+}
+
+.ui-fieldset .ui-fieldset-toggler {
+    margin-top: 0.1em;
+}
+
+/* インプットスイッチの書略回避 */
+.ui-inputswitch-on, ui-inputswitch-off {
+    text-overflow: clip !important;
+}
+
+/* canvas（グラフ）の表示が必要以上にならないよう制御 */
+canvas[styleclass='chartCanvas'] {
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+/**************** test ********************/
+
+/* テーブル列幅の初期化 */
+/*
+.ui-resizable-column {
+    width: auto !important;
+}
+*/
+
+/*======================================================
+ * 定義用クラス
+======================================================*/
+/* h:outputText をspan要素で出力したい場合に指定する(value属性のみだとテキストとして出力されるため)
+ * ※value属性以外も指定されている場合はspan要素で出力されるため不要
+ */
+.span {}
+
+/*selectcheckboxmenuの横幅を固定(#9201対応)*/
+.ui-selectcheckboxmenu-items-wrapper{
+    width: 280px!important;
+}
+
+/* safariとchromeのみselectonemenuの横幅がおかしくなる問題の対応(#19744) */
+_::-webkit-full-page-media, _:future, :root label.ui-selectonemenu-label  { /* CSS hack */
+    width: auto !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: .001dpcm) {
+    label.ui-selectonemenu-label {
+        width: auto !important;
+    }
+}

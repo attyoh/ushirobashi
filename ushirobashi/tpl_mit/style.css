@@ -1,0 +1,2623 @@
+@charset "utf-8";
+
+/* --- 1.style reset --- */
+html,body,div,h1,h2,h3,h4,h5,h6,p,blockquote,ul,ol,li,dl,dt,dd,pre,th,td,form,fieldset,input,textarea {
+	margin: 0;
+	padding: 0;
+}
+html {
+	overflow-y:scroll;
+}
+body {
+	font-size: 100%;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+li {
+	list-style-type: none;
+}
+img {
+	border: 0;
+}
+address {
+	font-style: normal;
+}
+hr {
+}
+
+
+/* --- 2.float --- */
+.float-left, .alignleft {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+.float-right, .alignright {
+	float: right;
+	margin-left: 20px;
+	margin-bottom: 30px;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.clear {
+    zoom: 1; /* for IE6/7 */
+}
+
+.clear_b {
+	clear: both;
+}
+
+
+/*
+.float-clear { 
+	zoom: 100%;
+}
+.float-clear:after {
+	content: " "; 
+	clear: both; 
+	height: 0; 
+	display: block; 
+	visibility: hidden;
+}
+*/
+
+
+/* --- 3.link --- */
+a:link{
+	text-decoration:underline;
+}
+a:visited{
+}
+a:hover{
+	text-decoration:none;
+}
+a:active{
+}
+
+/*
+a[href $='.pdf'], #contents ul.list-index li a[href $='.pdf'] {
+	background: url(/web/20190403064344im_/http://www.ushirobashi/images/icon_pdf.gif) no-repeat left;
+	padding-left:20px;
+	overflow:hidden;
+}
+a[href $='.doc'] {
+	background: url(/web/20190403064344im_/http://www.ushirobashi/images/icon_doc.gif) no-repeat left;
+	padding-left:20px;
+	overflow:hidden;
+}
+a[href $='.xls'] {
+	background: url(/web/20190403064344im_/http://www.ushirobashi/images/icon_xls.gif) no-repeat left;
+	padding-left:20px;
+	overflow:hidden;
+}
+a[href $='.docx'] {
+	background: url(/web/20190403064344im_/http://www.ushirobashi/images/icon_doc.gif) no-repeat left;
+	padding-left:20px;
+	overflow:hidden;
+}
+a[href $='.xlsx'] {
+	background: url(/web/20190403064344im_/http://www.ushirobashi/images/icon_xls.gif) no-repeat left;
+	padding-left:20px;
+	overflow:hidden;
+}
+*/
+
+
+
+/* --- 4.text-align --- */
+.to-left {
+	text-align:left;	
+}
+.to-center {
+	text-align:center;	
+}
+.to-right {
+	text-align:right;	
+}
+
+/* --- original --- */
+
+
+
+
+/* --- 検索GoogleCustom --- */
+
+
+#searchbox .gsc-control-cse, 
+#searchbox .gsc-control-cse-ja,
+#searchbox .gsib_a{
+    margin:0 !important;
+    padding:0 !important;
+}
+
+#searchbox table.gsc-search-box td,
+#searchbox table.gsc-search-box input {
+    vertical-align: top !important;
+}
+
+
+#searchbox input[type="text"]  {
+	 width: 180px !important;
+     height: 15px !important;
+     color: #333 !important;
+     padding: 3px 6px !important;
+	 border: 1px solid #ccc !important;
+     font-size: 13px !important;
+}
+
+#searchbox input[type="text"]:focus {
+    border: 1px solid #ccc !important;
+    outline: 0;  /*safariの自動フォーカスを切る */
+}
+
+.gs-title{
+text-align:left;
+}
+
+/* テキスト入力フォームの影を消す */
+
+
+#searchbox #gsc-iw-id1{
+    border:none !important;
+}
+
+.gsc-search-box .gsc-input > input:focus, .gsc-input-box-focus,.gsc-search-box .gsc-input > input:hover, .gsc-input-box-hover
+{
+box-shadow:0px !important;
+outline:none !important;
+}
+
+#searchbox #gs_tti0 input{
+    background-position:5px 5px !important;
+}
+
+/* ボタンの色 */
+#searchbox input.gsc-search-button {
+
+background: #748d9b !important;
+background: -ms-linear-gradient(top,  #748d9b 0%,#748d9b 100%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#748d9b', endColorstr='#748d9b',GradientType=0 ); /* IE6-9 */
+border: 1px solid #748d9b !important;
+}
+
+#searchbox .gsc-search-button-v2{
+padding:3px !important;
+}
+
+#searchbox input.gsc-search-button[type="image"]{
+width:15px !important;
+height:15px !important;
+}
+
+/* ボタンの位置調整と角丸消し */
+#searchbox .gsc-search-button{
+    margin:0 0 0 -16px !important;
+    border-radius:0;
+} 
+
+
+
+
+
+#font_size span {
+	background-color: #90A4AF;
+}
+#font_size span a {
+	color: #FFF;
+	text-decoration: none;
+	padding-right: 5px;
+	padding-left: 5px;
+	background-color: #90A4AF;
+}
+#top_img {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#f_navi {
+	background-color: #90A4AF;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+#f_navi_s ul li a {
+	color: #FFF;
+	text-decoration: none;
+}
+#f_navi_s ul li ul li a {
+	font-size: 80%;
+}
+
+
+/*　タブ　*/
+
+.tabs input[type=radio] {
+ position: absolute;
+ top: -9999px;
+ left: -9999px;
+ }
+
+
+.tabs li {
+	float: left;
+	margin-right: 2px;
+}
+
+
+.tabs label:hover {
+	top: 0;
+ }
+
+[id^=tab]:checked + label {
+top: 0;
+background:#5a7280;
+color:#FFF;
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #748d9b;
+border-right-width: 1px;
+border-left-width: 1px;
+border-right-style: solid;
+border-left-style: solid;
+border-right-color: #748d9b;
+border-left-color: #748d9b;
+
+ }
+ 
+[id^=tab]:checked ~ [id^=tab-content] {
+display: block;
+}
+
+.tab-content {
+	z-index: 2;
+	display: none;
+	text-align: left;
+	width: 100%;
+	height: 250px;
+	overflow-y: auto;
+	font-size: 90%;
+	line-height: 140%;
+	padding-top: 10px;
+	padding: 15px;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	box-sizing: border-box;
+	-webkit-animation-duration: 0.5s;
+	-o-animation-duration: 0.5s;
+	-moz-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	border: 1px solid #748d9b;
+	background-color: #FFF;
+ }
+
+
+.tab-content dl {
+}
+
+.tab-content dt {
+	clear:left;
+	float: left;
+	width: 27%;
+}
+
+.tab-content dd {
+	float: left;
+	width: 68%;
+	margin-bottom: 10px;
+}
+
+.tab-content dd:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+
+.b_list {
+text-align:right;
+font-size:70%;
+margin-bottom:20px;
+}
+
+.b_list span a {
+display:inline_block;
+border:1px solid #748D9B;
+padding:0px 3px;
+text-decoration:none;
+color:#748D9B;
+}
+
+
+
+
+#top_right ul li {
+	margin-bottom: 10px;
+}
+
+
+/* --- トップページここまで --- */
+
+/* --- グローバルナビ --- */
+
+.gnav01,.gnav02,.gnav03,.gnav04,.gnav05,.gnav06 {
+	text-align:center;
+}
+
+.gnav01 {
+	background-color:#97be8a;
+}
+
+.gnav02 {
+	background-color:#7fc2c8;
+}
+
+.gnav03 {
+	background-color:#d0c49d;
+}
+
+.gnav04 {
+	background-color:#f1be82;
+}
+
+.gnav05 {
+	background-color:#c68dac;
+}
+
+.gnav06 {
+	background-color:#e68391;
+}
+
+/* --- 汎用 --- */
+
+.hidden {
+	visibility: hidden;
+}
+	
+
+a img{
+	-webkit-transition: 0.3s ease-in-out;
+	   -moz-transition: 0.3s ease-in-out;
+	     -o-transition: 0.3s ease-in-out;
+	        transition: 0.3s ease-in-out;
+}
+
+a:hover img{
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+
+/* --- カテゴリートップ --- */
+
+#news_archive dl {
+width:100%;
+}
+
+#news_archive dt{
+float:left;
+width:20%;
+clear:left;
+}
+
+#news_archive dd{
+float:left;
+width:70%;
+margin-bottom:10px;
+}
+
+#contents .index_box01 {
+margin-right:-4%;
+margin-bottom:40px;
+overflow:hidden;
+}
+
+#contents .index_box01 li a:hover {
+	border: 1px solid #748D9B;
+	background-color: #cdd7dd;
+}
+
+#contents .index_box02 {
+	float: left;
+	width: 25%;
+	vertical-align: top;
+	color: #607682;
+	text-decoration: none;
+	border: 1px solid #cbd5da;
+	margin: 2%;
+	padding: 18px;
+}
+
+#contents .index_box02 .cat_title {
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #CBD5DA;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+#contents .index_box02 .cat_title a {
+	color: #54656f;
+	text-decoration: none;
+}
+#contents .index_box02 .cat_title a:hover {
+	text-decoration: underline;
+}
+
+#contents .index_box02 ul li {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/vec01.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 15px;
+	margin-bottom: 6px;
+	font-size: 90%;
+}
+#contents .index_box02 ul li a {
+	text-decoration: none;
+	color: #54656f;
+}
+
+#contents .index_box02 ul li a:hover {
+	text-decoration: underline;
+}
+
+#contents .kouhyou_flex{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2%;
+}
+
+#contents .index_box03 {
+	width: 26%;
+	min-height: 180px;
+	padding: 20px;
+	border: 1px dotted #748D9B;
+	margin-bottom: 2%;
+}
+
+@media screen and (max-width: 769px){
+	#contents .index_box03 {
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 420px){
+	#contents .index_box03 {
+		width: 100%;
+	}
+}
+	
+	
+	
+#contents .index_box03 h2 {
+	margin-bottom: 10px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #748D9B;
+	padding-bottom: 3px;
+}
+#contents .index_box03 ul {
+	font-size: 90%;
+}
+#contents .index_box03 ul li {
+	margin-bottom: 5px;
+	list-style-type: square;
+	margin-left: 25px;
+}
+
+#contents .index_box04 {
+margin-right:-4%;
+margin-bottom:40px;
+overflow:hidden;
+}
+
+#contents .index_box04 div a {
+	display: block;
+	float: left;
+	width: 38%;
+	vertical-align: top;
+	color: #607682;
+	text-decoration: none;
+	border: 1px solid #cbd5da;
+	margin: 1% 4% 2% 0% ;
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/vec02.png);
+	background-repeat: no-repeat;
+	background-position: 20px center;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+font-size:90%;
+}
+#contents .index_box04 div a:hover {
+	border: 1px solid #748D9B;
+	background-color: #cdd7dd;
+}
+
+#feedbox {
+	border:1px solid #738c9a;
+	padding:20px 25px;
+	margin-bottom:30px;
+	width:100%;
+	-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#feedbox h3 {
+	color:#738c9a;
+	font-size:140%;
+	margin-bottom:20px;
+}
+
+#feedbox dl {
+	font-size:90%;
+	
+}
+
+#feedbox dd {
+	width: 100%;
+	margin-bottom:10px;
+	border-bottom:1px dotted #ccc;
+}
+
+
+#pagenation {
+ margin:30px 0 25px 0;
+text-align:center;
+ }
+
+#pagenation ul li {
+ list-style-type: none;
+ font-size:16px;
+ display: inline;
+ }
+#pagenation ul li a {
+ text-decoration: none;
+ border: 1px solid #e2e2d8;
+ padding: 7px 7px;
+ color: #4D678C;
+ margin: 2px;
+ }
+#pagenation ul li a:hover {
+ color: #B7A5B1;
+ border: 1px solid #B7A5B1;
+ color: #B7A5B1;
+ }
+#pagenation ul li a:visited {
+ color: #4D678C;
+ }
+#pagenation ul span.current_page {
+ padding: 2px 8px;
+ margin: 1px;
+ color: #4D678C;
+ background-color: #f6f8ed;
+ }
+
+.dpt_youtube {
+	margin: 5px 0 0 0 ;
+}
+
+
+/* --- 記事本文内 --- */
+
+
+
+#contents #bc_navi {
+	font-size: 80%;
+	margin-bottom: 25px;
+}
+
+#contents #bc_navi a{
+	color: #54656f;
+	text-decoration: none;
+
+}
+
+#contents #bc_navi a:hover{
+	text-decoration: underline;
+
+}
+
+#contents ol li {
+	list-style-type: decimal;
+	margin-left: 30px;
+	padding-left: 0px;
+	list-style-position: outside;
+	margin-bottom: 10px;
+	line-height: 140%;
+}
+
+
+#contents h1:not(#dept) {
+	margin-bottom: 30px;
+	font-size: 200%;
+	border-left-width: 8px;
+	border-left-style: solid;
+	border-left-color: #90A4AF;
+	padding-left: 15px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+#entry a:link {
+	color: #45536a;
+	text-decoration: none;
+}
+
+
+#entry h2:not(#dpt) {
+	clear: both;
+	color: #405366;
+	font-size: 140%;
+	line-height: 150%;
+	margin-bottom: 20px;
+	padding-top: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #748D9B;
+	padding-bottom: 5px;
+}
+
+#entry h3 {
+	color: #FFF;
+	font-size: 110%;
+	padding: 3px 0 3px 10px;
+	margin: 30px 0 10px;
+	clear: both;
+	background-color: #748D9B;
+}
+#entry h5 {
+	color: #4f6876;
+	margin-bottom: 6px;
+}
+
+#contents #entry h4 {
+	margin-top: 30px;
+}
+
+#contents #entry h3 a {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+
+
+#entry p {
+	line-height: 160%;
+	font-size: 95%;
+	margin-bottom: 1em;
+}
+
+
+#entry ul:not(.contents_menu) {
+	margin-bottom: 15px;
+	font-size: 95%;
+	margin-left: 15px;
+	list-style-image: url(/web/20190403064344im_/http://www.ushirobashi/images/vec01.png);
+}
+#entry ul li {
+	margin-bottom: 5px;
+}
+#entry table {
+	font-size: 90%;
+	border-collapse: collapse;
+	margin-bottom: 15px;
+}
+#entry table td {
+	padding: 5px;
+	border: 1px dotted #748D9B;
+}
+
+#entry table th {
+	padding: 5px;
+	border: 1px dotted #748D9B;
+    background-color: #e6e6e6;
+}
+
+
+#entry .title_bottom {
+	border-bottom: solid 2px #736357;
+	font-size: 110%;
+	margin-top: 10px;
+	margin-right: 0;
+	margin-bottom: 20px;
+	margin-left: 0;
+	padding-bottom: 10px;
+}
+
+/* シラバストップメニュー用追記　ここから　*/
+
+#entry02 a:link {
+	color: #45536a;
+	text-decoration: none;
+}
+
+
+#entry02 h2:not(#dpt) {
+	clear: both;
+	color: #405366;
+	font-size: 140%;
+	line-height: 150%;
+	margin-bottom: 20px;
+	padding-top: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #748D9B;
+	padding-bottom: 5px;
+}
+
+#entry02 h3 {
+	color: #FFF;
+	font-size: 110%;
+	padding: 3px 0 3px 10px;
+	margin: 30px 0 10px;
+	clear: both;
+	background-color: #748D9B;
+}
+#entry02 h5 {
+	color: #4f6876;
+	margin-bottom: 6px;
+}
+
+#contents #entry02 h4 {
+	margin-top: 30px;
+}
+
+#contents #entry02 h3 a {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+
+
+#entry02 p {
+	line-height: 160%;
+	font-size: 95%;
+	margin-bottom: 1em;
+}
+
+
+#entry02 ul:not(.contents_menu) {
+	margin-bottom: 15px;
+	font-size: 95%;
+	margin-left: 15px;
+	list-style-image: url(/web/20190403064344im_/http://www.ushirobashi/images/vec01.png);
+}
+#entry02 ul li {
+	margin-bottom: 5px;
+}
+#entry02 table {
+	font-size: 90%;
+	border-collapse: collapse;
+	margin-bottom: 15px;
+}
+#entry02 table td {
+	padding: 5px;
+	border: 1px dotted #748D9B;
+}
+
+#entry02 table th {
+	padding: 5px;
+	border: 1px dotted #748D9B;
+    background-color: #e6e6e6;
+}
+
+
+#entry02 .title_bottom {
+	border-bottom: solid 2px #736357;
+	font-size: 110%;
+	margin-top: 10px;
+	margin-right: 0;
+	margin-bottom: 20px;
+	margin-left: 0;
+	padding-bottom: 10px;
+}
+
+/* シラバストップメニュー用追記　ここまで　*/
+
+
+/* --- サイトマップ --- */
+
+#sitemap h2 {
+	background-color: #eee;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #748D9B;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+#sitemap h2 a {
+	color: #54656F;
+}
+
+
+#sitemap h3 {
+	border-left-width: 8px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+	padding-left: 10px;
+	margin-bottom: 10px;
+	font-size: 95%;
+}
+
+#sitemap h4 {
+	margin-bottom: 10px;
+	font-size: 90%;
+	color: #333;
+}
+
+#sitemap ul {
+	display: block;
+	margin-bottom: 30px;
+}
+
+#sitemap ul li {
+	font-size: 90%;
+	display: block;
+	width: 21%;
+	float: left;
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 15px;
+	margin-top: 2px;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	margin-left: 10px;
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/list_m01.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+#sitemap ul li a {
+	color: #54656F;
+	text-decoration: none;
+}
+
+/*学部・大学院*/
+
+#dpt #entry h1:not(#dept_top) {
+	clear: both;
+	color: #405366;
+	font-size: 140%;
+	line-height: 150%;
+	margin-bottom: 20px;
+	padding-top: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #748D9B;
+	padding-bottom: 5px;
+}
+
+#dpt #entry h2 {
+	color: #FFF;
+	font-size: 110%;
+	padding: 3px 0 3px 10px;
+	margin: 30px 0 10px;
+	clear: both;
+}
+
+#entry #civ h2 {
+	background-color:#E1923E;
+}
+
+#entry #arc h2 {
+	background-color: #4E9656;
+}
+
+#entry #life h2 {
+	background-color: #CF7E7E;
+}
+
+#entry #sys h2 {
+	background-color: #1184AA;
+}
+
+#entry #bio h2 {
+	background-color: #059085;
+}
+
+#entry #de h2 {
+	background-color: #DC5433;
+}
+
+#entry #kyousyoku h2 {
+	background-color: #494e78;
+}
+
+#entry #gr01 h2 {
+	background-color:#e16b18;
+}
+
+.h_gr01,
+#entry #gr01 .h_gr01 h2{
+	background-color:#e16b18;
+border:none;
+}
+
+.h_civ,
+#entry #gr01 .h_civ h2 {
+	background-color:#e35451 !important;
+border:none;
+}
+
+.h_arc,
+#entry #gr01 .h_arc h2 {
+	background-color:#e5528e !important;
+border:none;
+}
+
+.h_ide,
+#entry #gr01 .h_ide h2 {
+	background-color:#b04d8e !important;
+border:none;
+}
+
+#entry #gr02 h2 {
+	background-color:#0097dd;
+}
+
+.h_gr02,
+#entry #gr02 .h_gr02 h2{
+	background-color:#0097dd;
+border:none;
+}
+
+.h_lsi,
+#entry #gr02 .h_lsi h2{
+	background-color:#1c7fbe !important;
+border:none;
+}
+
+.h_sle,
+#entry #gr02 .h_sle h2 {
+	background-color:#009fb3 !important;
+border:none;
+}
+
+.h_bio,
+#entry #gr02 .h_bio h2{
+	background-color:#6f619e !important;
+border:none;
+}
+
+#entry #civ h3 {
+	border-bottom: dotted 2px #E1923E;
+}
+
+#entry #arc h3 {
+	border-bottom: dotted 2px #4E9656;
+}
+
+#entry #life h3 {
+	border-bottom: dotted 2px #CF7E7E;
+}
+
+#entry #sys h3 {
+	border-bottom: dotted 2px #1184AA;
+}
+
+#entry #bio h3 {
+	border-bottom: dotted 2px #059085;
+}
+
+#entry #de h3 {
+	border-bottom: dotted 2px #40A990;
+}
+
+#entry #kyousyoku h3 {
+	border-bottom: dotted 2px #494e78;
+}
+
+#entry h4 {
+	margin: 10px 0;
+	padding-left: 10px;
+	border-left-width: 10px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+}
+
+#entry .small {
+	font-size: 80%;
+	margin-top: 5px;
+	clear: both;
+}
+
+.policybox {
+	margin-bottom:30px;
+}
+
+.policybox span {
+	font-size:100%;
+	font-weight:bold;
+}
+
+.policybox ol{
+  counter-reset:number;
+  list-style:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+.policybox ol li{
+  list-style:none !important;
+  display:block;
+  padding:5px 5px 5px 40px !important;
+  position: relative;
+}
+.policybox ol li:before{
+  counter-increment: number;
+  content: "0"counter(number) ; 
+  font-size:270%;
+  font-family:"Arial Black", Gadget, sans-serif;
+  color:#ccc;
+  position: absolute;
+  left: -30px;
+  top:10px;
+}
+
+/* 追加　202107(学群メッセージ・授業) */
+.msg_item {
+margin-bottom:30px;
+}
+
+.msg_title {
+margin-bottom:15px;
+}
+
+.msg_title h2 {
+display:block;
+margin:0 !important;
+padding:6px 10px !important;
+}
+
+.msg_prg {
+font-size:80%;
+text-align:right;
+color:#FFF;
+padding:8px 10px;
+}
+
+/* 追加　20160202（大学院用） */
+
+#contents #entry #grd_photo_box {
+	margin:10px 0px 10px -10px;
+}
+
+#contents #entry .grd_photo {
+	width: 170px;
+	float:left;
+	font-size:90%;
+	margin-left:10px;
+}
+
+/* 追加　201807012（大学授業紹介） */
+
+.lab_box {
+	padding:0 15px 15px;
+	border:1px solid #CCC;
+ }
+
+.lab_box h4 span {
+	font-size: 90%;
+}
+
+.lab_box ul {
+	list-style-type: disc !important;
+	list-style-position: outside;
+	font-size: 85% !important;
+	margin-bottom: 10px;
+}
+
+/* contents_menu */
+
+#entry .contents_menu{
+	padding: 0;
+	width: 100%;
+	font-size: 80%;
+	list-style-type: none;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 30px;
+	margin-left: 0;
+}  
+  
+  
+#entry .contents_menu li{
+	float: left;
+	margin: 0;
+	padding: 0;
+}  
+
+#entry .contents_menu a{
+	text-align: center;
+	width: 119px;
+	height: 40px;
+	text-decoration: none;
+	color: #FFF;
+	padding-top: 5px;
+	padding-right: 0px;
+	padding-bottom: 5px;
+	padding-left: 0px;
+	vertical-align: middle;
+	display: table-cell;
+	background-color: #748D9B;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #FFF;
+}  
+  
+#entry .contents_menu a:hover{
+	background-color: #FFF;
+	color: #748D9B;
+}  
+
+/*   summary   */
+
+#entry .news {
+	border-left: solid 2px #E7A865;
+	border-bottom: solid 2px #E7A865;
+	border-right: solid 2px #E7A865;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 15px;
+	margin-left: 0;
+}
+
+#entry #civ .news {
+	border-color: #E7A865;
+}
+
+#entry #arc .news {
+	border-color: #71AB78;
+}
+
+#entry #life .news {
+	border-color: #D99898;
+}
+
+#entry #sys .news {
+	border-color: #419DBB;
+}
+
+#entry #bio .news {
+	border-color: #37A69D;
+}
+
+#entry #de .news {
+	border-color: #E3765C;
+}
+
+#entry #kyousyoku .news {
+	border-color: #494e78;
+}
+
+#entry #gr01 .news {
+	border-color: #e16b18;
+}
+
+#entry #gr02 .news {
+	border-color: #0097dd;
+}
+
+#entry .news h3 {
+	margin: 0;
+	margin-bottom: 10px;
+	padding-left: 15px;
+}
+
+#entry .news dl {
+	font-size:90%;
+}
+
+#entry .news dt,#entry .history dt {
+	float: left;
+	display: block;
+	width: 18%;
+	margin-left: 10px;
+	clear:left;
+}
+
+#entry .news dd,#entry .history dd {
+	margin-bottom: 5px;
+	display: block;
+	width: 78%;
+	float: left;
+	margin-right: 10px;
+}
+
+#entry .news dd:after,#entry .history dd:after {
+	content:"";
+	display:block;
+	clear:both;
+}
+
+
+.admission_box_01 {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/adm_01.gif);
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	background-position: 5px 5px;
+}
+
+.admission_box_02 {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/adm_02.gif);
+	background-repeat: no-repeat;
+	margin-top: 10px;
+	background-position: 5px 5px;
+}
+
+.admission_box_03 {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/adm_03.gif);
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	background-position: 5px 5px;
+}
+
+.admission_box_04 {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/adm_04.gif);
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	background-position: 5px 5px;
+}
+
+.admission_box_01 p, .admission_box_02 p, .admission_box_03 p, .admission_box_04 p {
+	font-size: 95%;
+	margin-left: 70px;
+}
+
+#entry h3+ul {
+	margin-bottom: 10px;
+}
+
+/*   event   */
+
+#entry .event_table td {
+	border: dotted 1px #736357;
+	padding: 4px;
+	font-size: 95%;
+}
+
+#entry .event_table {
+	border-collapse: collapse;
+}
+
+/*   lesson   */
+
+.lesson_box {
+	min-height: 180px;
+}
+
+.teacher_box {
+	clear: left;
+	border: solid 1px #736357;
+	margin-top: 10px;
+	padding-top: 0px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+#entry .teacher_box h4 {
+	margin-top: 5px;
+	margin-right: 0;
+	margin-bottom: 10px;
+	margin-left: 0;
+}
+
+#entry #civ .teacher_box h4 {
+	color: #E1923E;
+}
+
+#entry #arc .teacher_box h4 {
+	color: #4E9656;
+}
+
+#entry #life .teacher_box h4 {
+	color: #CF7E7E;
+}
+
+#entry #sys .teacher_box h4 {
+	color: #1184AA;
+}
+
+#entry #bio .teacher_box h4 {
+	color: #059085;
+}
+
+#entry #de .teacher_box h4 {
+	color: #DC5433;
+}
+
+.teacher_box img+p {
+	margin-bottom: 20px;
+}
+
+.future01, .future02 {
+	width: 45%;
+	border: solid 1px #736357;
+	padding: 0 10px 5px 10px;
+}
+
+.future01 {
+	float: left;
+}
+
+.future02 {
+	float: right;
+}
+
+/*   curriculum   */
+
+.curriculum_table {
+	clear: both;
+	margin-bottom: 5px;
+	border-collapse: collapse;
+}
+
+.curriculum_table td {
+	border: solid 1px #736357;
+	font-size: 90%;
+	padding: 5px;
+}
+
+.three_years_l {
+	clear: both;
+	width: 320px;
+	height: 220px;
+	float: left;
+	margin-bottom: 10px;
+	border: solid 1px #736357;
+	padding: 10px;
+}
+
+.three_years_r {
+	width: 320px;
+	height: 220px;
+	float: right;
+	margin-bottom: 10px;
+	border: solid 1px #736357;
+	padding: 10px;
+}
+
+#bio .three_years_l,#bio .three_years_r {
+	height: 230px;
+}
+
+.three_years_l img+p,.three_years_r img+p {
+	color: #736357;
+	margin-top: 10px;
+}
+
+.three_years_l img,.three_years_r img {
+	margin-bottom: 5px;
+}
+
+.three_years_l p+p,.three_years_r p+p {
+	clear: both;
+}
+
+/*   teacher   */
+
+.teacher_table {
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+.teacher_table td, .teacher_table th {
+	border: solid 1px #736357;
+	padding: 4px;
+}
+
+.teacher_table th {
+	background-color: #E6E6E6;
+	font-weight: normal;
+}
+
+/*   message   */
+
+.ogob {
+	float: left;
+	margin-right: 20px;
+}
+
+.ogob+p {
+	margin-bottom: 10px;
+}
+
+
+#entry table th {
+	font-weight: normal;
+}
+
+.students_tb {
+	font-size: 90%;
+	border: solid 1px #736357;
+	margin-bottom: 50px;
+}
+
+.students_tb td {
+	border-left: solid 1px #736357;
+	border-top: solid 1px #736357;
+	border-collapse: collapse;
+	padding-right: 4px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.students_tb th {
+	background-color: #E6E6E6;
+	border-left: solid 1px #736357;
+	border-top: solid 1px #736357;
+	border-collapse: collapse;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.faq_box {
+	width: 94%;
+	border: dotted 2px #abb8cd;
+	margin-left: 3%;
+	padding: 5px;
+	margin-bottom: 15px;
+}
+
+.faq_box .ans {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	padding: 0 8px;
+}
+
+.faq_box .que {
+	background-color: #abb8cd;
+	color: #fff;
+	padding: 2px 0 2px 8px;
+}
+
+/*   サイドバー   */
+
+#sidebar #cat_title {
+	font-size: 90%;
+	color: #748D9B;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+	text-align: center;
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-top-style: solid;
+	border-top-color: #748D9B;
+	border-bottom-color: #748D9B;
+	border-bottom-style: solid;
+}
+#cat_title a {
+	color: #748D9B;
+	text-decoration: none;
+	font-size: 120%;
+}
+#cat_title a:hover {
+	text-decoration: underline;
+}
+
+#sidebar h2 {
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	border-left-width: 5px;
+	border-left-style: solid;
+	border-left-color: #658585;
+	font-size: 90%;
+	padding-left: 5px;
+}
+
+#sidebar h3 {
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	font-size: 90%;
+	padding-left: 5px;
+}
+
+#sidebar ul li a {
+
+}
+
+#sidebar ul li a:hover {
+	background-color: #abb8cd;
+}
+
+#sidebar ul #g01 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c01.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g02 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c02.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g03 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c03.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g04 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c04.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g05 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c05.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g06 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c06.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g07 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c07.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar ul #g08 a {
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/ic_c08.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#sidebar dl dt{
+	font-size: 80%;
+	padding-top: 10px;
+}
+
+#sidebar dl dd{
+	font-size: 90%;
+	padding-bottom: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #90A4AF;
+}
+
+#sidebar .sub_cat {
+	padding-left: 5px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+	margin-top: 15px;
+}
+
+/*blog*/
+
+
+#n_title {
+	margin-bottom: 10px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #658585;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#news {
+	margin-bottom:30px;
+}
+
+#news h2 {
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #90A4AF;
+	margin-bottom: 10px;
+	padding-bottom: 4px;
+}
+
+#news dl {
+	font-size: 90%;
+}
+
+#news dt {
+	float: left;
+	width: 25%;
+	clear:left;
+}
+
+#news dd {
+	float: left;
+	width: 70%;
+	margin-bottom: 10px;
+}
+
+#news dd:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+
+#news02 dl {
+	font-size: 90%;
+}
+
+#news02 dt {
+	float: left;
+	width: 30%;
+}
+
+#news02 dd {
+	float: left;
+	width: 65%;
+	margin-bottom: 10px;
+}
+
+#news02 dd:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+
+.news_box {
+	border: 1px solid #658585;
+	padding: 10px 20px;
+}
+
+
+#cbox_area {
+	overflow: hidden;
+	height: auto;
+	width: 720px;
+
+}
+
+#cbox_area .top_cbox {
+
+	float: left;
+	width: 42%;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #CCC;
+	padding: 15px;
+
+}
+#cbox_area .top_cbox h3 {
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #90A4AF;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	font-size: 95%;
+}
+#cbox_area .top_cbox ul li {
+	font-size: 90%;
+	margin-bottom: 10px;
+}
+#cbox_area .top_cbox ul li a {
+	text-decoration: none;
+}
+
+#info_box01 {
+	padding: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid #ddd;
+}
+
+#copyright {
+font-size:70%;
+text-align:center;
+margin:15px 0px;
+color:#FFF;
+}
+
+.attention {
+	padding:15px;
+	border:dotted 1px #FF0000;
+	margin-bottom:300px;
+	font-size:90%;
+	line-height:160%;
+	color:#F00;
+}
+
+.c_box02 {
+	padding:10px;
+}
+
+.c_box02 h2 {
+	border-bottom:2px dotted #90A4AF;
+	margin-bottom:10px;
+	padding-bottom:5px;
+}
+.c_box02 ul {
+	margin-bottom:2em;
+}
+
+.c_box02 ul li {
+	font-size:90%;
+	list-style:disc;
+	margin:0px 0px 6px 20px;
+	color:#90A4AF;
+}
+
+.c_box02 ul li a {
+	color:#333;
+	text-decoration:none;
+}
+
+/* 汎用 */
+
+ul.list01 {
+	margin-left: 25px !important;
+}
+
+.list01 li {
+	list-style-type: circle;
+}
+
+
+/* 769px以上///////////////////////////////////////////////////////////////////////////*/
+@media screen and (min-width: 769px){
+
+header {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#h_logo {
+	float: left;
+	padding-top: 10px;
+}
+#h_menu {
+	float: right;
+	text-align: right;
+}
+
+#hnavi01 {
+	float: right;
+	margin-bottom: 10px;
+}
+
+
+#hnavi01 li {
+
+	float: left;
+	text-align: center;
+}
+#hnavi01 li a {
+	display: block;
+	color: #748D9B;
+	font-size: 75%;
+	text-decoration: none;
+	width: 100px;
+}
+
+#h_tool {
+	float: right;
+	margin-bottom: 15px;
+}
+
+#hnavi02 {
+	float: right;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #748D9B;
+	height: 20px;
+}
+
+#hnavi02 li {
+	float: left;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+	height: 20px;
+}
+#hnavi02 li a {
+	text-decoration: none;
+	width: 146px;
+	display: block;
+}
+
+#main_nav {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+}
+
+#main_nav li {
+	float: left;
+	text-align: center;
+}
+#main_nav li a {
+	display: block;
+	text-decoration: none;
+	width: 160px;
+}
+
+
+.g_mg {
+	margin-right: 0px;
+
+}
+
+nav:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#searchbox {
+width: 210px;
+	position: relative;
+	float: left;
+}
+
+#font_size {
+	font-size: 75%;
+	float: left;
+	margin-right: 10px;
+	padding-top: 3px;
+}
+
+#contents {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+}
+
+/* --- トップページここから --- */
+
+#contents #top_left {
+	width: 720px;
+	float: left;
+}
+#contents #top_right {
+	float: right;
+	width: 210px;
+}
+
+.tabs {
+ max-width: 720px;
+ height: 300px;
+ float: none;
+ list-style: none;
+ position: relative;
+ padding: 0;
+ }
+
+.tabs label {
+ display: block;
+ padding: 10px 20px;
+ border-radius: 2px 2px 0 0;
+ color: #414b51;
+ font-size: 80%;
+ background: rgba(116,141,155,0.6);
+ cursor: pointer;
+ position: relative;
+ top: 3px;
+ border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #fff;
+border-right-width: 1px;
+border-left-width: 1px;
+border-right-style: solid;
+border-left-style: solid;
+border-right-color: #fff;
+border-left-color: #fff;
+
+ -webkit-transition: all 0.2s ease-in-out;
+ -moz-transition: all 0.2s ease-in-out;
+ -o-transition: all 0.2s ease-in-out;
+ transition: all 0.2s ease-in-out;
+ }
+
+.gakka_box {
+	float: left;
+	width: 340px;
+	margin-bottom: 15px;
+}
+
+#bn_box01 {
+	margin-top: 30px;
+}
+
+#bn_box01 img {
+	margin: 5px 3px;
+}
+
+#f_logo {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 80%;
+	color: #748D9B;
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+
+#f_navi #f_navi_s {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#f_navi_s .f_column {
+	float: left;
+	margin-right: 30px;
+}
+
+#feedbox dt {
+	clear:left;
+	float: left;
+	width: 140px;
+}
+
+#feedbox dd:after {
+	content:'';
+	display:block;
+	clear:both;
+}
+
+/*   記事   */
+
+#entry {
+	width: 720px;
+	float:left;
+}
+
+#entry02 {
+	width: 900px;
+	float:left;
+}
+
+#sidebar {
+	float: right;
+	width: 210px;
+}
+
+#sidebar ul li a {
+	text-decoration: none;
+	color: #49647b;
+	font-size: 90%;
+	display: block;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #90A4AF;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 15px;
+	padding-left: 5px;
+}
+
+#sidebar ul li p {
+	text-decoration: none;
+	color: #49647b;
+	font-size: 90%;
+	display: block;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #90A4AF;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 15px;
+	padding-left: 5px;
+}
+
+.mg_l40 {
+	margin-left:40px;
+}
+
+#contents .index_box01 li {
+
+}
+
+#contents .index_box01 li a {
+	display: block;
+	float: left;
+	width: 24%;
+	vertical-align: top;
+	color: #607682;
+	text-decoration: none;
+	border: 1px solid #cbd5da;
+	margin: 1% 4% 2% 0% ;
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/vec02.png);
+	background-repeat: no-repeat;
+	background-position: 20px center;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+font-size:90%;
+}
+
+.admission_box_01, .admission_box_02, .admission_box_03, .admission_box_04 {
+	width: 46%;
+	height: 85px;
+	border: solid 1px #736357;
+	margin-bottom: 10px;
+	font-size: 90%;
+	padding: 10px;
+}
+
+.admission_box_01, .admission_box_03 {
+	float: left;
+	clear: left;
+}
+
+.admission_box_02, .admission_box_04 {
+	float: right;
+	clear: right;
+}
+
+#blog_title {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#blog_nav {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 40px;
+	font-size: 90%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #90A4AF;
+}
+
+#blog_nav li {
+	float: left;
+	text-align: center;
+}
+#blog_nav #career li a,#blog_nav #kouenkai li a {
+	display: block;
+	text-decoration: none;
+	width: 190px;
+	color: #5f7885;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#blog_nav #incorporation li a {
+	display: block;
+	text-decoration: none;
+	width: 118px;
+	color: #5f7885;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#blog_nav #dousoukai li a {
+	display: block;
+	text-decoration: none;
+	width: 240px;
+	color: #5f7885;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#blog_nav li a:hover {
+	color: #333;
+	background-color: #c7d6df;
+}
+
+.c_box02 {
+	float:left;
+	width:45%;
+	margin-right:2%;
+	margin-bottom:3%;
+}
+
+.c_box03 {
+	float:left;
+	width:31%;
+	margin-right:2%;
+	margin-bottom:3%;
+}
+
+.c_box_row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.c_box_fl03 {
+	flex-basis: 31%;
+}
+
+.dept_t_left {
+		float:left;
+		width:540px;
+	}
+	
+.dept_t_right {
+		float:right;
+		width:160px;
+}
+
+/* 2107 学群ブログ追加 */
+
+.msg_row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.msg_photo {
+	flex-basis: 240px;
+}
+
+.msg_text {
+	flex-basis: 450px;
+}
+
+.msg_profile {
+	text-align: right;
+}
+
+.msg_title {
+display:flex;
+justify-content:space-between;
+}
+	
+}
+
+@media screen and (max-width: 768px){
+
+header {
+	width: 96%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#h_logo {
+	text-align:center;
+	padding-top: 10px;
+}
+#h_menu {
+	text-align: center;
+}
+
+#hnavi01 {
+	margin-bottom: 10px;
+}
+
+#hnavi01 li {
+	float: left;
+	text-align: center;
+	width:20%;
+}
+#hnavi01 li a {
+	display: block;
+	color: #748D9B;
+	font-size: 75%;
+	text-decoration: none;
+	width: 100px;
+}
+
+#h_tool {
+	margin-bottom: 15px;
+}
+
+#hnavi02 {
+	width:100%;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #748D9B;
+	height: 20px;
+}
+
+#hnavi02 li {
+	float: left;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+	width:24.5%;
+}
+#hnavi02 li a {
+	text-decoration: none;
+	display: block;
+	
+}
+
+#main_nav {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+}
+
+#main_nav li {
+	float: left;
+	text-align: center;
+	width:33%;
+}
+#main_nav li a {
+	display: block;
+	text-decoration: none;
+	width: 100%;
+}
+
+
+.g_mg {
+	margin: 0px;
+}
+
+nav:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#searchbox {
+width: 210px;
+position: relative;
+margin:5px auto;
+}
+
+#font_size {
+display:none;
+}
+
+#contents {
+	width: 96%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+}
+
+/* --- トップページここから --- */
+
+#contents #top_left {
+	width: 100%;
+}
+#contents #top_right {
+	width: 100%;
+	margin-top:15px;
+	text-align:center;
+}
+
+.tabs {
+ max-width: 100%;
+ height: 300px;
+ float: none;
+ list-style: none;
+ position: relative;
+ padding: 0;
+ }
+
+.tabs label {
+ display: block;
+ width:65%;
+ padding: 10px 16px;
+ border-radius: 2px 2px 0 0;
+ color: #414b51;
+ font-size: 70%;
+ background: rgba(116,141,155,0.6);
+ cursor: pointer;
+ position: relative;
+ top: 3px;
+ border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #fff;
+border-right-width: 1px;
+border-left-width: 1px;
+border-right-style: solid;
+border-left-style: solid;
+border-right-color: #fff;
+border-left-color: #fff;
+
+ -webkit-transition: all 0.2s ease-in-out;
+ -moz-transition: all 0.2s ease-in-out;
+ -o-transition: all 0.2s ease-in-out;
+ transition: all 0.2s ease-in-out;
+ }
+
+.gakka_box {
+	float: left;
+	width: 48%;
+	margin-right:1%;
+	margin-bottom: 15px;
+}
+
+#bn_box01 {
+	text-align:center;
+	margin-top: 30px;
+}
+
+#bn_box01 img {
+	margin: 2px 5px;
+}
+
+
+img {
+max-width: 100%;
+height: auto;
+width:auto;
+vertical-align: bottom;　
+}
+
+#f_logo {
+	width: 96%;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 80%;
+	color: #748D9B;
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+
+#f_navi #f_navi_s {
+	display:none;
+}
+
+#f_navi_s .f_column {
+}
+
+/*   記事   */
+
+#entry {
+	width: 100%;
+}
+
+#sidebar {
+	width: 100%;
+}
+
+#sidebar ul li {
+	float:left;
+	width:50%;
+	}
+
+#sidebar ul li a {
+	text-decoration: none;
+	width: 95%;
+	color: #49647b;
+	font-size: 90%;
+	display: block;
+	margin:2px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #90A4AF;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 15px;
+	padding-left: 5px;
+}
+
+#contents .index_box01 li {
+		float: left;
+		width:47%;
+}
+
+#contents .index_box01 li a {
+	display: block;
+	width: 60%;
+	vertical-align: top;
+	color: #607682;
+	text-decoration: none;
+	border: 1px solid #cbd5da;
+	margin: 1% 2% 2% 0% ;
+	background-image: url(/web/20190403064344im_/http://www.ushirobashi/images/vec02.png);
+	background-repeat: no-repeat;
+	background-position: 20px center;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+font-size:90%;
+}
+
+.admission_box_01, .admission_box_02, .admission_box_03, .admission_box_04 {
+	width: 94%;
+
+	border: solid 1px #736357;
+	margin-bottom: 10px;
+	font-size: 90%;
+	padding: 10px;
+}
+
+.admission_box_01, .admission_box_03 {
+}
+
+.admission_box_02, .admission_box_04 {
+}
+
+#blog_title {
+	width: 100%;
+}
+
+#blog_nav {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 40px;
+	font-size: 90%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #90A4AF;
+}
+
+#blog_nav li {
+	float: left;
+	text-align: center;
+}
+
+#blog_nav #career li,#blog_nav #kouenkai li {
+	width: 20%;
+}
+
+
+
+#blog_nav #career li a,#blog_nav #kouenkai li a {
+	display: block;
+	text-decoration: none;
+	width: 100%;
+	color: #5f7885;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#blog_nav #incorporation li {
+	width: 12%;
+}
+
+#blog_nav #incorporation li a {
+	display: block;
+	text-decoration: none;
+	width: 100%;
+	color: #5f7885;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#blog_nav #dousoukai li a {
+	width: 25%;
+}
+
+#blog_nav #dousoukai li a {
+	display: block;
+	text-decoration: none;
+	width: 100%;
+	color: #5f7885;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+#blog_nav li a:hover {
+	color: #333;
+	background-color: #c7d6df;
+}
+
+/* 2107 学群ブログ追加 */
+
+.msg_photo {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.msg_profile {
+	text-align: center;
+}
+
+}
+
+@media screen and (max-width:480px){
+
+#main_nav {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+}
+
+#main_nav li {
+	float: left;
+	text-align: center;
+	width:50%;
+}
+#main_nav li a {
+	display: block;
+	text-decoration: none;
+	width: 100%;
+}
+
+
+
+#f_navi_s .f_column {
+	width:100%;
+	margin-right:1%;
+	margin-bottom:10px;
+}
+
+.tabs label {
+ display: block;
+ width:80%;
+ padding: 6px;
+ border-radius: 2px 2px 0 0;
+ color: #414b51;
+ font-size: 53%;
+ background: rgba(116,141,155,0.6);
+ cursor: pointer;
+ position: relative;
+ top: 3px;
+ border-top-width: 1px;
+border-top-style: solid;
+border-top-color: #fff;
+border-right-width: 1px;
+border-left-width: 1px;
+border-right-style: solid;
+border-left-style: solid;
+border-right-color: #fff;
+border-left-color: #fff;
+}
+
+#rss_b {
+display:none;
+}
+
+img{
+max-width: 100%;
+height: auto;
+width /***/:auto;
+vertical-align: bottom;　
+
+}
+
+
+}
+
+
+/* 2023.02追加　ページ上部へ戻る */
+.PageTop {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 1000;
+    text-align: center;
+    cursor: pointer;
+}
+.PageTop img {
+    width: 50px!important;
+    height:50px!important;
+}
+@media screen and (max-width: 768px){
+    .PageTop {
+        display:none;
+    }
+}
+
+
+/* 2023.03.30 サイトマップ　h3 aタグの文字色*/
+#sitemap h3 a {
+    color: #000000!important;
+}

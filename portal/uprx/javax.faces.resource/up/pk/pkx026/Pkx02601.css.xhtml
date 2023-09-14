@@ -1,0 +1,180 @@
+@charset "utf-8";
+/*
+ * Pkx02601.css
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+/*===== 検索開閉エリア =====*/
+
+/* 検索開閉エリア */
+.openshutArea {
+    position: relative;
+}
+
+/* 開閉ボタン */
+.openshutArea .openshutBtn {
+    background: transparent !important;
+    border: 0 !important;
+    /*color: #336600;*/
+    color: #4caf50;
+    outline: none;
+    position: absolute;
+    left: 0.2em;
+    /*right: -3.4em;*/
+    /*top: -0.5em;*/
+    z-index: 1001;
+}
+
+.openshutArea .openshutBtn .ui-icon {
+    /*left: initial !Important;*/
+    font-size: 2em;
+}
+
+/*===== 検索エリア =====*/
+
+.portalSub {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: #222222;
+    min-height: 100px;
+    overflow: hidden;
+    padding: 0;
+    /*width: 95%;*/
+}
+
+.portalSub .ui-widget-content:not(ul) {
+    border: none;
+    background: transparent;
+    color: #222222;
+}
+
+.portalSub .ui-panel-content {
+    padding: 0;
+}
+
+.portalSub .portalSearchArea, .portalSub .portalSearchResult {
+    border: 0;
+}
+
+.portalSub .portalSubDetail {
+    background: #f5f5f5 !important;
+    border: 0;
+    border-radius: 0;
+    min-height: 100px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 10px 8px !important;
+}
+
+.portalSub .searchSeparator {
+    border: none !important;
+    border-bottom: dotted 1px #683e29 !important;
+    margin: 10px 0 0 0;
+}
+
+.portalSub .portalSubDetail .dispSearchArea {
+    min-width: 0;
+}
+
+.portalSub .portalSubDetail .ui-button {
+    background: #ffffff;
+    border: solid 1px #222222;
+}
+
+.portalSub .portalSubDetail .ui-panel-content {
+}
+
+.portalSub .portalSubDetail .portalSearchArea {
+    background: transparent;
+    margin: 1.5em 0 0 1em;
+}
+
+.portalSub .marginTop {
+    margin-top: 10px;
+}
+
+.portalSub .marginTop:first-child {
+    margin-top: 5px;
+}
+
+.portalSub .portalSearchInput {
+    width: 60%;
+    float: right;
+}
+
+.portalSub .portalSubDetail .portalSearchResult {
+    max-height: 450px;
+    overflow: auto;
+}
+
+.portalSub .portalSubDetail .portalSearchResult h4 {
+    background: #dddddd;
+    border-bottom: solid 1px #aaaaaa;
+    margin: 10px 0 0 0;
+    padding: 3px 5px;
+}
+
+.portalSub .portalSubDetail .portalSearchResult li {
+    margin-top: 10px;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+    word-break: break-all;
+}
+
+/* インプットテキスト */
+.portalSub .ui-inputfield {
+    -moz-border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+    border: solid 1px #8f8f8f;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+}
+
+.portalSub .ui-inputfield.ui-state-error, .portalSub .ui-widget-content .ui-inputfield.ui-state-error {
+    border: 1px solid #cd0a0a;
+    background: #fef1ec;
+    color: #cd0a0a;
+}
+
+/* 個人情報照会ボタン */
+#portalCont .portalSub .portalSearchResult .ui-button-text-only.btnUser {
+    margin-left: 0.5em;
+}
+
+#portalCont .portalSub .portalSearchResult .ui-button-text-only.btnUser .ui-button-text {
+    padding: 0 .2em !important;
+}
+
+#portalCont .portalSub .portalSearchResult .btnUser span::before {
+    content: "A";
+    font-family: unipa_pc;
+    font-size: 1em;
+}
+
+/* 新着ありのボタン */
+.portalSub .portalSubDetail .portalSearchResult li.newGakuInfo::after {
+    /*content: url('../../../../images/new.png');*/
+    content: url('../../../../images/new.gif');
+    position: relative;
+    top: 0.1em;
+}
+
+/* 対象者の場合 */
+.portalSub .portalSubDetail .portalSearchResult li.targetGakuinfo {
+    background: rgba(255,192,203,0.5);
+    font-weight: bold;
+}
+
+/* 学籍情報照会（子画面）調整 */
+.dataStyle {
+    width: 100% !important;
+}
+
+.pictStyle {
+    vertical-align: top;
+}
+

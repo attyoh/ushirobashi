@@ -1,0 +1,1085 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+
+/* --- 1.style reset --- */
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+html,body,div,h1,h2,h3,h4,h5,h6,p,blockquote,ul,ol,li,dl,dt,dd,pre,th,td,form,fieldset,input,textarea {
+	margin: 0;
+	padding: 0;
+}
+html {
+	overflow-y:scroll;
+}
+body {
+	font-size: 100%;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+li {
+	list-style-type: none;
+}
+img {
+	border: 0;
+}
+address {
+	font-style: normal;
+}
+hr {
+}
+
+
+
+/* --- 2.float --- */
+.float-left, .alignleft {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+.float-right, .alignright {
+	float: right;
+	margin-left: 20px;
+	margin-bottom: 30px;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.clear {
+    zoom: 1; /* for IE6/7 */
+}
+
+
+/*
+.float-clear { 
+	zoom: 100%;
+}
+.float-clear:after {
+	content: " "; 
+	clear: both; 
+	height: 0; 
+	display: block; 
+	visibility: hidden;
+}
+*/
+
+
+/* --- 3.link --- */
+a:link{
+	text-decoration:underline;
+}
+a:visited{
+}
+a:hover{
+	text-decoration:none;
+}
+a:active{
+}
+
+
+/* --- 4.text-align --- */
+.to-left {
+	text-align:left;	
+}
+.to-center {
+	text-align:center;	
+}
+.to-right {
+	text-align:right;	
+}
+
+/* ヘッダー */
+
+/*
+header {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+}
+*/
+/* --- 検索GoogleCustom --- */
+
+#searchbox .gsc-control-cse, 
+#searchbox .gsc-control-cse-ja,
+#searchbox .gsib_a{
+    margin:0 !important;
+    padding:0 !important;
+	background: none !important;
+	border:none !important;
+}
+
+#searchbox table .gsc-input-box {
+	background: none !important;
+	padding-top:0 !important;
+}
+
+#searchbox table.gsc-search-box td,
+#searchbox table.gsc-search-box input {
+    vertical-align: top !important;
+}
+
+
+#searchbox input[type="text"]  {
+	 width: 180px !important;
+     height: 24px !important;
+     color: #333 !important;
+     padding: 3px 6px !important;
+	 border: 1px solid #ccc !important;
+     font-size: 13px !important;
+}
+
+#searchbox input[type="text"]:focus {
+    border: 1px solid #ccc !important;
+    outline: 0;  /*safariの自動フォーカスを切る */
+}
+
+.gs-title{
+text-align:left;
+}
+
+/* テキスト入力フォームの影を消す */
+#searchbox #gsc-iw-id1{
+    border:none !important;
+}
+
+.gsc-search-box .gsc-input > input:focus, .gsc-input-box-focus,.gsc-search-box .gsc-input > input:hover, .gsc-input-box-hover
+{
+box-shadow:0px !important;
+outline:none !important;
+}
+
+#searchbox #gs_tti0 input{
+    background-position:5px 5px !important;
+}
+
+/* ボタンの色 */
+#searchbox input.gsc-search-button {
+
+background: #748d9b !important;
+background: -ms-linear-gradient(top,  #748d9b 0%,#748d9b 100%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#748d9b', endColorstr='#748d9b',GradientType=0 ); /* IE6-9 */
+border: 1px solid #748d9b !important;
+}
+
+#searchbox .gsc-search-button-v2{
+padding:3px !important;
+}
+
+#searchbox input.gsc-search-button[type="image"]{
+width:15px !important;
+height:15px !important;
+}
+
+/* ボタンの位置調整と角丸消し */
+#searchbox .gsc-search-button{
+    margin:0 0 0 -16px !important;
+    border-radius:0;
+} 
+
+#font_size span {
+	background-color: #90A4AF;
+}
+#font_size span a {
+	color: #FFF;
+	text-decoration: none;
+	padding-right: 5px;
+	padding-left: 5px;
+	background-color: #90A4AF;
+}
+
+/* --- グローバルナビ --- */
+
+#t_main_nav {
+	margin-bottom: 30px;
+}
+
+#t_main_nav li {
+	text-align:center;
+	font-family: 'Sawarabi Mincho', sans-serif;
+}
+
+#t_main_nav li a {
+	display: block;
+	color:#FFF;
+	text-decoration: none;
+	-webkit-transition: 0.3s ease-in-out;
+	   -moz-transition: 0.3s ease-in-out;
+	     -o-transition: 0.3s ease-in-out;
+	        transition: 0.3s ease-in-out;
+}
+
+#t_main_nav li a:hover {
+	opacity: 0.8;
+}
+
+
+.gnav01 a {
+	background-color:#97be8a;
+}
+
+.gnav02 a {
+	background-color:#7fc2c8;
+}
+
+.gnav03 a {
+	background-color:#d0c49d;
+}
+
+.gnav04 a {
+	background-color:#f1be82;
+}
+
+.gnav05 a {
+	background-color:#c68dac;
+}
+
+.gnav06 a {
+	background-color:#e68391;
+}
+
+/* トップコンテンツ */
+
+#top_img {
+	background-image: url("../images02/top_bg.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}
+
+.top_h2 {
+	text-align: center;
+	font-size: 200%;
+	letter-spacing: 0.2em;
+	/*font-weight: bold;*/
+	margin-bottom: 1em;
+}
+
+.top_h2 span {
+	display: block;
+	font-size:40%;
+	letter-spacing: 0;
+	font-weight: normal;
+}
+
+/*　タブ　*/
+
+.tabs input[type=radio] {
+	display:none;
+}
+
+.tabs label {
+	background-color: rgba(144,164,175,0.2);
+	color:#50728c;
+}
+
+.tabs label:hover {
+	top: 0;
+ }
+
+[id^=tab]:checked + label {
+	top: 0;
+	background:#50728c;
+	color:#FFF;
+ }
+ 
+[id^=tab]:checked ~ [id^=tab-content] {
+	display: block;
+}
+
+.tab-content {
+	display: none;
+	font-size: 95%;
+	padding: 1em 1em 0;
+	overflow: hidden;
+	width:100%;
+	-webkit-animation-duration: 0.5s;
+	-o-animation-duration: 0.5s;
+	-moz-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+ }
+
+.b_list {
+text-align:center;
+margin-bottom:20px;
+}
+
+.b_list a {
+display:block;
+padding:8px 30px;
+text-decoration:none;
+}
+
+.b_list01 a {
+	background-color: #50728c;
+	color:#FFF;
+}
+
+.b_list02 a {
+	background-color: #c88282;
+	color:#FFF;
+}
+
+/* 入試情報 */
+
+#nyushi {
+	background-color: #eeeee9;
+	padding:50px 0;
+}
+
+.nyushi_nav {
+	display:flex;
+	justify-content: space-between;
+	margin-bottom: 40px;
+}
+
+.nyushi_info {
+	font-size: 95%;
+}
+
+.nyushi_banner {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+/* 学群 */
+
+.dpt_main li {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.dpt_sub {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* その他枠 */
+
+#extra {
+	background-color: #f9f8e9;
+}
+
+/* フッター */
+
+#f_navi {
+	background-color: #90A4AF;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#f_navi_s ul li a {
+	color: #FFF;
+	text-decoration: none;
+}
+#f_navi_s ul li ul li a {
+	font-size: 80%;
+}
+
+/* --- 汎用 --- */
+
+.hidden {
+	visibility: hidden;
+}
+	
+a img{
+	-webkit-transition: 0.3s ease-in-out;
+	   -moz-transition: 0.3s ease-in-out;
+	     -o-transition: 0.3s ease-in-out;
+	        transition: 0.3s ease-in-out;
+}
+
+a:hover img{
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+
+/*　フッター */
+
+#copyright {
+font-size:70%;
+text-align:center;
+margin:15px 0px;
+color:#FFF;
+}
+
+
+/* 769px以上///////////////////////////////////////////////////////////////////////////*/
+
+@media screen and (min-width: 769px){
+
+/* ヘッダー */
+
+header {
+	background-color:#ffffff;
+	/* background-color: rgba(255,255,255,0.7); */
+}
+
+.h_container {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#h_logo {
+	float: left;
+	padding-top: 10px;
+}
+#h_menu {
+	float: right;
+	text-align: right;
+}
+
+#hnavi01 {
+	float: right;
+	margin-bottom: 10px;
+}
+
+#hnavi01 li {
+	float: left;
+	text-align: center;
+}
+#hnavi01 li a {
+	display: block;
+	color: #748D9B;
+	font-size: 75%;
+	text-decoration: none;
+	width: 100px;
+}
+
+#h_tool {
+	float: right;
+	margin-bottom: 15px;
+}
+
+#hnavi02 {
+	float: right;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #748D9B;
+	height: 20px;
+}
+
+#hnavi02 li {
+	float: left;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+	height: 20px;
+}
+#hnavi02 li a {
+	text-decoration: none;
+	width: 146px;
+	display: block;
+}
+
+/* メインナビ */
+
+.t_main_nav_row {
+	display: flex;
+}
+
+.t_main_nav_row li {
+	flex-basis:16.666%;
+	font-size: 90%;
+}
+
+.t_main_nav_row li a {
+	padding:10px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+#t_main_nav .gnav04 a {
+	padding:20px 0 21px;
+}
+
+nav:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#searchbox {
+width: 210px;
+	position: relative;
+	float: left;
+}
+
+#font_size {
+	font-size: 75%;
+	float: left;
+	margin-right: 10px;
+	padding-top: 3px;
+}
+
+/* --- トップページここから --- */
+
+section {
+	padding:70px 0;
+}
+
+.b_list a {
+	width:240px;
+	margin: 0 auto;
+}
+
+#top_img {
+	width:100%;
+	height:700px;
+}
+
+.top_copy {
+	width:1080px;
+	margin:300px auto 0 auto;
+	text-align: right;
+}
+
+.container {
+	width:960px;
+	margin: 0 auto;
+}
+
+/* お知らせ */
+
+.tabs {
+ display: flex;
+ justify-content: space-between;
+ max-width: 100%;
+ height: 330px;
+ list-style: none;
+ position: relative;
+ padding: 0;
+ }
+
+.tabs li {
+	flex-basis:calc(calc(100%/6) - 1px);
+}
+
+.tabs label {
+ display: block;
+ text-align: center;
+ padding: 10px 20px;
+ color: #414b51;
+ font-size: 80%;
+ cursor: pointer;
+-webkit-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+}
+
+.tab-content {
+	position: absolute;
+	width:100%;
+	height:250px;
+	overflow: scroll;
+	overflow-x: hidden;
+	top:40px;
+	left:0;
+}
+
+.tab-content dl {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.tab-content dl dt {
+	flex-basis: 21%;
+	margin-bottom: 10px;
+}
+
+.tab-content dl dd {
+	flex-basis:79%;
+	margin-bottom: 10px;
+}
+
+/* 入試情報 */
+
+.nyushi_nav a:hover img {
+	opacity: 1;
+}
+
+.nyushi_info {
+margin: 0 100px 40px;;
+}
+
+.nyushi_info dl {
+	display:flex;
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+.nyushi_info dl dt,
+.nyushi_info dl dd {
+	margin-bottom: 0.8em;
+}
+
+.nyushi_info dl dt {
+	flex-basis: 20%;
+}
+
+.nyushi_info dl dd {
+	flex-basis: 80%;
+}
+
+.nyushi_banner li {
+	margin-bottom: 15px;
+}
+
+/* 付属 */
+
+.huzoku_row {
+	display: flex;
+	justify-content: center;
+}
+
+.huzoku01 {
+	margin-right: 10px;
+}
+
+.huzoku02 {
+	margin-left: 10px;
+}
+
+/* その他枠 */
+
+.ex_row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.ex_row li {
+	margin-bottom: 10px;
+}
+
+/* 在学生向け */
+
+#students ul {
+	display: flex;
+	justify-content: space-around;
+}
+
+
+/* フッター */
+
+#f_logo {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 80%;
+	color: #748D9B;
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+
+#f_navi #f_navi_s {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#f_navi_s .f_column {
+	float: left;
+	margin-right: 30px;
+}
+
+
+.hidden_pc {
+	display: none;
+}
+
+	
+}
+
+@media screen and (max-width: 768px){
+
+/* ヘッダー */
+
+header {
+	width: 96%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#h_logo {
+	text-align:center;
+}
+#h_menu {
+	text-align: center;
+}
+
+#hnavi01 {
+	margin-bottom: 10px;
+}
+
+#hnavi01 li {
+	float: left;
+	text-align: center;
+	width:20%;
+}
+#hnavi01 li a {
+	display: block;
+	color: #748D9B;
+	font-size: 75%;
+	text-decoration: none;
+	width: 100px;
+}
+
+#h_tool {
+	margin-bottom: 15px;
+}
+
+#hnavi02 {
+	width:100%;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #748D9B;
+	height: 20px;
+}
+
+#hnavi02 li {
+	float: left;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #748D9B;
+	width:24.5%;
+}
+#hnavi02 li a {
+	text-decoration: none;
+	display: block;
+}
+
+nav:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#searchbox {
+width: 210px;
+position: relative;
+margin:5px auto;
+}
+
+#font_size {
+display:none;
+}
+
+/* グローバルナビ */
+
+.t_main_nav_row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.t_main_nav_row li {
+	flex-basis:50%;
+}
+
+#t_main_nav li a  {
+	padding:8px;
+}
+
+/* トップコンテンツ */
+
+.container {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding:0 15px;
+	margin-bottom: 30px;
+}
+
+#top_img {
+	height:600px;
+	background-position: top left;
+}
+
+.top_copy {
+	margin-top: 300px;
+	text-align: center;
+}
+
+/* --- お知らせ --- */
+
+.info {
+	margin-bottom: 30px;
+}
+
+.tabs {
+margin-bottom:30px;
+}
+
+.tabs label {
+ display: block;
+ text-align: center;
+ padding: 10px 20px;
+ color: #414b51;
+ font-size: 80%;
+ cursor: pointer;
+-webkit-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+}
+
+.tab-content {
+	max-height:200px;
+	overflow:scroll;
+}
+
+.tab-content dl dt {
+	margin-bottom: 0px;
+}
+
+.tab-content dl dd {
+	margin-bottom: 15px;
+}
+
+/* 入試情報 */
+
+.nyushi_nav {
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.nyushi_nav li {
+	flex-basis: 50%;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.nyushi_info dl {
+	margin-bottom: 30px;
+}
+
+.nyushi_info dl dd {
+	margin-bottom:1em;
+}
+
+.nyushi_banner {
+	justify-content: flex-start;
+}
+
+.nyushi_banner li {
+	flex-basis:33%;
+	margin-bottom: 10px;
+}
+
+/* 学群 */
+
+#dept {
+padding:40px 0;
+}
+
+.dpt_sub li {
+	flex-basis: 32%;
+}
+
+/* 付属機関 */
+
+#huzoku {
+padding:40px 0;
+}
+
+.huzoku_row li {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+/* その他枠　*/
+
+.ex_col01 ul li {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.ex_col02 ul {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.ex_col02 ul li {
+	flex-basis: 49%;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/* 在学生向け */
+
+#students ul li {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/* フッター */
+
+#f_logo {
+	width: 96%;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 80%;
+	color: #748D9B;
+	margin-bottom: 15px;
+	padding-top: 5px;
+}
+
+#f_navi #f_navi_s {
+	display:none;
+}
+
+#f_navi_s .f_column {
+}
+
+/* 汎用 */
+
+.hidden_sp {
+	display: none;
+}
+
+img {
+max-width: 100%;
+height: auto;
+width:auto;
+vertical-align: bottom;
+}
+
+}
+
+@media screen and (max-width:480px){
+
+/* グローバルナビ */
+
+.t_main_nav_row {
+	display: block;
+}
+
+.t_main_nav_row li {
+	display: block;;
+}
+
+
+
+/* フッター */
+
+#f_navi_s .f_column {
+	width:100%;
+	margin-right:1%;
+	margin-bottom:10px;
+}
+
+/* 入試情報 */
+
+.nyushi_banner {
+	justify-content: space-between;
+}
+
+.nyushi_banner li {
+	flex-basis:49%;
+	margin-bottom: 10px;
+}
+
+/* 学群 */
+
+.dpt_sub {
+	flex-wrap: wrap;
+}
+
+.dpt_sub li {
+	flex-basis: 49%;
+	margin-bottom: 10px;
+}
+
+
+}
+
+/* 2302追加 */
+.PageTop {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+	z-index: 1000;
+	text-align: center;
+	cursor: pointer;}
+.PageTop img {
+	width: 50px!important;
+	height:50px!important;
+}
+@media screen and (max-width: 768px){
+	.PageTop {
+		display:none;
+	}
+	.top_banner_wrap .flexbox {
+		padding: 0 15px;
+	}
+}
+
+.top_banner_wrap {
+	max-width: 1000px;
+	width: 100%;
+    margin: 40px auto;
+  }
+  
+  .top_banner_wrap img {
+	display: block;
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+  }
+  
+  .top_banner_wrap .flexbox {
+	display: flex;
+	justify-content: space-between;
+	flex-flow: wrap;
+  }
+  .flexbox:after {
+    content: "";
+    display: block;
+    width: 32%;  /* flex: 0 0 32%;と同じ幅を指定する */
+    height: 0;
+}
+  
+  .top_banner_wrap .flexitem {
+	flex: 0 0 32%;
+	margin-bottom: 2%;
+	display: flex;
+	flex-direction: column;
+  }
+
+  @media screen and (max-width: 476px) {
+	.top_banner_wrap .flexitem {
+		flex: 0 0 49%;
+	}
+  }

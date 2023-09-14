@@ -1,0 +1,328 @@
+@charset "utf-8";
+/* CSS Document */
+
+#top_img {
+	position: relative;
+	width:100%;
+	height:60vh;
+	background-image: url("../images/top_img01.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#top_img .slider {
+	width:100%;
+}
+
+.top_copy {
+	position: absolute;
+	text-align: left;
+	line-height: 1.4;
+	color: #FFF;
+	width: 80%;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.top_copy .top_copy_head {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+}
+
+.top_copy .top_copy_head span {
+    display: block;
+    font-size: 1.2rem;
+}
+
+.top_copy p {
+    font-weight: normal;
+}
+
+.biginner {
+    position: relative;
+    width:750px;
+    background-color: #f4e12a;
+    margin: 50px auto;
+}
+
+.biginner_bg {
+    background-image: url("../images/biginner_img.png");
+    background-repeat: no-repeat;
+    background-position: bottom -20px right 35px;
+    background-size: 132px 180px;
+    padding:20px;
+}
+
+.biginner_inner {
+    border:2px solid #FFF;
+    padding:20px;
+}
+
+.biginner h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.biginner p {
+    margin-bottom: 0;
+}
+
+/* セクション共通 */
+
+section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+section h2 span {
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* お知らせ */
+
+#info {
+    background-color: #e6e6dc;
+}
+
+
+
+/* 組織体制 */
+
+.org_row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.org_item {
+    position: relative;
+    flex-basis:31%;
+    color:#c8965a;
+    padding:100px 20px 20px;
+    border:1px solid #c8965a;
+}
+
+.org_item h3 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.org_item p {
+    margin-bottom: 0;
+}
+
+.org_item01 {background-image: url("../images/org_ic01.svg");}
+.org_item02 {background-image: url("../images/org_ic02.svg");}
+.org_item03 {background-image: url("../images/org_ic03.svg");}
+
+.org_item01,
+.org_item02,
+.org_item03 {
+    background-repeat: no-repeat;
+    background-position: top 20px center;
+    background-size: 70px;
+}
+
+.org_item:after{
+  content:"";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom:4px;
+  right:-6px;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #c8965a;
+  transform:rotate(135deg);
+}
+
+/* 最新の研究成果 */
+
+#research {
+    background-color: #e6e6dc;
+}
+
+/* 研究分野 メインスタイルに移動 */
+
+
+
+/* 連携研究 */
+
+.align_row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.align_item {
+    display: flex;
+    flex-basis: 47%;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.align_img {
+    flex-basis:50%;
+}
+
+.align_img img {
+    width: 100%;
+    max-width: 260px;
+    height:auto;
+}
+
+.align_txt {
+    flex-basis: 47%;
+}
+
+.align_txt h3 {
+    font-size: 1.1;
+    line-height: 1.4;
+    border-bottom:1px solid #ccc;
+    margin-bottom: 10px;
+    padding-bottom:5px;
+}
+
+.align_txt p {
+    margin: 0;
+}
+
+/* 研究活動支援 */
+
+.support_row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.support_item {
+    flex-basis: 31%;
+    margin-bottom: 15px;
+}
+
+.support_item a {
+    display: block;
+    position: relative;
+    background-color: #4f728b;
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding:20px 20px;
+    color: #FFF;
+}
+
+.support_item a:hover {
+	opacity: 0.8;
+}
+
+.support_item a:after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top:50%;
+    right:20px;
+    border: 3px solid;
+    border-color: #fff #fff transparent transparent;
+    transform: rotate(45deg) translateY(-50%);
+}
+
+
+@media only screen and (max-width: 768px) {
+
+.top_copy {
+	width: 90%;
+}
+
+.top_copy .top_copy_head {
+    font-size: 2.2rem;
+}
+
+.biginner {
+    width:90%;
+}
+
+
+
+/* 組織 */
+
+.org_row {
+    flex-wrap: wrap;
+}
+
+.org_item {
+    flex-basis:100%;
+    padding:15px 15px 15px 100px; 
+    margin-bottom: 15px;
+}
+
+.org_item h3 {
+    text-align: left;
+}
+
+.org_item01,
+.org_item02,
+.org_item03 {
+    background-repeat: no-repeat;
+    background-position: left 20px center;
+}
+
+/* 連携研究 */
+
+.align_item {
+    flex-basis: 100%;
+    margin-bottom: 15px;
+}
+
+.align_img {
+    flex-basis:40%;
+}
+
+.align_img img {
+    width: 100%;
+    max-width: 260px;
+    height:auto;
+}
+
+.align_txt {
+    flex-basis: 57%;
+}
+
+
+}
+
+@media only screen and (max-width: 480px) {
+
+.top_copy {
+	width: 100%;
+    padding:15px;
+}
+
+.top_copy .top_copy_head {
+    font-size: 2rem;
+}
+
+.top_copy .top_copy_head span {
+    font-size: 1rem;
+}
+
+
+
+.support_item {
+    flex-basis: 48%;
+}
+
+
+}

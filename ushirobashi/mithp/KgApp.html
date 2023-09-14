@@ -1,0 +1,1057 @@
+<!DOCTYPE HTML>
+<HTML lang=ja>
+  <HEAD>
+    <TITLE>
+      教員情報
+      &nbsp;|&nbsp;後橋工科大学</TITLE>
+<META name="viewport" content="width=device-width,initial-scale=1">
+<META http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <META http-equiv="content-script-type" content="text/javascript" />
+    <META http-equiv="content-style-type" content="text/css" />
+<link href="./jsp/style2018.css?ver=0423110910" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="./jsp/shadowbox.css" />
+
+    <script type="text/javascript" src="./jsp/shadowbox.js" charset="UTF-8"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <SCRIPT type="text/javascript">
+    <!--
+    function showSenmonBody(name){
+
+    	var f = document.getElementsByName(name);
+
+    	for(i=0; i < f.length; i++){
+    		if(f[i].style.display == "none"){
+    			f[i].style.display = "block";
+    		} else {
+    			f[i].style.display = "none";
+    		}
+    	}
+    }
+	function list_view(id, cnt) {
+		var	idx;
+		for (idx = 1; ; idx++) {
+			var	obj = document.getElementById(id + "_" + idx);
+			if (obj == null) {
+				break;
+			}
+			if (cnt < 0) {
+				obj.style.display = "";
+			} else if (idx > cnt) {
+				obj.style.display = "none";
+			}
+		}
+		obj = document.getElementById(id + "_act1");
+		if (obj != null) {
+			obj.style.display = (cnt >= 0) ? "": "none";
+		}
+		obj = document.getElementById(id + "_act2");
+		if (obj != null) {
+			obj.style.display = (cnt >= 0) ? "none": "";
+		}
+	}
+    $(function(){
+    	$(document).on('click', "a[href^='#']", function() {
+    		//data-box属性がない場合は通常のスムーズスクロール
+    		if(!$(this).data("box")){
+    			$("body,html").stop().animate({
+    				scrollTop:$($(this).attr("href")).offset().top
+    			});
+
+    		//data-box属性がある場合はdata-box内をスムーズスクロール
+    		}else{
+    			var $box = $($(this).data("box"));
+    			var $tareget = $($(this).attr("href"));
+    			var dist = $tareget.position().top - $box.position().top;
+    			$box.stop().animate({
+    				scrollTop: $box.scrollTop() + dist - 15
+    			});
+    		}
+    		return false;
+    	});
+    });
+    -->
+    </SCRIPT>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J07X21BJY9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J07X21BJY9');
+</script>
+
+  </HEAD>
+  <BODY>
+   <div id="container">
+   <div id="screen">
+<div id="header">
+   <div id="header-contents">
+    <TABLE class="header" border="0" cellpadding="0" cellspacing="0" summary="ヘッダ">
+      <TR>
+        <TD class="header-top-left" rowspan="2"  height="114px"><a href="http://www.ushirobashi/"></TD>
+        <TD class="header-top-right">&nbsp;</TD>
+     </TR><TR>
+        <TD class="header-middle-right">
+          <SPAN class="header-middle-right-font">
+          教員情報</SPAN>
+        </TD>
+      </TR><TR>
+        <TD class="header-bottom-left">
+        &nbsp;&nbsp;
+</TD>
+        <TD class="header-bottom-right">
+          &nbsp;&nbsp;
+        </TD>
+      </TR>
+    </TABLE>
+  </div><!-- /#header-contents-->
+  <div id="header-toplink-contents">
+    <TABLE class="header" border="0" cellpadding="0" cellspacing="0" summary="ヘッダ">
+      <tr><td class="header-toplink-left">
+  <A href="./KgApp"><SPAN class="header-bottom-right-font">トップページ</SPAN></A>
+</td></tr>
+    </TABLE>
+  </div>
+  </div><!-- /#header-->
+<DIV id="contents">
+<BR>
+<DIV class=contents><DIV class="search" >
+  <DIV class="condition">
+  <TABLE summary="キーワード検索" class="search_left" cellpadding="5" cellspacing="10" border="0" >
+    <TBODY>
+      <TR>
+        <TD align="left" colspan=3 class="k01-title1" >
+          <SPAN class="k01-title1-font1">&nbsp;検索</SPAN>
+        </TD>
+      </TR>
+      <TR>
+        <TD>
+          <FORM method="POST" name="FORM" action="./KgApp">
+            <TABLE summary="keyword and name search">
+<TR>
+                <TD class="search-font left">氏名</TD>
+                <TD><INPUT type="text" maxlength="200" size="150" name="sname" value="" style="width:200px;"></TD>
+              </TR><TR>
+                <TD class="search-font left">キーワード</TD>
+                <TD><INPUT type="text" maxlength="200" size="150" name="keyword" value="" style="width:200px;"></TD>
+              </TR><TR>
+                <TD colspan="2" align="center">
+                  <INPUT type="submit" value="検索" style="width:100px;">
+                </TD>
+              </TR><TR>
+                <TD class="search-font" colspan="2" align="center">
+                  氏名とキーワードで教員情報を検索します。</TD>
+              </TR>
+            </TABLE>
+          </FORM>
+        </TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+  </DIV>
+
+ <br>
+
+<DIV class="condition">
+    <TABLE class="search_bunya" cellpadding="5" cellspacing="10" border="0" >
+      <TR>
+        <TD align="left" colspan=3 class="k01-title1">
+          <SPAN class="k01-title1-font1">&nbsp;専門分野</SPAN>
+        </TD>
+      </TR>
+      <TR>
+        <TD align="left">
+          <FORM method="POST" name="FORM2" action="./App?act=result"><input name="searchtype" value="2" type="hidden" >
+            <TABLE width="100%">
+              <COL width="50%">
+              <COL>
+              <TBODY>
+
+<TR id="m14head_1">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_10');">
+						ライフサイエンス</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10015"  target="_top">
+                        分子生物学(4)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10103"  target="_top">
+                        生体医工学(4)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10019"  target="_top">
+                        ゲノム生物学(3)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10023"  target="_top">
+                        植物分子、生理科学(3)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10002"  target="_top">
+                        応用微生物学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10005"  target="_top">
+                        食品科学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10017"  target="_top">
+                        機能生物化学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10032"  target="_top">
+                        神経科学一般(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10042"  target="_top">
+                        生理学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10004"  target="_top">
+                        生物有機化学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10014"  target="_top">
+                        実験動物学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10018"  target="_top">
+                        生物物理学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10025"  target="_top">
+                        動物生理化学、生理学、行動学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10031"  target="_top">
+                        応用人類学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10034"  target="_top">
+                        神経機能学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10041"  target="_top">
+                        解剖学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_10" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=10102"  target="_top">
+                        栄養学、健康科学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_2">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_20');">
+						情報通信</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20019"  target="_top">
+                        生命、健康、医療情報学(6)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20003"  target="_top">
+                        情報学基礎論(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20002"  target="_top">
+                        ロボティクス、知能機械システム(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20004"  target="_top">
+                        数理情報学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20006"  target="_top">
+                        計算機システム(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20007"  target="_top">
+                        ソフトウェア(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20008"  target="_top">
+                        情報ネットワーク(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20009"  target="_top">
+                        情報セキュリティ(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20010"  target="_top">
+                        データベース(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20011"  target="_top">
+                        高性能計算(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20017"  target="_top">
+                        知能ロボティクス(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20018"  target="_top">
+                        感性情報学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_20" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=20022"  target="_top">
+                        エンタテインメント、ゲーム情報学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_3">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_30');">
+						環境・農学</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30001"  target="_top">
+                        遺伝育種科学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30002"  target="_top">
+                        作物生産科学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30003"  target="_top">
+                        園芸科学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30007"  target="_top">
+                        ランドスケープ科学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30010"  target="_top">
+                        農業環境工学、農業情報工学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30011"  target="_top">
+                        環境農学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_30" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=30020"  target="_top">
+                        循環型社会システム(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_4">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_40');">
+						ナノテク・材料</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_40" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=40004"  target="_top">
+                        構造材料、機能材料(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_40" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=40017"  target="_top">
+                        基礎物理化学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_40" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=40022"  target="_top">
+                        分析化学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_40" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=40018"  target="_top">
+                        機能物性化学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_40" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=40029"  target="_top">
+                        生体化学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_40" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=40030"  target="_top">
+                        生物分子化学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_5">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_60');">
+						ものづくり技術（機械・電気電子・化学工学）</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_60" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=60008"  target="_top">
+                        通信工学(3)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_60" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=60001"  target="_top">
+                        材料力学、機械材料(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_60" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=60007"  target="_top">
+                        電力工学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_60" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=60010"  target="_top">
+                        制御、システム工学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_6">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_70');">
+						社会基盤（土木・建築トントン・防災）</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70007"  target="_top">
+                        建築トントン構造、材料(5)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70009"  target="_top">
+                        建築トントン計画、都市計画(5)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70010"  target="_top">
+                        建築トントン史、意匠(4)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70001"  target="_top">
+                        土木材料、施工、建設マネジメント(3)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70002"  target="_top">
+                        構造工学、地震工学(3)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70003"  target="_top">
+                        地盤工学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70004"  target="_top">
+                        水工学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70008"  target="_top">
+                        建築トントン環境、建築トントン設備(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70013"  target="_top">
+                        防災工学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70005"  target="_top">
+                        土木計画学、交通工学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70006"  target="_top">
+                        土木環境システム(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_70" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=70012"  target="_top">
+                        安全工学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_7">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_90');">
+						人文・社会</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90067"  target="_top">
+                        デザイン学(4)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90014"  target="_top">
+                        言語学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90015"  target="_top">
+                        日本語学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90016"  target="_top">
+                        英語学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90018"  target="_top">
+                        外国語教育(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90064"  target="_top">
+                        地域研究(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90017"  target="_top">
+                        日本語教育(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90042"  target="_top">
+                        公共経済、労働経済(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90051"  target="_top">
+                        教育学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90054"  target="_top">
+                        教科教育学、初等中等教育学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90057"  target="_top">
+                        教育工学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90058"  target="_top">
+                        科学教育(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_90" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=90062"  target="_top">
+                        実験心理学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_8">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_A0');">
+						自然科学一般</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_A0" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=A0003"  target="_top">
+                        基礎解析学(2)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_A0" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=A0002"  target="_top">
+                        幾何学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_A0" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=A0007"  target="_top">
+                        数理物理、物性基礎(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_A0" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=A0011"  target="_top">
+                        素粒子、原子核、宇宙線、宇宙物理にする理論(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR name="m14body_A0" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=A0014"  target="_top">
+                        宇宙惑星科学(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+<TR id="m14head_9">
+			<TD align="left">
+				<DIV class="search-bunya-list">
+					<A class="search-bunya-font" " href="javascript:showSenmonBody('m14body_B0');">
+						その他</A>
+				</DIV>
+			</TD>
+		</TR>
+<TR name="m14body_B0" style="display:none;">
+                  <TD>
+                    <DIV class="search-bunya-list" style="padding-left: 20px;">
+                      <A class="search-bunya-font" href="./KgApp?senmonc=B0001"  target="_top">
+                        その他(1)</A>
+                    </DIV>
+                  </TD>
+			</TR>
+</TBODY>
+            </TABLE>
+          </FORM>
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+  <br>
+
+</DIV>
+
+  <DIV class="search-faculty">
+    <DIV class="condition">
+    <TABLE width="100%" border="0" cellpadding="5" cellspacing="10" summary="所属一覧">
+<TR>
+      <TD align="left" colspan=2 class="k01-title1">
+        <SPAN class="k01-title1-font1">&nbsp;後橋工科大学</SPAN>
+      </TD>
+    </TR>
+<TR>
+<TD align="left"  valign="top" width="33%" class="k01-title2">
+        <SPAN class="k01-title2-font1">工学部</SPAN>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21010">
+社会環境破壊工学科</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21020">
+建築トントン学科</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21030">
+生命ハッキング学科</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21040">
+システム理解しちゃうぞ！学科</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21050">
+架空生物工学科</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21060">
+そーごーでざいん工学科</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21110">
+建築トントン・都市・環境破壊工学群</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=21120">
+ハッキング・架空生命工学群</A>
+</SPAN>
+        </DIV>
+        <BR>
+</TD>
+<TD align="left"  valign="top" width="33%" class="k01-title2">
+        <SPAN class="k01-title2-font1">附属機関</SPAN>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=41010">
+基礎教育センター</A>
+</SPAN>
+        </DIV>
+        <BR>
+</TD>
+</TR>
+<TR>
+<TD align="left"  valign="top" width="33%" class="k01-title2">
+        <SPAN class="k01-title2-font1">教職センター</SPAN>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=43010">
+教職センター</A>
+</SPAN>
+        </DIV>
+        <BR>
+</TD>
+<TR><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+<TR>
+      <TD align="left" colspan=2 class="k01-title1">
+        <SPAN class="k01-title1-font1">&nbsp;後橋工科大学大学院</SPAN>
+      </TD>
+    </TR>
+<TR>
+<TD align="left" colspan=2 valign="top" width="33%" class="k01-title2">
+        <SPAN class="k01-title2-font1">工学研究科</SPAN>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31060">
+研究科共通（修士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31010">
+建設工学専攻（修士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31020">
+建築トントン学専攻（修士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31030">
+生命ハッキング学専攻（修士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31040">
+システム生体工学専攻（修士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31050">
+生物工学専攻（修士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+<DIV class="search-cource">
+          <SPAN class="search-cource-body">
+<A href="./KgApp?courc=31080">
+環境・生命工学専攻（博士課程）</A>
+</SPAN>
+        </DIV>
+        <BR>
+</TD>
+<TR><TD>&nbsp;</TD><TD>&nbsp;</TD></TR>
+</TABLE>
+    </DIV>
+  </DIV>
+  </DIV><!-- /#contents-->
+
+</DIV><!-- /#contents-->
+<div id="footer">
+  <div id="footer-top-contents">
+    <div id="footer-top-text">
+    　〒371-0816 軍魔県後橋市上佐鳥町460番地1　TEL 027-265-0111 FAX 027-265-3837
+    </div>
+  </div>
+  <div id="footer-bottom-contents">
+    <div id="copyright">
+     Copyright (C) ushirobashi Institute of Technology. All Rights Reserved.
+    </div>
+  </div>
+  </div><!-- /#footer -->
+</div><!-- /#screen-->
+  </div><!-- /#container-->
+<script type="text/javascript" src="./jsp/checked.js"></script>
+</BODY>
+</HTML>

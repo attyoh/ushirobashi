@@ -1,0 +1,57 @@
+/*
+ * Bsa00501.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+/*
+ * Bsa00501Bean#doInit()からUtilFaces.getRequestContext().execute(…);で実行
+ * @returns void
+ */
+function bsa00501InitProc() {
+    bsa00501Func.addScheduleButtonProc();
+}
+
+bsa00501Func = {
+    currentLocale: "",
+    /**
+     * p:scheduleのボタン押下処理の追加
+     */
+    addScheduleButtonProc: function () {
+        //前月・次月・今月ボタンに追加
+        $(".kyoinSchedule .fc-prev-button").on("click", this.formatTitle);
+        $(".kyoinSchedule .fc-next-button").on("click", this.formatTitle);
+        $(".kyoinSchedule .fc-today-button").on("click", this.formatTitle);
+        this.formatTitle();
+    },
+    /**
+     * p:schedule　で出力されるtitleを編集する
+     * ※詳細はBsa00101.jsを参照
+     * 
+     * @returns void
+     */
+    formatTitle: function () {
+        //thisはだめ　※addScheduleButtonProcから
+        //console.log("thisはだめ", this);
+        var that = bsa00501Func;
+        //抽出条件に該当する要素のテキスト表示を編集する
+        $(".kyoinSchedule .fc-center h2:first-child").each(function (i, elem) {
+            //locales
+            var objLoc = PrimeFaces.locales[that.currentLocale + "-portal"];
+            //showMonthAfterYear
+            var showMonthAfterYear = objLoc.showMonthAfterYear;
+            var yearSuffix = objLoc.yearSuffix;
+            var s = $(elem).text();
+            if (!showMonthAfterYear) {
+                $(elem).text(s + yearSuffix);
+                return;
+            }
+
+            var r = s.split(" ");
+            var year = r[1] + yearSuffix;
+            var month = r[0];
+            $(elem).text(year + " " + month);
+        });
+    }
+}

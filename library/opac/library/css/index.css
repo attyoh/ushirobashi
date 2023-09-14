@@ -1,0 +1,958 @@
+/* CSS Document */
+
+@import url("default.css");
+
+
+/********************************************************************
+TopHeader START */
+
+#topheader {
+    width: 100%;
+	height: 75px;
+	background: url(../images/header_bg.gif) repeat-x 0 0;
+}
+
+
+#topheader ul {float:left;list-style-type:none;margin-top:12px;}
+
+#topheader li {
+    float:left;
+	/*width: 111px;*/
+	height: 28px;
+
+}
+#topheader li a {
+    display:block;
+	overflow: hidden;
+	text-indent:-9999px;
+	width :100%;
+	height: 0 !important;
+	padding-top: 28px;
+	background: url(../images/headermenu_top.gif) no-repeat;
+}
+
+/* OFF MOUSE */
+#topheader li#navi01 a { background-position: 0 -12px;width: 151px;}
+#topheader li#navi02 a { background-position: -151px -12px;width: 111px;}
+
+/* ON MOUSE */
+#topheader li#navi01 a:hover { background-position: 0 -52px;}
+#topheader li#navi02 a:hover { background-position: -151px -52px;}
+
+#topheader h1 { float:right; width: 300px; text-align:right;}
+
+/*TopHeader END
+********************************************************************/
+
+
+/********************************************************************
+IndexMenu START */
+
+#maincontIndex {
+    clear:both;
+    width: 100%;
+	background: #D9DAC2 url(../images/cont_bg2.gif) repeat-x left top;
+	padding: 0px 0 120px;
+}
+
+
+#maincontIndex .wrapper ul {float: left;width: 720px;list-style-type: none;}
+
+#maincontIndex .wrapper li {
+    float: left;
+	margin: 0 0 7px 7px;
+}
+#maincontIndex .wrapper li a {
+    display: block;
+	width: 135px;
+	height: 115px;
+	background: url(../images/indexmenu.jpg) no-repeat;
+	overflow: hidden;
+	text-indent:-9999px;
+}
+
+/* Portal Site Signon Area */
+#maincontIndex .signonwrapper {
+	/*background-color:blue;*/
+	height:100px;
+	align:right;
+}
+#maincontIndex .signonwrapper .signonbox {
+	width:230px;
+	height:80px;
+	background-color:#cc99ff;
+	padding-top:9px;
+	/*border: 1px solid #3322AA;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px; */
+	background: url(../images/portal_bg_signon.gif) no-repeat;
+}
+#maincontIndex .signonbox table {
+	/*background-color:yellow;
+	border:1px solid black;*/
+	width:190px;
+	border-collapse:separate;
+	border-spacing:1px;
+	font-size: 90%;
+}
+#maincontIndex .signonbox th, #maincontIndex .signonbox td{
+	/*border:1px solid black;*/
+	text-align: left;
+	vertical-align:middle;
+	height:20px;
+}
+#maincontIndex .signonbox td {text-align:right}
+#maincontIndex .signonbox td.buttoncell {height:24px; }
+#maincontIndex .signonbox input[type="text"], #maincontIndex .signonbox input[type="password"]{ width:110px; padding:1px 2px 0 2px; }
+
+/* OFF MOUSE */
+/*#maincontIndex .wrapper li#menu01 a { background-position: 0 0;}*/
+/*#maincontIndex .wrapper li#menu02 a { background-position: -140px 0;}*/
+/*#maincontIndex .wrapper li#menu03 a { background-position: -280px 0;}*/
+/*#maincontIndex .wrapper li#menu04 a { background-position: -420px 0;}*/
+/*#maincontIndex .wrapper li#menu05 a { background-position: -560px 0;}*/
+/*#maincontIndex .wrapper li#menu06 a { background-position: -700px 0;}*/
+/*#maincontIndex .wrapper li#menu07 a { background-position: -840px 0;}*/
+/*#maincontIndex .wrapper li#menu08 a { background-position: -980px 0;}*/
+/*#maincontIndex .wrapper li#menu09 a { background-position: -1120px 0;}*/
+/*#maincontIndex .wrapper li#menu10 a { background-position: -1260px 0;}*/
+
+/* ON MOUSE */
+/*#maincontIndex .wrapper li#menu01 a:hover { background-position: 0 -120px;}*/
+/*#maincontIndex .wrapper li#menu02 a:hover { background-position: -140px -120px;}*/
+/*#maincontIndex .wrapper li#menu03 a:hover { background-position: -280px -120px;}*/
+/*#maincontIndex .wrapper li#menu04 a:hover { background-position: -420px -120px;}*/
+/*#maincontIndex .wrapper li#menu05 a:hover { background-position: -560px -120px;}*/
+/*#maincontIndex .wrapper li#menu06 a:hover { background-position: -700px -120px;}*/
+/*#maincontIndex .wrapper li#menu07 a:hover { background-position: -840px -120px;}*/
+/*#maincontIndex .wrapper li#menu08 a:hover { background-position: -980px -120px;}*/
+/*#maincontIndex .wrapper li#menu09 a:hover { background-position: -1120px -120px;}*/
+/*#maincontIndex .wrapper li#menu10 a:hover { background-position: -1260px -120px;}*/
+
+
+#maincontIndex .wrapper li#menu03 a { background-image: url('../images/index_bestreader.png'); }
+#maincontIndex .wrapper li#menu03 a:hover { background-image: url('../images/index_bestreader_on.png'); }
+#maincontIndex .wrapper li#menu10 a { background-image: url('../images/index_crosssearch.png'); }
+#maincontIndex .wrapper li#menu10 a:hover { background-image: url('../images/index_crosssearch_on.png'); }
+#maincontIndex .wrapper li#menu09 a { background-image: url('../images/index_facility.png'); }
+#maincontIndex .wrapper li#menu09 a:hover { background-image: url('../images/index_facility_on.png'); }
+#maincontIndex .wrapper li#menu05 a { background-image: url('../images/index_ill.png'); }
+#maincontIndex .wrapper li#menu05 a:hover { background-image: url('../images/index_ill_on.png'); }
+#maincontIndex .wrapper li#menu02 a { background-image: url('../images/index_newarrivals.png'); }
+#maincontIndex .wrapper li#menu02 a:hover { background-image: url('../images/index_newarrivals_on.png'); }
+#maincontIndex .wrapper li#menu01 a { background-image: url('../images/index_opacsearch.png'); }
+#maincontIndex .wrapper li#menu01 a:hover { background-image: url('../images/index_opacsearch_on.png'); }
+#maincontIndex .wrapper li#menu06 a { background-image: url('../images/index_order.png'); }
+#maincontIndex .wrapper li#menu06 a:hover { background-image: url('../images/index_order_on.png'); }
+#maincontIndex .wrapper li#menu08 a { background-image: url('../images/index_question.png'); }
+#maincontIndex .wrapper li#menu08 a:hover { background-image: url('../images/index_question_on.png'); }
+#maincontIndex .wrapper li#menu07 a { background-image: url('../images/index_quest.png'); }
+#maincontIndex .wrapper li#menu07 a:hover { background-image: url('../images/index_quest_on.png'); }
+#maincontIndex .wrapper li#menu04 a { background-image: url('../images/index_userrecord.png'); }
+#maincontIndex .wrapper li#menu04 a:hover { background-image: url('../images/index_userrecord_on.png'); }
+
+
+
+#maincontIndex .wrapper dl {float: right;width: 176px;}
+#maincontIndex .wrapper dt {
+      background:url(../images/carender_head.gif) no-repeat 0 0;
+	  height: 29px;
+	  text-indent: -9999px;
+}
+#maincontIndex .wrapper dd {
+      background:url(../images/carender_bg.gif) no-repeat left bottom;
+	  padding: 6px 16px 15px 13px;
+}
+#maincontIndex .wrapper dd h3 { color:#00378A; font-weight: normal; font-size: 100%;}
+#maincontIndex .wrapper #carenderbox {
+	background: #FFFFFF url(../images/carender_boxbg.gif) repeat-x left bottom;
+	border: 2px solid #FFCC00;
+}
+#maincontIndex .wrapper #carenderbox table {
+    border-collapse:separate;
+	border-spacing: 1px;
+	width: 100%;
+}
+#maincontIndex .wrapper #carenderbox td,#maincontIndex .wrapper #carenderbox th {
+    text-align: center;
+	font-weight: normal;
+	border-bottom: 1px solid #D2D7E1;
+	border-right: 1px solid #D2D7E1;
+	font-size: 93%;
+}
+
+#maincontIndex .wrapper #carenderbox th {
+	background: #FFCC00 url(../images/carender_weekbg.gif) repeat-x left bottom;
+	color:#00378A;
+}
+#maincontIndex .wrapper #carenderbox td {
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+}
+#maincontIndex .wrapper #carenderbox td.holiday {
+	background: #FFCC00 url(../images/calendar_bg_holiday.gif) repeat-x left bottom;
+	color:#FFFFFF;
+}
+#maincontIndex .wrapper #carenderbox td.changeday {
+	background: #3399FF url(../images/calendar_bg_change.gif) repeat-x left bottom;
+	color:#FFFFFF;
+}
+/***** '10.01.06 防大対応 ***/
+#maincontIndex .wrapper #carenderbox td.voluntaryopen_day {
+	background: #9F3585 url(../images/calendar_bg_selfopen.gif) repeat-x left bottom;
+	color:#FFFFFF;
+}
+
+
+
+/*****************************************************************************************************************************************************
+Portal START */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* default で定義されているスタイルをPortal様に修正 */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+body.forportal {
+	font-family:'メイリオ',Meiryo,'Lucida Grande',Verdana,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Osaka,'ＭＳ Ｐゴシック',sans-serif;
+	padding:0;
+	margin:0;
+	}
+body.forportal .wrapper { width:95%; }
+#topheader.forportal{ height:40px; text-align:right;}
+/*#topheader.forportal .wrapper { height:100%; padding-top:18px; }
+#topheader.forportal a{ color:#fff;}*/
+
+/** ポータル用に追加（2014.06 add.Takahashi） **/
+
+body.forportal .headerbtn {
+	float:right;
+	margin-right:6px;
+	}
+body.forportal .headerbtn a {
+	display:block;
+	float:left;
+	min-width:100px;
+	min-height:28px;
+	margin: 0 1px 0 0;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	padding: 12px 5px 0;
+	color: #063A88;
+	font-size:13px;
+	font-weight:bold;
+	text-align: left;
+	background: #FFF url(../images/portal/bg_headerbtn.gif) repeat-x 0 bottom;
+	}
+body.forportal .headerbtn a:hover { background: #FFF; text-decoration:none;}
+
+body.forportal .headerbtn span { padding-left:25px;}
+body.forportal .headerbtn span.pageset { background: url(../images/portal/ico_header_pageset.png) no-repeat 3px 0; }
+body.forportal .headerbtn span.logout {background: url(../images/portal/ico_header_logout.png) no-repeat 0 0;}
+
+
+
+body.forportal #footer {
+	min-height:3em;
+	padding-top: 1em;
+}
+body.forportal #footer h3 {
+	float:none;
+	text-align:right;
+	width:90%;
+	margin: 0 auto;
+	font-size:12px;
+	font-weight:normal;
+	color: #FFF;
+	}
+
+
+
+#maincontPortal {
+	overflow:hidden;
+	background-color: #D9DAC2;
+	padding-top:10px;
+}
+#maincontPortal .wrapper { width:100%; }
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* アウターテーブル (1行3列から構成され、左：メニューとカレンダー、真中：お知らせ等、右：検索と利用者情報を表示 を表示) */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+#maincontPortalOutline {
+	border-collapse:collapse;
+	border-spacing: 0px;
+	width: 100%;
+}
+#maincontPortalOutline td.maincontPortalTD {
+	vertical-align:top;
+}
+#maincontPortalOutline td.maincontPortalTD div.cont {
+	margin-bottom:2px;
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* 左のセルに適用されるスタイル */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+#maincontPortalOutline td.left {
+	padding: 2px 1px 2px 3px;
+	width: 190px
+}
+#maincontPortalOutline td.left div.cont{
+	background-color:#B4B59C;
+	border: 1px solid #D9E1AF;
+	padding:0px;
+	margin-bottom:10px;
+	position:relative;
+	zoom: 1;/*IE8以下で必要*/
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	behavior: url(“css/PIE.htc”);
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* 真中のセルに適用されるスタイル */
+/*-------------------------------------------------------------------------------------------------------------------------- */
+
+
+#maincontPortalOutline td.center {
+	/*padding: 2px 1px;*/
+	padding:15px 10px;
+	font-size:108%;
+}
+
+#maincontPortalOutline td.center div.cont {
+	background-color:#FFF;
+	zoom: 1;/*IE8以下で必要*/
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	behavior: url(“css/PIE.htc”);
+	margin-bottom: 15px;
+	padding: 1px;
+}
+
+#maincontPortalOutline td.center div.cont dl {}
+#maincontPortalOutline td.center div.cont dt {
+	display: block;
+	position:relative;
+	background-color:#92B5F1;
+	background: -moz-linear-gradient(top, #749BE6, #92B5F1);						/* For Mozilla/Gecko (Firefox etc) */
+	background: -webkit-gradient(linear, left top, left bottom, from(#749BE6), to(#92B5F1));		/* For WebKit (Safari, Google Chrome etc) */
+	background: linear-gradient(to bottom, #749BE6, #92B5F1); /* For IE10 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=0)"; /*For Internet Explorer 8 */
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF749BE6', endColorstr='#FF92B5F1'); /* For Internet Explorer 5.5 - 7 */
+	padding: 7px 0 5px;
+	zoom: 1;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	behavior: url(“css/PIE.htc”);
+	color: #ffffff;
+	font-size:123.1%;
+	}
+
+#maincontPortalOutline td.center div.cont dt img {
+	position: absolute;
+	top:-10px;
+	left: 3px;
+	}
+#maincontPortalOutline td.center div.cont dt span {margin-left:50px;}
+#maincontPortalOutline td.center div.cont dd {
+	background: #FFF url(../images/portal/bg_center_box.jpg) repeat-x 0 0;
+	zoom: 1;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	behavior: url(“css/PIE.htc”);
+	padding:15px;
+	font-size:108%;
+	}
+#maincontPortalOutline td.center div.cont dd span.stoppage {
+	font-weight:bold;
+	font-size:110%;
+	color:red;
+	}
+
+
+
+/*
+#maincontPortalOutline td.center div.cont span {				/*←コンテンツヘッダ
+	display: block;
+	background: -moz-linear-gradient(top, #000099, #0000FF);						/* For Mozilla/Gecko (Firefox etc)
+	background: -webkit-gradient(linear, left top, left bottom, from(#000099), to(#0000FF));		/* For WebKit (Safari, Google Chrome etc)
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000099, endColorstr=#0000FF);		/* For Internet Explorer 5.5 - 7
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#000099, endColorstr=#0000FF)";	/* For Internet Explorer 8
+	background-color:#000099;
+	color: #ffffff;
+	font-weight:900;
+	font-size:110%;
+	padding: 1px 0 1px 3px;
+}*/
+
+#maincontPortalOutline td.maincontPortalTD div.innercont {			/*←コンテンツDIV*/
+	padding:0;
+	/*overflow-y:auto;
+	overflow-x:hidden;*/
+}
+
+#maincontPortalOutline td.maincontPortalTD div.innercont input[type="image"]{	/*←各コンテンツDIV内の処理ボタン*/
+	margin: 2px 0 2px 0.8%;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* 貸出情報その他テーブル */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+.subhead {
+	border-left: 3px solid #063986;
+	padding: 3px 0 0 10px;
+	margin-bottom: 8px;
+	font-size:138.5%;
+	color: #063986;
+	line-height: 1.2;
+	}
+.comment { margin-left:15px;}
+
+/*
+.boxwrapper {
+	overflow: auto;
+	height:160px;
+	margin: 10px 0;
+	border: 1px solid #0041A0;
+}*/
+table.defaultlist {
+	border-collapse:collapse;
+	width:100%;
+	border: 1px solid #0041A0;
+	margin: 10px 0;
+	font-size: 93%;
+}
+table.defaultlist th {
+	background-color:#0041A0;
+	padding: 3px 5px;
+	border-right: 1px dotted #CCC;
+	font-weight:normal;
+	color:#FFF;
+	text-align:center;
+	white-space:nowrap;
+}
+table.defaultlist td {
+	padding: 5px;
+	border-top: 1px dotted #FFF;
+	border-right: 1px dotted #CCC;
+}
+table.defaultlist tr:nth-child(even) { background:#EFF3FF;}
+table.defaultlist tr:nth-child(odd) { background:#F0F0F0;}
+
+table.defaultlist th.alC, table.defaultlist td.alC{ text-align:center; }
+table.defaultlist th.alR, table.defaultlist td.alR{ text-align:right; }
+table.defaultlist th.alL, table.defaultlist td.alL{ text-align:left; }
+
+table.nolist {border:none;}
+table.nolist td { background:#FFF; font-size:108%; padding:0;}
+
+
+/*
+table.mt10 { margin-top:10px; }
+table.lendtbl{ margin-left: 1%; width:99%; border-collapse:collapse;}
+table.lendtbl tr.odd{background-color:#FEFEFE; height:20px;}
+table.lendtbl tr.evn{ background-color:#EFF3FF; height:20px;}
+table.lendtbl th.alC, table.lendtbl td.alC{ text-align:center; }
+table.lendtbl th.alR, table.lendtbl td.alR{ text-align:right; }
+table.lendtbl th.alL, table.lendtbl td.alL{ text-align:left; }
+table.lendtbl td.space1{ border:none; background-color:#FFFFFF; }
+table.lendtbl td.space2{ border:none; background-color:#FFFFFF; height:10px;}
+table.lendtbl td.space3{ border:none; background-color:#FFFFFF; margin 2px 0;}
+
+table.lendtbl th, table.lendtbl td{
+	border-right:1px dotted gray;
+	line-height:16px;
+}
+table.lendtbl td.sbthead{							/*←各コンテンツDIV内のグループヘッダ
+	font-family:'メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	border:none;
+	text-align:center;
+/*	background-color: #99CCFF;
+	color:#777777;
+	background-color: #EDEDED;
+	color:#AAAAAA;
+	padding: 1px 0 0 2px;
+	font-size:105%;
+	font-weight:normal;
+}
+table.lendtbl th{								/*←各コンテンツDIV内の資料リストテーブルヘッダ*/
+/*	background-color:#0000CC;
+	background-color: #999999;
+	color:#FFFFFF;
+	height:18px;
+	font-size:100%;
+}
+table.lendtbl td{ padding:1px 3px; }
+table.lendtbl td.lendmsg { font-weight:bold; color:red; }
+table.lendtbl td.lendinfo { font-weight:bold; color:green; }
+*/
+
+/** 2014/11/20 通知先メールアドレス情報を追加 **/
+/* table.tbl_riyosha_mail .riyosha_mail{text-align: left; font-size:105%;} */
+
+table.tbl_riyosha_mail {
+  aborder:1px solid black;
+  border-collapse: collapse;
+  margin-left: 0px;
+}
+table.tbl_riyosha_mail th {
+  text-align:left;
+  padding: 2px 2px 2px 20px;
+  aborder:1px solid blue;
+}
+table.tbl_riyosha_mail th input, table.tbl_riyosha_mail th label, table.tbl_riyosha_mail td input, table.tbl_riyosha_mail td label {
+  vertical-align:middle;
+  margin-right:5px;
+}
+table.tbl_riyosha_mail td {
+  padding: 2px 2px 2px 60px;
+  aborder:1px solid red;
+}
+table.tbl_riyosha_mail th.dellabel {
+  padding-left: 0px;
+}
+table.tbl_riyosha_mail th input.chkAddDel {
+  margin-left: 20px;
+  width: 100px;
+  height: 20px;
+}
+table.tbl_riyosha_mail td.adding, table.tbl_riyosha_mail th.adding{
+  background-color: #CCCCFF;
+}
+.addMailForm { margin-top: 20px;}
+.addMailForm #addlblMail { font-size:105%;}
+.addMailForm #addTxtMail { display: inline; zoom: 1; width: 400px;}
+.addMailForm #addMailBtn { display: inline; zoom: 1; vertical-align:middle;}
+
+/* コンテンツDIVのカラーセット */
+/* 緑を基調としたカラーセット */
+#maincontPortalOutline td.center div.clgreen table.defaultlist    { border: 1px solid #006400; }
+#maincontPortalOutline td.center div.clgreen table.defaultlist th { background-color: #006400; }
+#maincontPortalOutline td.center div.clgreen p.subhead            { border-left: 3px solid #006400; color:#006400; }
+
+/* 橙を基調としたカラーセット */
+#maincontPortalOutline td.center div.clorange table.defaultlist    { border: 1px solid #FF8C00; }
+#maincontPortalOutline td.center div.clorange table.defaultlist th { background-color: #FF8C00; }
+#maincontPortalOutline td.center div.clorange p.subhead            { border-left: 3px solid #FF8C00; color:#FF8C00; }
+
+/* 紫を基調としたカラーセット */
+#maincontPortalOutline td.center div.clpurple table.defaultlist    { border: 1px solid #4B0082; }
+#maincontPortalOutline td.center div.clpurple table.defaultlist th { background-color: #4B0082; }
+#maincontPortalOutline td.center div.clpurple p.subhead            { border-left: 3px solid #4B0082; color:#4B0082; }
+
+/* 表示領域(高さ) */
+#maincontPortalOutline td.center div.areanarrowest dd { max-height: 200px;  overflow-y:scroll}
+#maincontPortalOutline td.center div.areanarrower dd  { max-height: 400px; overflow-y:scroll}
+#maincontPortalOutline td.center div.areanormal dd   { max-height: 600px; overflow-y:scroll}
+#maincontPortalOutline td.center div.areabroader dd   { max-height: 800px; overflow-y:scroll}
+#maincontPortalOutline td.center div.areabroadest dd  { max-height: 1000px; overflow-y:scroll}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* 右のセルに適用されるスタイル */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+#maincontPortalOutline td.right {
+	padding: 2px 5px 0 0;
+	width: 300px;
+	font-size:108%;
+}
+
+/** 基本BOX指定 **/
+dl.rightbox {
+	background-color:#F3F3E3;
+	margin-bottom: 15px;
+	border: 1px solid #FFF;
+	zoom: 1;/*IE8以下で必要*/
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	behavior: url(“css/PIE.htc”);
+	}
+dl.rightbox dt {
+	background:url(../images/portal/bg_right_title.png) no-repeat 0 0;
+	padding: 6px 0 0 25px;
+	min-height:36px;
+	color:#063987;
+	font-size:138.5%
+}
+dl.rightbox dd {
+	padding: 5px 20px 10px;
+}
+dl.rightbox dd form input.searchbox{
+	width:100%;
+	background-color:#FFF;
+	border: 1px solid #B6B6B0;
+	height:28px;
+	margin-bottom:6px;
+}
+dl.rightbox dd form input[type="image"]{}
+
+/** 右寄りフォームボタン **/
+.formbtn_right { text-align:right;}
+
+/** 基本リスト **/
+.infolist {
+	overflow:hidden;
+	list-style:none;
+}
+.infolist li {
+	overflow:hidden;
+	margin-bottom: 5px;
+}
+.infolist li em {
+	display:block;
+	float:left;
+	width: 6em;
+	color:#878877;
+	font-size:93%;
+	/*font-weight:bold;*/
+	font-style:normal;
+	}
+.infolist li p {
+	margin-left:7em;
+	font-size:100%;
+}
+.empha {
+	font-size:123.1%;
+	color:#F60;
+	margin-bottom: 5px;
+}
+
+/** リンクリスト **/
+.linklist {list-style:none;}
+.linklist li { margin-bottom:3px;}
+/** 2014/10/21 liコマンドで対応するように修正 **/
+/* .linklist li strong { */
+.linklist li.linkheader {
+	display:block;
+	color:#878877;
+	font-weight: normal;
+	margin: 15px 0 5px;
+}
+
+.linklist li a {
+	background:url(../images/portal/ico_right_allow.png) no-repeat 2px 4px;
+	padding: 0 0 0 15px;
+	color: #063A88;
+	text-decoration:none;
+}
+.linklist li a:hover { text-decoration:underline;}
+
+/** 2014/10/21 出庫情報を追加 **/
+.shukkolist {list-style:none;}
+.shukkolist li { overflow:hidden; margin-bottom: 5px; }
+.shukkolist li input { vertical-align:middle }
+.shukkolist li span  { margin-left: 10px; }
+.shukkolist li span.st  { font-weight:bold }
+.shukkolist li span.red { color:red; font-weight: bold;}
+.shukkolist li label { margin-left: 22px; }
+
+.msgboxbtn {
+	font-size:12px;
+	vertical-align:middle;
+	float:right;
+	margin: 0 10px 0 0 ;
+}
+
+/*
+#maincontPortalOutline td.right {
+	padding: 2px 3px 2px 1px;
+	width: 300px;
+}
+#maincontPortalOutline td.right div.cont span {
+	display: block;
+	font-weight:900;
+	font-size:110%;
+	color:navy;
+	padding: 2px 0 0 0px;
+	margin-left: -5px;
+	height:22px;
+}
+#maincontPortalOutline td.right div.cont td.kashisbt {
+	font-weight:900;
+	font-size:110%;
+	color:red;
+}
+
+#maincontPortalOutline td.right div.search form{
+	margin:4px 5px 5px 15px;
+	/*background-color:red;
+}
+#maincontPortalOutline td.right div.search form .searchbox{
+	width:200px;
+	background-color:#fffff6;
+	height:18px;
+}
+#maincontPortalOutline td.right div.search form input[type="image"]{
+	margin-top:3px;
+}
+#maincontPortalOutline td.right div.cont table{
+	margin:2px 5px 2px 15px;
+	/*background-color:pink;
+}
+#maincontPortalOutline td.right div.cont table th{
+	font-weight:bold;
+	text-align:left;
+	width: 130px;
+}
+#maincontPortalOutline td.right div.cont table td{
+	font-family:'ＭＳ ゴシック',sans-serif;
+	font-weight:normal;
+	width:160px;
+}
+#maincontPortalOutline td.right div table td.buttonarea{ padding-bottom:3px; }
+#maincontPortalOutline td.right div ul.link{ margin-left:25px; list-style-type:none; /*background-color:pink; margin-bottom:3px; line-height:18px;}
+#maincontPortalOutline td.right div ul.link .grpheader{ margin-left: -15px; margin-top:3px; font-weight:bold; font-size:105%;}
+#maincontPortalOutline td.right div ul.link a{ font-family: 'ＭＳ ゴシック',sans-serif; color:#5555CC; }
+*/
+
+dl.rightbox ul.link { list-style-type: none; }
+dl.rightbox ul.link li.grpheader { font-weight:bold; font-size:105%; }
+dl.rightbox ul.link li a { font-family: 'ＭＳ ゴシック',sans-serif; color:#5555CC; margin-left: 15px; }
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* メニューのスタイル */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+#maincontPortalOutline td.left div.menu ul {width: 170px; list-style-type:none; margin: 10px auto;}
+#maincontPortalOutline td.left div.menu li {height: 39px}
+#maincontPortalOutline td.left div.menu li input[type="image"] {height: 40px; width:170px;}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/* カレンダーのスタイル(ポータルページ用 メインメニュー用はmaincontIndexで定義済み) */
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+#maincontPortalOutline td.left div.calendar dl {width: 176px; margin: 10px 0 10px 9px;}
+#maincontPortalOutline td.left div.calendar dt {
+      background:url(../images/portal_carender_head.gif) no-repeat 0 0;
+	  height: 27px;
+	  text-indent: -9999px;
+}
+#maincontPortalOutline td.left div.calendar dd {
+	background:url(../images/portal_carender_bg.gif) no-repeat left bottom;
+	padding: 6px 16px 15px 13px;
+}
+#maincontPortalOutline td.left div.calendar dd h3 { color:#00378A; font-weight: normal; font-size: 100%;}
+#maincontPortalOutline td.left div.calendar #carenderbox {
+	background: #FFFFFF url(../images/carender_boxbg.gif) repeat-x left bottom;
+	border: 2px solid #FFCC00;
+	padding:0;
+	margin:0;
+}
+#maincontPortalOutline td.left div.calendar #carenderbox table {
+	border-collapse:separate;
+	border-spacing: 1px;
+	width: 100%;
+}
+#maincontPortalOutline td.left div.calendar #carenderbox td,#maincontPortalOutline td.left div.calendar #carenderbox th {
+	text-align: center;
+	font-weight: normal;
+	border-bottom: 1px solid #D2D7E1;
+	border-right: 1px solid #D2D7E1;
+	font-size: 11px;
+}
+#maincontPortalOutline td.left div.calendar #carenderbox th {
+	background: #FFCC00 url(../images/carender_weekbg.gif) repeat-x left bottom;
+	color:#00378A;
+}
+#maincontPortalOutline td.left div.calendar #carenderbox td {
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+}
+#maincontPortalOutline td.left div.calendar #carenderbox td.holiday {
+	background: #FFCC00 url(../images/calendar_bg_holiday.gif) repeat-x left bottom;
+	color:#FFFFFF;
+}
+#maincontPortalOutline td.left div.calendar #carenderbox td.changeday {
+	background: #3399FF url(../images/calendar_bg_change.gif) repeat-x left bottom;
+	color:#FFFFFF;
+}
+#maincontPortalOutline td.left div.calendar p.aaa  {
+	display: block;
+	margin:5px 0 5px 0;
+	/*font-family:'メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;*/
+	font-size:80%;
+	overflow:hidden;
+}
+#maincontPortalOutline td.left div.calendar form.bbb { margin-top:2px; width:100%; text-align:center;}
+
+#maincontPortalOutline td.left div.calendar #carenderbox td.voluntaryopen_day {
+	background: #9F3585 url(../images/calendar_bg_selfopen.gif) repeat-x left bottom;
+	color:#FFFFFF;
+}
+
+
+/*****************************************************************************************************************************************************
+Portal Setting START */
+
+.forportalsettings .portalsettingsbtns-top {
+  margin: 0px 0px -5px 10px;
+}
+.forportalsettings .portalsettingsbtns-bottom {
+  margin: -20px 0 10px 10px;
+}
+
+.forportalsettings #maincontPortalOutline td.center div.cont dt span {margin-left:10px;}
+body.forportalsetting { font-size:100%; }
+body.forportalsetting .wrapper { width:95%; }
+#topheader.forportalsetting { height:40px; text-align:left; color:#FFF; }
+#topheader.forportalsetting p { display:block; padding:7px 0 0 3px; font-size:20px; font-weight:900; font-family:'メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif; float:left; }
+#topheader.forportalsetting #portalsettinghelp { text-align:right;height:100%;padding:18px 20px 0 0;font-size:80%; }
+#topheader.forportalsetting #portalsettinghelp a { color:#fff; font-family:'ＭＳ ゴシック',sans-serif; font-weight:bold; }
+#maincontPortalOutline td.maincontPortalTD div.innercont_setting {
+	padding:3px 5px 3px 10px;
+	font-family:'ＭＳ ゴシック',sans-serif;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+.innercont_setting p { color:#666666; }
+.innercont_setting select {margin-bottom:2px;}
+.innercont_setting select.w1 { width:300px; }
+.innercont_setting select.w2 { width:150px; }
+
+div.setting_taishogai {
+	width:100%;
+}
+div.setting_taishogai table {
+	margin:5px 0 2px 0;
+	font-family:'メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	border:1px solid gray;
+	width:80%;
+}
+div.setting_taishogai th {
+	border-right:1px dotted gray;
+	background-color: #999999;
+	color:#FFFFFF;
+}
+div.setting_taishogai td {
+	border-right:1px dotted gray;
+	padding:1px 0 1px 3px;
+	color:#000;
+}
+div.setting_taishogai tr.odd{background-color:#FEFEFE; height:20px;}
+div.setting_taishogai tr.evn{ background-color:#EFF3FF; height:20px;}
+div.setting_taishogai th.header_item { width:220px; }
+
+div.settingjyoken_cont {
+	border:solid 1px #000;
+	margin: 2px 1px 2px 1px;
+	background:#fff;
+}
+div.settingjyoken_cont span {
+	display: block;
+	background: -moz-linear-gradient(top, #000099, #0000FF);						/* For Mozilla/Gecko (Firefox etc) */
+	background: -webkit-gradient(linear, left top, left bottom, from(#000099), to(#0000FF));		/* For WebKit (Safari, Google Chrome etc) */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000099, endColorstr=#0000FF);		/* For Internet Explorer 5.5 - 7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#000099, endColorstr=#0000FF)";	/* For Internet Explorer 8 */
+	background-color:#000099;
+	color: #ffffff;
+	font-weight:900;
+	font-size:110%;
+	padding: 2px 0 3px 3px;
+}
+div.settingjyoken_innercont {
+	padding:3px 5px 3px 10px;
+	font-family:'ＭＳ ゴシック',sans-serif;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+div.settingjyoken_innercont p {
+	margin-left:6px;
+	color:#666666;
+}
+div.settingjyoken_seikyu {
+	margin-left:4px;
+}
+div.settingjyoken_seikyu th {
+	background:#e6e6fa;
+	font-size:102%;
+}
+div.settingjyoken_seikyu td.space {
+	width:25px;
+}
+div.settingjyoken_seikyu td {
+	padding:2px 0px 2px 0px;
+}
+div.settingjyoken_seikyu input {
+	width:115px;
+}
+div.settingjyoken_chkbox td {
+	padding:3px;
+}
+
+div.settingjyoken_chkbox input {
+	margin-right:5px;
+}
+div.settingjyoken_cont .clearbtn {
+	width:130px;
+	height:24px;
+	float:right;
+	margin:-2px 1px 0 0;
+}
+
+
+
+/********************************************************************
+Message Box START */
+.messageboxlist {border-collapse: collapse;width: 95%;margin: 10px auto 20px;}
+.messageboxlist th,.messageboxlist td { padding: 5px 3px; border-right: 1px dotted #FFFFFF;}
+.messageboxlist th.bordernone,.messageboxlist td.bordernone { border-right: none;}
+.messageboxlist tr.lineA { background-color:#EEEEEE;}
+.messageboxlist tr.lineB { background-color:#ECF3FF;}
+.messageboxlist th { background-color: #5D6D89;color:#FFFFFF;font-weight: normal;}
+.messageboxlist td { border-top: 1px solid #FFFFFF;}
+.messageboxlist td.msbtitle { text-align: left; padding-left: 5px; }
+.messageboxlist td.msbstatus { text-align: center; }
+
+p.nomessageboxlist { padding: 10px 20px 25px; }
+
+
+/********************************************************************
+Message Box (Single Message) START */
+.btn {
+	font-size:14px;
+	vertical-align:middle;
+	width:200px;
+	height:30px;
+}
+.btnwrapper {
+	text-align:center;
+	margin: 0 0 10px  0;
+}
+dl.singlemessage {
+	margin: 40px 20px 8px;
+}
+dl.singlemessage dt {
+	padding: 10px 20px;
+	font-size:200%;
+	font-weight:bold;
+	border: 1px solid #332;
+	border-bottom:none;
+	background-color: navy;
+	color: white;
+	word-break:break-all;
+}
+dl.singlemessage dd {
+	padding: 10px 20px;
+	font-size:120%;
+	border: 1px solid #332;
+	word-break:break-all;
+}
+

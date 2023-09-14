@@ -1,0 +1,75 @@
+/*
+ * message.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+/**
+ * メッセージダイアログ用クラス。
+ *
+ */
+MessageDialog = {
+    /**
+     * メッセージダイアログをオープンする。
+     *
+     * @param {String} openDialogId オープンするダイアログの属性ＩＤ
+     * @param {String} dialogOptions オープンするダイアログのオプション（JSON形式文字列）
+     * @param {String} dialogOpenBtnId オープンするダイアログに対応する再表示ボタンの属性ＩＤ
+     * @param {String} messHtml メッセージエリアに設定するHTML文字列
+     */
+    openDialog: function (openDialogId, dialogOptions, dialogOpenBtnId, messHtml) {
+        if (document.getElementById(openDialogId) !== null) {
+            // 対象のダイアログのメッセージ表示エリアに指定のHTMLを登録する。
+            $('#' + openDialogId + ' ul').html(messHtml);
+            // 対象のダイアログが既にオープンされていた場合は、終了。
+            $('#' + openDialogId).dialog({'autoOpen': false});
+            if ($('#' + openDialogId).dialog("isOpen")) {
+                //console.log(messHtml);
+                return;
+            }
+            // 対象のダイアログのオプション定義を設定する。
+            $('#' + openDialogId).dialog($.parseJSON(dialogOptions));
+            // ダイアログ再表示ボタンが指定されている場合は、イベントの登録を行いボタンを非表示にする。
+            if (dialogOpenBtnId) {
+                $('#' + openDialogId).dialog({close: function (event, ui) {
+                        $('#' + dialogOpenBtnId).show('fade');
+						
+						//ダイアログ閉じた後、バリデーションエラーが発生している項目にフォーカスを当てる。
+						if($('input.ui-state-error').length){
+							setTimeout(function () {
+								$('input.ui-state-error').eq(0).focus();
+							}, 250);
+						}
+                    }});
+                $('#' + dialogOpenBtnId).hide();
+            }
+			//coustomo.pcのメソッド
+			//ヴァリデーション動くと、blurのイベント処理がなぜか削除されるので、
+			//このタイミングで際登録
+			focusMemory();
+            // 対象のダイアログを表示する。
+            $('#' + openDialogId).dialog('open');
+        }
+    }
+
+    /**
+     * メッセージダイアログを破棄する。
+     *
+     * @param {String} openDialogId 破棄するダイアログの属性ＩＤ
+     * @param {String} dialogOpenBtnId 破棄するダイアログに対応する再表示ボタンの属性ＩＤ
+     */
+    , destroyDialog: function (openDialogId, dialogOpenBtnId) {
+        if (document.getElementById(openDialogId) !== null) {
+            // 対象のダイアログのメッセージ表示エリアにクリアする。
+            $('#' + openDialogId + ' ul').html('');
+            // 対象のダイアログを破棄する。
+            $('#' + openDialogId).dialog({'autoOpen': false});
+            $('#' + openDialogId).dialog('destroy');
+            // ダイアログ再表示ボタンが指定されている場合は、ボタンを非表示にする。
+            if (dialogOpenBtnId) {
+                $('#' + dialogOpenBtnId).hide();
+            }
+        }
+    }
+};

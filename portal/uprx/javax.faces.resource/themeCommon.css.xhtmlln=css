@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+/*======================================================
+ * themeCommon.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * 全カラーテーマ共通スタイル
+======================================================*/
+
+/*===== 全般 =====*/
+
+/* コンテンツ */
+.ui-accordion-content.ui-widget-content {
+    background: #fcfdfd;
+}
+
+/* 単票（データ列のみ） */
+.ui-widget-content .ui-panelgrid-cell:not(.ui-widget-header) {
+    background: #fefefe;
+}
+
+.ui-widget-content .ui-panelgrid-cell:not(.ui-widget-header) {
+    color: #222222; /* 問題はプラネットとヴァレンタインなので個別のテーマに */
+}
+
+.ui-tabs.ui-widget-content {
+    background: #fcfdfd;
+}
+
+.ui-tabs .ui-panelgrid .ui-widget-content:not(.ui-widget-content.ui-inputswitch) {
+    background: transparent;
+}
+
+.ui-tabs .ui-panelgrid .ui-widget-content .ui-panelgrid-cell:not(.ui-widget-header) {
+    background: transparent;
+}
+
+/*===== データテーブル =====*/
+
+/* 選択行 */
+.ui-datatable .ui-state-highlight, .ui-treetable .ui-state-highlight {
+    background: #fef9da !important;
+    background: linear-gradient(to bottom, #fffacd, #fffac0) !important;
+    color: #222222 !important;
+}
+
+/* データ部背景色 */
+.ui-datatable .ui-widget-content {
+    background: #fefefe;
+}
+
+/* ページャ背景色 */
+.ui-datatable .ui-paginator {
+    background: #eaeaea;
+    border-color: #bbbbbb;
+}
+
+/* ページャ件数表示 */
+.ui-datatable .ui-paginator-current {
+    color: #222222;
+    font-weight: normal;
+    position: relative;
+    top: 0.2em;
+}
+
+/*===== その他 =====*/
+
+/* パンくずエリア */
+#breadCrumbArea .ui-widget-header {
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    border-bottom-width: 2px;
+    padding: 0 3px;
+}
+
+#breadCrumbArea .ui-widget-header {
+    color: #222222;
+    font-size: 1.3em;
+}
+
+#breadCrumbArea .ui-widget-header a {
+    color: #777777;
+    font-size: 0.9em;
+}
+
+/* 入力エリア */
+.ui-inputfield,
+.ui-widget-content .ui-inputfield,
+.ui-widget-header .ui-inputfield {
+    background: #ffffff;
+    -moz-box-shadow: inset 0 1px 1px #8f8f8f;
+    -webkit-box-shadow: inset 0 1px 1px #8f8f8f;
+    box-shadow: inset 0 1px 1px #8f8f8f;
+    color: #222222;
+}
+
+/* 入力エリア（フォーカス） */
+.ui-inputfield.ui-state-focus,
+.ui-widget-content .ui-inputfield.ui-state-focus,
+.ui-widget-header .ui-inputfield.ui-state-focus {
+    -moz-box-shadow: 0px 0px 5px #efefef;
+    -webkit-box-shadow: 0px 0px 5px #efefef;
+    box-shadow: 0px 0px 5px #efefef;
+    /*-moz-box-shadow: none;*/
+    /*-webkit-box-shadow: none;*/
+    /*box-shadow: none;*/
+}
+
+/* memo（後ほど削除） */
+/*
+・エラー行、編集行などのスタイルもこちらに移行する。
+
+
+
+
+*/

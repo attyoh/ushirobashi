@@ -1,0 +1,524 @@
+/*
+ * component.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+// ---------------------------------------------------------
+// グローバル変数の定義
+// ---------------------------------------------------------
+/**
+ * InputNumberではchangeイベントがkeyplessなどのイベントで無効化（Javascriptで入力されるとイベントとして認識してくれない。。）
+ * されるため、focusINしたときの値とblurしたときの値を比較して,changeイベントを自作する。
+ */
+var gValueBfAf = null;
+var createdInputNumber = [];
+/**
+ * インプットナンバーの初期処理
+ * inputNumberのDOMリストを取得し、InputNumberインスタンスを生成する
+ */
+function createInputNumber() {
+	var inputNumberDoms = $('.rx-number.inputNumber');
+	for(var i = 0, len = inputNumberDoms.length; i < len; i++){
+		var ind = inputNumberDoms[i];
+		
+		//すでに生成されている場合は弾く
+		if(createdInputNumber.indexOf(ind) === -1){
+			new InputNumber({
+				target		: ind, 
+				comma		: ind.getAttribute('comma') === "true" ? true : false, 
+				emptyValue	: ind.getAttribute('emptyValue')
+			});
+			//生成されたら配列に格納
+			createdInputNumber.push(ind);
+		}
+		
+	}
+}
+/**
+ * rx:inputNumber コンポーネント用クラス。
+ * （PrimeFaces6.x inputNumber が利用できないため、独自実装したもの）
+ * 
+ * ・バリデーションの条件から入力桁数の制限を行う（整数部、小数部でそれぞれ行う）。
+ * ・バリデーションの条件から負号の利用を制限する。
+ * ・マイナス、プラスキー押下時は、キャレットの位置に関係なく負号を制御（ON/OFF）する。
+ * ・パラメータに応じてカンマ編集を行う。
+ * ・パラメータに応じて未入力時に0を自動設定する。
+ * ・数値と認められない入力を制限する（文字以外にも0から始まる複数桁の数値 等）。
+ * ・最大値、最小値の入力制限は行わない（クライアントバリデーションで通知）。
+ * 
+ * 【その他】
+ * ・右クリックからペーストされた場合には制御できない（⇒blurでクリアする）。
+ * ・カンマ編集された場合バリデーションでエラーとなるが、validator.js やコンバーターにて対応する。
+ * 
+ */
+var InputNumber = Class.extend({
+	/*
+	 * target。
+	 */
+	target: null,
+	/*
+	 * 小数点桁数。
+	 */
+	intlength: 0,
+	/*
+	 * 小数点桁数。
+	 */
+	declength: 0,
+	/*
+	 * 負号フラグ。
+	 */
+	signed: false,
+	/*
+	 * カンマ区切り。
+	 */
+	comma: false,
+	/*
+	 * 未入力値の表示。
+	 * [empty|zero]
+	 */
+	emptyValue: 'empty',
+	/*
+	 * キーダウン時の値。
+	 */
+	kdValue: null,
+	/*
+	 * キーダウン時のキーコード。
+	 */
+	kdCode: null,
+	/*
+	 * 選択範囲。
+	 */
+	selection: {start: 0, end: 0},
+	/**
+	 * 初期処理。
+	 * 
+	 * @param {Object} cfg コンフィグ
+	 */
+	init: function (cfg) {
+		this.target = cfg.target;
+		this.comma = cfg.comma;
+		if (cfg.emptyValue === 'empty' || cfg.emptyValue === 'zero') {
+			this.emptyValue = cfg.emptyValue;
+		}
+
+		this.jq = $(this.target);
+
+		// 整数桁、小数桁をバリデーション情報より取得
+		this.intlength = this.jq.data('rx-intlength');
+		this.declength = this.jq.data('rx-declength');
+		this.signed = this.jq.data('rx-signed');
+
+		// イベントの設定
+		this.bindEvents();
+
+		// 初期値設定（小数点桁数調整）
+		var val = this.jq.val();
+		var validationFailed = this.jq.hasClass('ui-state-error');      // バリデーション違反
+		if (val && !validationFailed) {
+			val = parseFloat(val).toFixed(this.declength);
+			if (this.comma) {
+				val = this.formatComma(val);
+			}
+			this.jq.val(val);
+		}
+		// script部分は削除する
+		//this.jq.next().remove();
+	},
+	/**
+	 * イベントの設定。
+	 */
+	bindEvents: function () {
+		var $this = this;
+		this.jq.off('focus.inputNumber').on('focus.inputNumber', function () {
+			//変更前の値を記憶
+			gValueBfAf = $this.jq.val();
+			$(this).select();
+		});
+		this.jq.off('keydown.inputNumber').on('keydown.inputNumber', function (e) {
+			$this.funcKeydown(e, $this);
+		});
+		this.jq.off('keypress.inputNumber').on('keypress.inputNumber', function (e) {
+			return $this.funcKeypress(e, $this);
+		});
+		this.jq.off('keyup.inputNumber').on('keyup.inputNumber', function (e) {
+			$this.funcKeyup(e, $this);
+		});
+		this.jq.off('blur.inputNumber');
+		var originalOnblur = this.jq.prop('onblur');        // 先に実行されないように退避（バリデーション等を想定）
+		this.jq.removeProp('onblur').on('blur.inputNumber', function (e) {
+			//値が変わっていればchangeイベントを発火
+			//通常ブラウザの仕様でもonchange→onblurの順でイベント発生するので
+			//それにならってblurより先に発火する
+			if (gValueBfAf != $this.jq.val()) {
+				var originalOnChange = $this.jq.prop('onchange');
+				if (originalOnChange) {
+					originalOnChange.call(this, e);
+				}
+			}
+
+			//blurイベント処理
+			$this.funcBlur(e, $this);
+			if (originalOnblur) {
+				originalOnblur.call(this, e);       // 退避した処理を実行
+			}
+		});
+	},
+	/**
+	 * keydownイベント。
+	 * 事前処理までを行う。
+	 * 
+	 * @param {Event} e イベント
+	 * @param {InputNumber} that InputNumberのインスタンス
+	 */
+	funcKeydown: function (e, that) {
+		var val = that.jq.val();
+		if (that.isValid(val)) {
+			// コピー＆ペーストを連続（押し続ける）された場合の対策として、keydown時の値が不正な場合は保持しない
+			// 最初の1回目は正常な値である
+			that.kdValue = val;
+		}
+		that.kdCode = e.keyCode;    // キーダウン時のコード
+
+		// 選択範囲の設定
+		that.selection.start = that.jq.get(0).selectionStart;
+		that.selection.end = that.jq.get(0).selectionEnd;
+	},
+	/**
+	 * keypressイベント（文字が入力された場合のイベント）。
+	 * コピー＆ペースト時には呼ばれないことが多いが、ブラウザによっては呼ばれる。
+	 * 
+	 * @param {Event} e イベント
+	 * @param {InputNumber} that InputNumberのインスタンス
+	 * @returns {Boolean} 判定結果
+	 */
+	funcKeypress: function (e, that) {
+		if (e.ctrlKey || that.isSkipKeypress()) {
+			// Ctrlキー押下時、keypress対象外のキー押下時は制御なし
+			return true;
+		}
+
+		// 入力値
+		var chr = String.fromCharCode(e.which);
+		// 入力値の前後値（選択範囲を除く前後）
+		var bfSel = that.kdValue.substr(0, that.selection.start);
+		var afSel = that.kdValue.substr(that.selection.end);
+
+		var val = null;     // 有効値
+		if (chr === '.') {
+			val = bfSel + chr + afSel;      // ドットの場合は単純連結
+		} else if (chr === '-') {
+			// マイナスの場合はキャレット位置にかかわらず負号を反転する
+			val = bfSel + afSel;
+			val = (val.charAt(0) === '-') ? val.substr(1) : '-' + val;      // 負号を反転する
+		} else if (chr === '+') {
+			// プラスの場合はキャレット位置にかかわらず負号を削除する（＝絶対値）
+			val = bfSel + afSel;
+			val = (val.charAt(0) === '-') ? val.substr(1) : val;            // 負号を削除する
+		} else if (chr.match(/\d/)) {
+			val = bfSel + chr + afSel;      // 数値の場合は単純連結
+		} else {
+			// その他は無視
+			return false;
+		}
+
+		if (!that.isValid(val)) {
+			return false;       // 不正な場合は終了
+		}
+
+		// 値の設定
+		that.setValue(val);
+		// 値を設定したので false を返す
+		return false;
+	},
+	/**
+	 * keyupイベント。
+	 * 
+	 * @param {Event} e イベント
+	 * @param {InputNumber} that InputNumberのインスタンス
+	 */
+	funcKeyup: function (e, that) {
+		var val = that.jq.val();    // テキストから取得
+
+		// コピー＆ペーストの動作を考慮し、ここでも再チェック
+		if (that.isValid(val)) {
+			// 入力補正
+			var adjust = 0;
+			if (val.indexOf('-.') === 0) {
+				val = '-0' + val.substr(1);
+				adjust = 3;
+			} else if (val.indexOf('.') === 0) {
+				val = '0' + val;
+				adjust = 2;
+			}
+
+			if (val !== that.jq.val()) {
+				// 値を設定
+				that.jq.val(val);
+				if (adjust) {
+					that.jq.get(0).selectionStart = adjust;
+					that.jq.get(0).selectionEnd = adjust;
+				}
+			}
+		} else {
+			// keydown時の値に戻す
+			that.jq.val(that.kdValue);
+		}
+	},
+	/**
+	 * blurイベント。
+	 * 最終的に適切な値に変換する。
+	 * 
+	 * @param {Event} e イベント
+	 * @param {InputNumber} that InputNumberのインスタンス
+	 */
+	funcBlur: function (e, that) {
+		try {
+			var val = that.jq.val();
+			// 全角入力を考慮し、ここでも最終確認
+			if (!that.isValid(val) || val === '-') {
+				// 不正値、または負号のみの場合はクリア
+				that.jq.val('');
+				return;
+			}
+
+			if (val) {
+				val = val.replace(/,/g, '');    // カンマ編集は一旦除去する（コピペ対策として最後にも編集する）
+				val = parseFloat(val);          // 前ゼロを消して数値にする
+			} else {
+				if (that.emptyValue === 'zero') {
+					val = 0;
+				}
+			}
+
+			// 小数点の桁制御
+			if (val !== '' && that.declength > 0) {
+				val = val.toFixed(that.declength);
+			}
+
+			if (this.comma) {
+				val = that.formatComma(val);
+			}
+
+			// 再設定
+			that.jq.val(val);
+
+		} finally {
+			// クリア処理
+			that.kdCode = null;
+			that.kdValue = null;
+			that.selection = {};
+		}
+	},
+	/**
+	 * 入力キー以外のキーコードは keypress をスキップする。
+	 * ブラウザが異なる場合もキーコードの重複がないため、ブラウザまで条件に含まない。
+	 * 
+	 * @returns {Boolean} 判定結果
+	 */
+	isSkipKeypress: function () {
+		var key = this.kdCode;  // keydown時のキーコード
+		// IEベース
+		if (key === 32
+				|| (key >= 48 && key <= 57)
+				|| (key >= 65 && key <= 90)
+				|| (key >= 96 && key <= 111)
+				|| (key >= 186 && key <= 192)
+				|| (key >= 219 && key <= 222)
+				|| key === 226) {
+			return false;
+		}
+		// FF差分
+		if (key === 58 || key === 59 || key === 160 || key === 173) {
+			return false;
+		}
+		return true;
+	},
+	/**
+	 * 入力値が有効な値か判定します。
+	 * 
+	 * @param {String} val 処理する数値（文字列）
+	 * @returns {Boolean} 判定結果
+	 */
+	isValid: function (val) {
+		// カンマ編集は除去して判定する
+		val = String(val).replace(/,/g, '');
+
+		if (!this.signed) {
+			// マイナスNGの場合
+			if (val.charAt(0) === '-') {
+				return false;   // 不正な値とみなす
+			}
+		}
+		if (val.lastIndexOf('-') > 0) {
+			return false;   // 先頭以外に存在すれば不正な値とみなす
+		}
+
+		// ドットチェック
+		var dot = val.match(/\./g);
+		if (this.declength === 0) {
+			if (dot) {
+				return false;   // 1つでも存在すれば不正な値とみなす
+			}
+		} else {
+			if (dot && dot.length > 1) {
+				return false;   // 2つ以上存在すれば不正な値とみなす
+			}
+		}
+
+		// 数値以外の入力チェック（マイナス、ドットは除く）
+		if (val.replace(/[-\.]/g, '').match(/[^0-9]/g)) {
+			return false;   // 不正な値とみなす
+		}
+
+		// 整数と小数に分割して桁数チェック
+		var splitNum = val.replace(/-/, '').split('.');
+		if (splitNum.length === 1) {
+			return splitNum[0].length <= this.intlength;
+		} else if (splitNum.length === 2) {
+			return splitNum[0].length <= this.intlength && splitNum[1].length <= this.declength;
+		}
+		return true;
+	},
+	/**
+	 * テキストに値を設定します。
+	 * キャレット位置の設定と、カンマ編集も必要に応じて行う。
+	 * 
+	 * @param {String} val 設定する数値（文字列）
+	 */
+	setValue: function (val) {
+		val = String(val).replace(/,/g, '');    // カンマ編集は一旦除去する
+
+		if (this.comma) {
+			val = this.formatComma(val);
+		}
+
+		// keydown時に保存した値からキャレットの前部分を取得（負号、カンマを除去）
+		var bfNum = this.kdValue.substr(0, this.selection.start).replace(/[-,]/g, '');
+
+		// キャレットの位置を判定
+		var pos = 0;
+		var cnt = bfNum.length;
+		for (var i = 0; i < val.length && cnt > 0; i++) {
+			pos++;
+			if (val.charAt(i).match(/[\d\.]/)) {
+				cnt--;
+			}
+		}
+
+		// posの位置にマイナス、カンマが存在する場合は1つ移動
+		if (val.charAt(pos).match(/[-,]/)) {
+			pos++;
+		}
+
+		// 入力文字数（1文字）分加算する
+		// プラスとマイナスは負号調整のため、上記までに調整済みのため無視する
+		var key = this.kdCode;  // keydown時のキーコード
+		if (key !== 107 && key !== 109 && key !== 187 && key !== 189) {
+			pos++;
+		}
+
+		// 数値を設定
+		this.jq.val(val);
+		// キャレットの位置を設定
+		this.jq.get(0).selectionStart = pos;
+		this.jq.get(0).selectionEnd = pos;
+	},
+	/**
+	 * カンマで区切る。
+	 * 
+	 * @param val 編集する数値（文字列）
+	 * @returns {String} カンマで区切った数値（文字列）
+	 */
+	formatComma: function (val) {
+		// 整数部分と小数部分に分割
+		var splitNum = String(val).split('.');
+		// 整数部分を3桁カンマ区切りへ
+		splitNum[0] = splitNum[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+		// 小数部分と結合して返却
+		return splitNum.join('.');
+	}
+});
+
+/**
+ * rx:gkSizeLabel コンポーネント用メソッド。
+ * rx:gkSizeLabel は p:outputLabel の直後に記述する必要がある。
+ * 
+ * @param {Object} lblObj サイズを表示する label のオブジェクト
+ */
+function setInputSize(lblObj) {
+	try {
+		var label = lblObj.prev();            // 直前はラベルのはず
+		var inputId = label.attr('for');    // for属性より入力項目IDを取得
+		if (!inputId) {
+			return;     // 対象の入力項目がなければ終了
+		}
+
+		var ids = inputId.split(' ');
+		inputId = PrimeFaces.escapeClientId(ids[0]);   // idをエスケープ
+		var input = $(inputId);
+		if (input.length === 0) {
+			return;     // rendered="false" の場合を考慮
+		}
+		var type = input.data('rx-type');
+		var chrLen = input.data('p-maxlength');
+		var intLen = input.data('rx-intlength');
+		var decLen = input.data('rx-declength');
+
+		var sizeLabel;
+		if (type.indexOf('NUMBER') > -1 || type === 'KINGAKU') {
+			sizeLabel = '数';
+			sizeLabel += intLen;
+			if (decLen) {
+				sizeLabel += ('.' + decLen);
+			}
+		} else if (type === 'ZENKAKU_ONLY' || type === 'KANA') {
+			sizeLabel = '全';
+			sizeLabel += chrLen;
+		} else if (type === 'ZENKAKU_ALL') {
+			// 【全角半角すべて】の場合は半角桁数で設定されているので、属性ラベルとしては全角計算（1/2）で表示
+			sizeLabel = '全';
+			sizeLabel += chrLen / 2;
+		} else if (type === 'YUBIN_NO') {
+			sizeLabel = '数3-4';
+		} else {
+			sizeLabel = '半';
+			sizeLabel += chrLen;
+		}
+		// ラベルの後ろに追加
+		lblObj.text('(x)'.replace(/x/, sizeLabel));
+		// script部分は削除する
+		lblObj.next().remove();
+	} catch (e) {
+		//alert(e);
+		return;
+	}
+}
+
+/**
+ * rx:pkzInputPostCd コンポーネント用メソッド。
+ * バリデーションを設定する。
+ * 
+ * @param {String} widgetVar コンポーネントのwidgetVar
+ */
+function setPostCdValidation(widgetVar) {
+	var post = PF(widgetVar);
+	var hiddenPost = post.getJQ().parent().find('.ctrl-postCdHidden');
+	post.getJQ().addClass('ctrl-postCd');
+	post.input.data('rx-type', 'YUBIN_NO');
+	post.input.data('p-label', hiddenPost.data('p-label'));
+	post.input.data('p-val', 'RxValidationForUI');
+	post.input.off('blur.InputPostCd');
+	post.input.on('blur.InputPostCd', function (e) {
+		var val = post.input.val();
+		if (RxValidator.rx.regexs['yubin_no.regex'].test(val)) {
+			val = val.replace('-', '');
+		}
+		hiddenPost.val(val);
+		hiddenPost.blur();
+		return PrimeFaces.vi(this);
+	});
+	// script部分は削除する
+	post.getJQ().next().remove();
+}

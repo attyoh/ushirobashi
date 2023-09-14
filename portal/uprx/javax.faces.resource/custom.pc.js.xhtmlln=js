@@ -1,0 +1,639 @@
+// xhtml?ln=js
+
+/*
+ * custom.pc.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+// ---------------------------------------------------------
+// グローバル変数の定義
+// ---------------------------------------------------------
+
+
+// ---------------------------------------------------------
+// 画面初期表示時の処理メソッド
+// ---------------------------------------------------------
+
+/**
+ * iframeにフォーカスした場合、datepickerが閉じない問題に対応。
+ * （editorの場合に該当する。）
+ *
+ */
+$(function () {
+    // editorはjsでレンダリングするため、初期表示時には存在しない。
+    // そのため、liveと同等の意味を持つ $(document).on を使用する。
+    $(document).on('mouseover', 'iframe', function (e) {
+        if ($(this).data('rx-iframe')) {
+            return;     // 2回目は処理しない
+        }
+        $(this).data('rx-iframe', '1');     // 2回目に処理させないためのフラグON
+
+        $(this).contents().find('html').off('click.datepicker');    // 念のために off → on の流れとする
+        $(this).contents().find('html').on('click.datepicker', function () {
+            var dateTexts = parent.$('.hasDatepicker');     // datepickerの対象項目
+            for (var i = 0; i < dateTexts.length; i++) {
+                var dateText = $(dateTexts.get(i));
+                dateText.datepicker('hide');    // 閉じる
+                var date = dateText.val();
+                dateText.val('').val(date);     // 全選択状態を解除（一旦空にして元の値に戻す）
+            }
+        });
+    });
+});
+/**
+ * 要素からフォーカスが外れたらその要素をグローバル変数に記憶しておく
+ * @type $
+ */
+var bfFocusList = new Array();
+$(function () {
+    focusMemory();
+});
+function focusMemory() {
+    //下記要素からフォーカスが外れた場合、その際のオブジェクトを記憶
+    $("input[type!='button'], select, textarea")
+            .blur(function () {
+                //スタックにオブジェクト格納
+                bfFocusList.push($(this));
+            })
+            .focus(function () {
+                //スタックから削除
+                if (bfFocusList.length > 0) {
+                    bfFocusList.pop();
+                }
+            });
+}
+/**
+ * PrimeFacesのDialogが開く際のメソッドをハック
+ * 開く前にフォーカス位置を記憶する。
+ * @type PrimeFaces.widget.Dialog.prototype.show|Object.prototype.show
+ */
+var orgDialogshow = PrimeFaces.widget.Dialog.prototype.show;
+PrimeFaces.widget.Dialog.prototype.show = (function () {
+    focusMemory();
+    orgDialogshow.call(this);
+});
+/**
+ * PrimeFacesのDialogが閉じる際のメソッドをハック
+ * 閉じた後、開く前に覚えていたフォーカス位置に戻す。
+ * @type PrimeFaces.widget.Dialog.prototype.hide|Object.prototype.hide
+ */
+var orgDialoghide = PrimeFaces.widget.Dialog.prototype.hide;
+PrimeFaces.widget.Dialog.prototype.hide = (function () {
+    //オリジナルのhide呼び出し
+    orgDialoghide.call(this);
+
+    while (bfFocusList.length > 0) {
+        //スタックより値の取り出しと削除
+        var $popFocas = bfFocusList.pop();
+
+        //フォーカスが当てれるなら当てる
+        if ($popFocas[0]) {
+            setTimeout(function () {
+                $popFocas[0].focus();
+            }, 250);
+            break;
+        }
+    }
+});
+
+// ---------------------------------------------------------
+// 通常メソッド
+// ---------------------------------------------------------
+
+/**
+ * 別ウィンドウを起動する。
+ */
+function openWindow() {
+    var url = getContextPath() + '/popupWindow.xhtml';
+    window.open(url);
+}
+
+/**
+ * 同期遷移の場合、イベント発火コンポーネントのid（javax.faces.source）が送信されないため、別途リクエストに追加する。
+ * 引数には原則として this を渡してください。
+ * ただし、発火する要素がアクションを発生させる要素と異なる場合（メニューなど）にコンポーネントのidを指定します。
+ * これは同期遷移時のリクエストログの出力に必要な情報です。
+ * （cf. RxRestoreViewPhaseListener#afterPhase）
+ *
+ * @param {String|HTML要素} source
+ */
+function syncTransition(source) {
+    // 遷移直前の入力状態で上書きする（確認処理がbeforeunloadイベントでも発生するのを防止する）
+    initData = collectData();
+
+    var component = (typeof (source) === 'string') ? $(PrimeFaces.escapeClientId(source)) : $(source);
+    var id = component.attr('id');
+    if (id) {
+        var form = id.split(':')[0];
+        // 独自のキー（rx.sync.source）にidを設定してリクエストに追加する。
+        PrimeFaces.addSubmitParam(form, {'rx.sync.source': id});
+    }
+    // 一応ブロック（画面遷移で解除）
+    PF('bui').show();
+}
+
+/**
+ * カレンダーをクリアする。
+ * dataTabelなどで利用される事を想定し、ボタンを基準にカレンダーを特定する。
+ * （widgetVarは利用できない。）
+ *
+ * @param {Object} clearBtn クリアボタン
+ */
+function clearCalendar(clearBtn) {
+    var cal = $(clearBtn).closest('.ctrl-calendarArea').find('input');
+    if ($(cal).datetimepicker('getDate')) {
+        // 値が設定されていない場合は無視
+        $(cal).datetimepicker('setDate', '');
+        $(cal).change();
+        // changeイベントを発火する。
+        $(cal).trigger('change');
+    }
+}
+
+/**
+ * rx:confirmDialogの初期処理を行う。
+ * ・ボタンすべてにクリックイベント（ダイアログの非表示）を追加する。
+ * ・ダイアログ表示時のフォーカスするボタンのインデックスを保持する。
+ *
+ * @param {String} widgetVar widgetVar
+ * @param {Integer} focusIdx フォーカスするボタンのインデックス
+ */
+function initConfirmDialog(widgetVar, focusIdx) {
+    var cd = PF(widgetVar);
+    cd.getJQ().find('button').on('click.rx-confirmdialog', function () {
+        cd.hide();
+    });
+    cd.focusIdx = focusIdx;
+    // 処理後は削除
+    cd.getJQ().find('.ui-dialog-buttonpane').find('script').remove();
+}
+
+/**
+ * アコーディオンパネルをすべて開く。
+ *
+ * @param {String} widgetVar widgetVar
+ */
+function selectAllPanels(widgetVar) {
+    var accordion = PF(widgetVar);
+    for (var i = 0; i < accordion.panels.length; i++) {
+        accordion.select(i);
+    }
+}
+
+/**
+ * アコーディオンパネルをすべて閉じる。
+ *
+ * @param {String} widgetVar widgetVar
+ */
+function unselectAllPanels(widgetVar) {
+    var accordion = PF(widgetVar);
+    for (var i = 0; i < accordion.panels.length; i++) {
+        accordion.unselect(i);
+    }
+}
+
+/**
+ * 全画面のロックとローディングアイコン用のクラス。
+ *
+ */
+UtilLoadingView = {
+    /**
+     * 全画面のロック解除とローディングアイコンを非表示にする。<br>
+     *
+     */
+    hideLodingIcon: function () {
+        PF('bui').hide();
+    },
+    /**
+     * 全画面のロックとローディングアイコンを表示にする。<br>
+     *
+     */
+    showLodingIcon: function () {
+        // ローディングアイコンの表示・非表示を判定する。
+        if (showAjaxLoadingFlg) {
+            PF('bui').show();
+        }
+        showAjaxLoadingFlg = true;
+    }
+};
+
+
+// ---------------------------------------------------------
+// PrimeFacesの部品に対するユーティリティ
+// ---------------------------------------------------------
+/**
+ * SelectCheckboxMenu用ユーティリティクラス。
+ * rx:selectCheckboxMenu タグを使用していることを前提とする。
+ *
+ * @type UtilSelectCheckboxMenu
+ */
+var UtilSelectCheckboxMenu = {
+    /**
+     * パネルの全選択オブジェクト（ヘッダのチェックボックス）を取得する。
+     * 取得するオブジェクトは見た目上のチェックボックス（実際にはdiv）である（inputではない）。
+     *
+     * @param {String} id rx:selectCheckboxMenuに指定したid
+     * @returns {jQuery} パネルの全選択オブジェクト
+     */
+    getPanelToggler: function (id) {
+        return $('[id$=\\:' + id + '\\:itemList_panel]').find('.ui-selectcheckboxmenu-header').find('.ui-chkbox-box');
+    },
+    /**
+     * パネルの選択項目のリストを取得する。
+     * 非表示のものも取得するので注意すること。
+     * 取得するオブジェクトは見た目上のチェックボックス（実際にはdiv）である（inputではない）。
+     *
+     * @param {String} id rx:selectCheckboxMenuに指定したid
+     * @returns {Array} パネルの選択項目のリスト
+     */
+    getPanelItems: function (id) {
+        var retArray = [];
+        var items = $('[id$=\\:' + id + '\\:itemList_panel]').find('li.ui-selectcheckboxmenu-item');
+        items.each(function () {
+            retArray.push($(this).find('.ui-chkbox-box'));
+        });
+        return retArray;
+    },
+    /**
+     * 実際に値を保持するチェックボックス（画面上は非表示）のリストを取得する。
+     * 部品を複数使用する場合は、areaIdを指定することで対象の範囲を指定することができる。
+     * パネル上は非表示の選択項目と対になるチェックボックスも取得するので注意すること。
+     *
+     * @param {String} areaId 範囲を絞り込むid（省略可）
+     * @returns {jQuery} 実際に値を保持するチェックボックスのグループ
+     */
+    getCheckboxByName: function (areaId) {
+        if (areaId) {
+            return $('input[name$="\\:itemList"]', '#' + areaId);
+        } else {
+            return $('input[name$="\\:itemList"]');
+        }
+    },
+    /**
+     * 実際に値を保持するチェックボックス（画面上は非表示）のリストを取得する。
+     * パネル上は非表示の選択項目と対になるチェックボックスも取得するので注意すること。
+     *
+     * @param {String} id rx:selectCheckboxMenuに指定したid
+     * @returns {jQuery} 実際に値を保持するチェックボックスのリスト
+     */
+    getCheckboxById: function (id) {
+        return $('[id$=\\:' + id + '\\:itemList]').find(':checkbox');
+    },
+    /**
+     * チェックボックスのチェック状態を返す。
+     * これは見た目上のチェックボックスのチェック状態を判断するものである。
+     * ※選択項目、全選択のどちらでも使用可。
+     *
+     * @param {jQuery} checkbox 見た目上のチェックボックス
+     * @returns {boolean} チェック状態
+     */
+    isChecked: function (checkbox) {
+        if ($(checkbox).hasClass('ui-state-active')) {
+            return true;
+        }
+        return false;
+    }
+};
+
+
+// ---------------------------------------------------------
+// PrimeFacesのメソッドハック
+// ---------------------------------------------------------
+
+// PrimeFaces の PrimeFaces.widget.ConfirmDialog.applyFocus を退避
+var pfConfirmApplyFocus = PrimeFaces.widget.ConfirmDialog.prototype.applyFocus;
+// PrimeFaces の PrimeFaces.ajax.Response.handleReFocus を退避
+var pfHandleReFocus = PrimeFaces.ajax.Response.handleReFocus;
+// PrimeFaces の  PrimeFaces.widget.Dialog.toggleMaximize を退避
+var pfDialogMaximize = PrimeFaces.widget.Dialog.prototype.toggleMaximize;
+// PrimeFaces の  PrimeFaces.widget.BlockUI.show を退避
+var pfBlockUIShow = PrimeFaces.widget.BlockUI.prototype.show;
+
+/**
+ * confirmダイアログのフォーカスメソッドをハックする。
+ * rx:confirmDialog の場合、focusIdxに従ってフォーカスする。
+ * ただし、handleReFocusと干渉し合うため、handleReFocusに倣ってタイマーとの二段構えとする。
+ *
+ */
+PrimeFaces.widget.ConfirmDialog.prototype.applyFocus = function () {
+    // rx:confirmDialog用。
+    if (this.focusIdx) {
+        var elementToFocus = this.jq.find(':button').eq(this.focusIdx);
+        setTimeout(function () {
+            elementToFocus.focus();
+        }, 250);
+    } else {
+        // 退避したオリジナルメソッドをコール
+        pfConfirmApplyFocus.call(this);
+        // handleReFocus 方式に倣い、タイマー実行
+        var elementToFocus = this.jq.find(':button,:submit').filter(':visible:enabled').eq(0);
+        setTimeout(function () {
+            if (!elementToFocus.is(":focus")) {
+                elementToFocus.focus();
+            }
+        }, 250);
+    }
+};
+
+/**
+ * リフォーカスメソッドをハックする。
+ * 子画面をオープンした場合、親画面にフォーカスする問題に対応。
+ * 子画面の場合は何もしない。
+ *
+ * @param {String} activeElementId 発火要素
+ */
+PrimeFaces.ajax.Response.handleReFocus = function (activeElementId) {
+    var activeElement = $(document.activeElement).attr('id');
+    if (PrimeFaces.customFocus === false
+            && activeElementId
+            && activeElementId !== activeElement) {
+
+        // 子画面の判定（BODYタグが現れる前に、dialogPanelが見つかるか）
+        if (activeElement) {
+            var el = $(document.activeElement);
+            while (true) {
+                var elId = el.attr('id');
+                if (elId && elId.match(':dialogPanel$')) {
+                    return;     // 子画面と判定（何もしない）
+                }
+                if (el.get(0).tagName.toUpperCase() === 'BODY') {
+                    break;      // 判定終了（子画面でない）
+                }
+                el = el.parent();
+            }
+        }
+    }
+    // 退避したオリジナルメソッドをコール
+    pfHandleReFocus(activeElementId);
+};
+
+/**
+ * Dialogの最大化メソッドをハックする。
+ * 子画面を最大化した際に、スクロールバーが表示されない問題に対応。
+ *
+ */
+PrimeFaces.widget.Dialog.prototype.toggleMaximize = function () {
+    // 退避したオリジナルメソッドをコール
+    pfDialogMaximize.call(this);
+
+    // 【注意】オリジナルメソッドコール後なので、フラグの見方は反転する。
+    if (this.maximized) {
+        // 『最大化』処理後に高さを上書きする。
+        this.content.css({height: $(window).height() - 60});
+    }
+};
+
+/**
+ * BlockUIの表示メソッドをハックする。
+ * contentをウィンドウの中央に表示するように修正。
+ *
+ */
+PrimeFaces.widget.BlockUI.prototype.show = function () {
+    // 退避したオリジナルメソッドをコール
+    pfBlockUIShow.call(this);
+
+    // ウィンドウ中央の位置で上書き
+    this.content.css({
+        left: ($(window).width() - this.content.outerWidth()) / 2,
+        top: ($(window).height() - this.content.outerHeight()) / 2,
+        position: 'fixed'
+    });
+};
+
+
+// ---------------------------------------------------------
+// SCEditor用メソッド
+// p:editorを使用するには問題があるため、SCEditorを採用する。
+// ---------------------------------------------------------
+
+/**
+ * rx:editorの初期処理を行う。
+ * textモードを指定すると、1行しか編集できません。
+ *
+ * ※設定値は今後増加することを考慮し、textareaより取得する。
+ * 　textareaに該当するプロパティが存在しない場合は、dataを利用すること。
+ *
+ * @param {String} widgetVar widgetVar
+ * @param {String} mode モード [textarea|text]
+ * @param {boolean} readOnly 非活性フラグ
+ * @link http://www.sceditor.com/api/sceditor/
+ */
+function initEditor(widgetVar, mode, readOnly) {
+    var textarea = PF(widgetVar).getJQ();
+    var parentdiv = textarea.closest('div');    // data情報が設定されている親div
+
+    var toolbar;        // ツールバーのボタン種類を設定
+    if (mode === 'text') {
+        toolbar = 'bold,italic,underline,color,subscript,superscript|removeformat';
+    } else {
+        toolbar = 'bold,italic,underline,size,color,subscript,superscript|left,center,right,horizontalrule|bulletlist,orderedlist|link,unlink|removeformat';
+    }
+
+    // textareaにeditorを設定
+    textarea.sceditor({
+        plugins: 'bbcode',
+        toolbar: toolbar,
+        colors: '#E60012,#F39800,#FFF100|#8FC31F,#009944,#009E96|#00A0E9,#0068B7,#1D2088|#920783,#000000,#FFFFFF',
+        emoticonsEnabled: false,
+        resizeEnabled: false,
+        style: getContextPath() + '/js/sceditor/development/jquery.sceditor.default.css'
+    });
+
+    // エディターオブジェクトを取得
+    var editor = textarea.sceditor('instance');
+    editor.execCommand('AutoUrlDetect', false, false);
+
+    // 1秒後にイベント設定（IEの場合、自動でフォーカスするため初期表示時にバリデーションが実行されることを防ぐ）
+    setTimeout(function () {
+        // editorのblurイベントを設定（※ bindはSCEditorの関数であり、javascript標準のものではない。）
+        editor.unbind('blur').bind('blur', function (e) {
+            var body = editor.getBody();
+            // 空白状態にもかかわらず、空白と判定できない場合に対応
+            // ブラウザごと動作が異なるため、下記のパターンに一致する場合、初期表示状態（<p><br></p>）に戻す
+            if (body.html() === '<br>' || body.html() === '<p><br></p>' || body.html() === '<br><div></div>' || body.html() === '') {
+                body.empty();
+                body.append('<p><br></p>');
+            }
+
+            editor.updateOriginal();    // editor ⇒ textarea 値を設定
+
+            // バリデーションが必要な場合、テキストエリアのバリデーション結果をエディタに反映
+            if (parentdiv.data('rx-validation') === true) {
+                PrimeFaces.vi(textarea);    // textareaをバリデーション
+                reactValidation(textarea);
+            }
+        });
+    }, 1000);
+
+    // サーバーバリデーション用の処理
+    reactValidation(textarea);
+
+    // 活性制御
+    editor.readOnly(readOnly);
+
+    if (mode === 'text') {
+        // テキストモードは改行不可
+        editor.unbind('keypress.editor').bind('keypress.editor', function (e) {
+            var event = e.originalEvent;
+            if (event.keyCode === 13) {
+                return false;   // Enterキーをブロックして改行を防止する。
+            }
+        });
+        // 改行を削除する（コピー＆ペースト対策）
+        editor.unbind('blur.editor').bind('blur.editor', function (e) {
+            editor.setWysiwygEditorValue(editor.getWysiwygEditorValue().replace(/\r?\n/g, ''));
+        });
+        // 横スクロールするようにスタイルを設定
+        editor.css('body {white-space: nowrap;}');
+    }
+
+    // 処理後は削除
+    parentdiv.find('script').remove();
+}
+
+/**
+ * rx:kgEditorの初期処理を行う。
+ * textモードを指定すると、1行しか編集できません。
+ *
+ * ※設定値は今後増加することを考慮し、textareaより取得する。
+ * 　textareaに該当するプロパティが存在しない場合は、dataを利用すること。
+ *
+ * @param {String} widgetVar widgetVar
+ * @param {String} mode モード [textarea|text]
+ * @param {boolean} readOnly 非活性フラグ
+ * @link http://www.sceditor.com/api/sceditor/
+ */
+function kgInitEditor(widgetVar, mode, readOnly) {
+    var textarea = PF(widgetVar).getJQ();
+    var parentdiv = textarea.closest('div');    // data情報が設定されている親div
+
+    var toolbar = 'bold,italic,underline,subscript,superscript|removeformat';       // ツールバーのボタン種類を設定
+
+    // textareaにeditorを設定
+    textarea.sceditor({
+        plugins: 'bbcode',
+        toolbar: toolbar,
+        colors: '#E60012,#F39800,#FFF100|#8FC31F,#009944,#009E96|#00A0E9,#0068B7,#1D2088|#920783,#000000,#FFFFFF',
+        emoticonsEnabled: false,
+        resizeEnabled: false,
+        style: getContextPath() + '/js/sceditor/development/jquery.sceditor.default.css'
+    });
+
+    // エディターオブジェクトを取得
+    var editor = textarea.sceditor('instance');
+    editor.execCommand('AutoUrlDetect', false, false);
+
+    // 1秒後にイベント設定（IEの場合、自動でフォーカスするため初期表示時にバリデーションが実行されることを防ぐ）
+    setTimeout(function () {
+        // editorのblurイベントを設定（※ bindはSCEditorの関数であり、javascript標準のものではない。）
+        editor.unbind('blur').bind('blur', function (e) {
+            var body = editor.getBody();
+            // 空白状態にもかかわらず、空白と判定できない場合に対応
+            // ブラウザごと動作が異なるため、下記のパターンに一致する場合、初期表示状態（<p><br></p>）に戻す
+            if (body.html() === '<br>' || body.html() === '<p><br></p>' || body.html() === '<br><div></div>' || body.html() === '') {
+                body.empty();
+                body.append('<p><br></p>');
+            }
+
+            editor.updateOriginal();    // editor ⇒ textarea 値を設定
+
+            // バリデーションが必要な場合、テキストエリアのバリデーション結果をエディタに反映
+            if (parentdiv.data('rx-validation') === true) {
+                PrimeFaces.vi(textarea);    // textareaをバリデーション
+                reactValidation(textarea);
+            }
+        });
+    }, 1000);
+
+    // サーバーバリデーション用の処理
+    reactValidation(textarea);
+
+    // 活性制御
+    editor.readOnly(readOnly);
+
+    if (mode === 'text') {
+        // テキストモードは改行不可
+        editor.unbind('keypress.editor').bind('keypress.editor', function (e) {
+            var event = e.originalEvent;
+            if (event.keyCode === 13) {
+                return false;   // Enterキーをブロックして改行を防止する。
+            }
+        });
+        // 改行を削除する（コピー＆ペースト対策）
+        editor.unbind('blur.editor').bind('blur.editor', function (e) {
+            editor.setWysiwygEditorValue(editor.getWysiwygEditorValue().replace(/\r?\n/g, ''));
+        });
+        // 横スクロールするようにスタイルを設定
+        editor.css('body {white-space: nowrap;}');
+    }
+
+    // 処理後は削除
+    parentdiv.find('script').remove();
+}
+
+/**
+ * エディタのバリデーション判定に合わせた処理。
+ * 赤枠やツールチップによるメッセージ表示。
+ * 
+ * @param {Object} textarea エディタの隠しテキストエリア
+ */
+function reactValidation(textarea) {
+    var editorComp = textarea.next('.sceditor-container');
+    if (textarea.hasClass('ui-state-error')) {
+        // エラー設定
+        editorComp.addClass('ui-state-error');
+        editorComp.attr('title', textarea.attr('title'));
+    } else {
+        // エラー解除
+        editorComp.removeClass('ui-state-error');
+        editorComp.removeAttr('title');
+    }
+}
+
+// ---------------------------------------------------------
+// その他メソッド
+// ---------------------------------------------------------
+
+/**
+ * 画面スクロールボタン
+ */
+
+$(function () {
+
+    var pageTop = $(".pagetop");
+    var pageBottom = $(".pagebottom");
+    
+    pageTop.click(function () {
+        $('body, html').animate({scrollTop: 0}, 500);
+        return false;
+    });
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            pageTop.css("opacity", "1");
+        } else {
+            pageTop.css("opacity", "0.5");
+        }
+    });
+    
+    pageBottom.click(function () {
+        $('body, html').animate({
+            scrollTop: $(document).innerHeight()
+        }, 500);
+        return false;
+    });
+    
+    $(window).on('scroll', function(){
+        var docHeight = $(document).innerHeight(), //ドキュメントの高さ
+        windowHeight = $(window).innerHeight(), //ウィンドウの高さ
+        bottom = docHeight - windowHeight; //ドキュメントの高さ - ウィンドウの高さ
+        if(bottom <= $(window).scrollTop()) {
+            pageBottom.css("opacity", "0.5");
+        } else {
+            pageBottom.css("opacity", "1");
+        }
+    });
+    
+});

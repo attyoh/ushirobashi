@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+/*======================================================
+ * font.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * Webフォント
+======================================================*/
+
+/*===== ボタン用オリジナルフォント読込 =====*/
+
+@font-face {
+    /*font-display: block;*/
+    font-family: "unipa_pc";
+    src: url("../fonts/unipa_pc.ttf") format("truetype");
+    src: url("../fonts/unipa_pc.eot");
+    src: url("../fonts/unipa_pc.eot?#iefix") format('embedded-opentype'),
+        url("../fonts/unipa_pc.woff2") format('woff2'),
+        url("../fonts/unipa_pc.woff") format('woff');
+    font-style: normal;
+    font-weight: normal;
+}
+
+/*======================================================
+ * フォントサイズ
+======================================================*/
+
+/*===== フォントサイズ（標準） =====*/
+
+/* リセット */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+/* 14px */
+html {
+    font-size: initial;
+    /*font-size: 81.25%;  13px/16px */
+    font-size: 87.5%; /* 14px/16px */
+}
+
+/*===== フォント =====*/
+
+@font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Medium");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Medium");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Medium");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Medium");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Yu Gothic";
+    src: local("Yu Gothic Bold");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: local("Helvetica Neue Regular");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Helvetica Neue";
+    src: local("Helvetica Neue Regular");
+    font-weight: 200;
+}
+
+/*======================================================
+ * フォント設定
+======================================================*/
+
+* {
+    font-family: "-apple-system", "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, "M+ 1p", sans-serif;
+}
+
+/* IE10以降はメイリオを適用（CSS Hack）*/
+/*
+@media all and (-ms-high-contrast:none){
+    * {
+        font-family: "-apple-system", "Helvetica Neue", "メイリオ", Verdana, "M+ 1p", sans-serif;
+    }
+}
+*/
+
+/*===== 一部フォントが適用されないものの調整 =====*/
+
+a, label, input, textArea {
+    font-family: "-apple-system", "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, "M+ 1p", sans-serif !important;
+}
+
+/* IE10以降はメイリオを適用（CSS Hack）*/
+/*
+@media all and (-ms-high-contrast:none){
+    a, label, input, textArea {
+        font-family: "-apple-system", "Helvetica Neue", "メイリオ", Verdana, "M+ 1p", sans-serif !important;
+    }
+}
+*/

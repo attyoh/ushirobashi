@@ -1,0 +1,89 @@
+/*
+ * frameComponent.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+//---------------------------------------------------------
+//グローバル変数の定義
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+//画面初期表示時の処理メソッド
+//---------------------------------------------------------
+
+
+//---------------------------------------------------------
+//通常メソッド
+//---------------------------------------------------------
+
+$(function () {
+
+    $(window).on('load', function () {
+        // 本来は必要のない処理だが、念のため。
+        PF('bui').hide();
+
+        //euc用CSSの読み込み
+        UtilCss.readCssFile(getContextPath() + "/css/euc.css");
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        // ブラウザ履歴の制御をEXと同じにしたい場合は、35行目～54行目の処理をコメント化し、
+        // 57行目の処理を有効にすること。
+        // ※core.jsの41行目のコメントを元に、core.jsも修正すること。
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        // サーブレットを経由したかどうかのCookieを取得する。※キーは、HttpCookieConst.javaのViaServletにて定義される。
+        var viaCookie = $.cookie("ViaServlet");
+
+        if (viaCookie) {
+            //Cookieが存在すれば、全画面をvisible状態にする。
+            // 子画面へのvisibleを有効にするために、visible用のCSSファイルを読み込む。
+            UtilCss.readCssFile(getContextPath() + "/css/visible.css");
+            // サーブレットを経由したかどうかのCookieを削除する。
+            $.removeCookie("ViaServlet");
+
+        } else {
+            // Cookieが存在しなければ、サーバにログイン状態を問い合わせる。
+            // ログイン済みならば、全画面をvisible状態にする。
+            // TODO　ログイン済みのチェックが必要な場合は、この処理が必要。
+            //checkLoginStatus();
+
+            // この画面がサーブレット経由以外で表示された場合は、ログイン画面に強制遷移する。
+            window.location.href = getContextPath() + "/up/pk/pky001/Pky00101.xhtml";
+            return;
+        }
+
+//		// 子画面へのvisibleを有効にするために、visible用のCSSファイルを読み込む。
+//		UtilCss.readCssFile(getContextPath() + "/css/visible.css");
+    });
+
+    $(window).on("beforeunload", function () {});
+
+});
+
+/**
+ * CSS操作用クラス。
+ *
+ */
+UtilCss = {
+    /**
+     * CSSクラスファイルの読込を定義する。<br>
+     * ヘッダ領域にCSSクラスファイルの読込を定義する。
+     *
+     * @param {String} cssFileName CSSクラスファイル名
+     */
+    readCssFile: function (cssFileName) {
+        $("head").append("<link>");
+        var css = $("head").children(":last");
+        css.attr({
+            rel: "stylesheet",
+            type: "text/css",
+            href: cssFileName
+        });
+    }
+};
+

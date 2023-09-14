@@ -1,0 +1,108 @@
+/* CSS Document */
+
+@import url("default.css");
+
+/********************************************************************
+TopHeader START */
+
+#topheader {
+    width: 100%;
+	height: 75px;
+	background: url(../images/header_bg.gif) repeat-x 0 0;
+}
+
+
+#topheader ul {float:left;list-style-type:none;margin-top:12px;}
+
+#topheader li {
+    float:left;
+	height: 28px;
+	
+}
+#topheader li a {
+    display:block;
+	overflow: hidden;
+	text-indent:-9999px;
+	width :100%;
+	height: 0 !important;
+	padding-top: 28px;
+	background: url(../images/headermenu_top.gif) no-repeat;
+}
+
+/* OFF MOUSE */
+#topheader li#navi01 a { background-position: 0 -12px;width: 151px;}
+#topheader li#navi02 a { background-position: -151px -12px;width: 111px;}
+
+/* ON MOUSE */
+#topheader li#navi01 a:hover { background-position: 0 -52px;}
+#topheader li#navi02 a:hover { background-position: -151px -52px;}
+
+#topheader h1 { float:right; width: 300px; text-align:right;}
+
+/*TopHeader END
+********************************************************************/
+
+
+/********************************************************************
+IndexMenu START */
+
+#maincontIndex {
+    clear:both;
+    width: 100%;
+	background: #D9DAC2 url(../images/cont_bg2.gif) repeat-x left top;
+	padding: 80px 0 120px;
+}
+
+
+#maincontIndex .wrapper dl {width: 650px; margin: 0 auto;}
+#maincontIndex .wrapper dt { 
+      background:url(../images/login_head.gif) no-repeat 0 0;
+	  height: 43px;
+	  text-indent: -9999px;
+}
+#maincontIndex .wrapper dd { 
+      background:url(../images/login_bg.gif) no-repeat left bottom;
+	  padding: 30px 60px 50px;
+}
+#maincontIndex .wrapper ul {list-style-type: none; margin: 30px 0;}
+#maincontIndex .wrapper li  {
+	background:url(../images/login_icon.gif) no-repeat 0 4px;
+        /background-position:0 10px;
+	  padding: 0 0 0 16px;
+	  font-size: 100%;
+	  margin: 0 0 10px 70px;
+	  font-weight: bold;
+}
+
+#maincontIndex .wrapper li p {
+	display:inline;
+	zoom:1;
+}
+
+#maincontIndex .wrapper input[type="text"], #maincontIndex .wrapper input[type="password"] {
+	background-color: #FFFCEC;
+	width: 220px;
+	height: 18px;
+	border: 1px solid #CCCCCC;
+        margin-left: 5px;
+        padding: 2px 0;
+}
+
+#maincontIndex .wrapper input[type="image"] {
+	margin-right: 10px;
+}
+
+#maincontIndex .wrapper dd img { 
+      margin-right: 10px;
+}
+
+#maincontIndex h2 {
+	width: 650px;
+	height: 50px;
+	text-indent: -9999px;
+        margin: 0 auto;
+}
+
+#maincontIndex h2#title_message {
+	background:url(../images/title_message.gif) no-repeat 0 0;
+}

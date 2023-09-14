@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+/*======================================================
+ * print.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * 印刷用CSS
+======================================================*/
+
+/*===== 例 =====*/
+
+@media print {
+
+    .noPrint {
+        display: none;
+    }
+
+    .ui-widget-overlay {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .ui-dialog {
+        position: initial !important;
+        top: 0;
+        left: 0;
+    }
+
+    ui-dialog-titlebar {
+        display: none;
+    }
+
+    .ui-shadow {
+        -moz-box-shadow: initial !important;
+        -webkit-box-shadow: initial !important;
+        box-shadow: initial !important;
+    }
+
+    .ui-widget-content {
+        border: none;
+        background: #ffffff;
+    }
+
+    /* 掲示プレビュー、シラバスプレビューの印刷調整 */
+    .ui-widget-header {
+        color: #222222 !important;
+    }
+    
+    /* 背景色を印刷する設定にした場合に、単票ラベルの背景をなしにする */
+    .ui-widget-header {
+        background: transparent;
+    }
+
+}
+

@@ -1,0 +1,547 @@
+@charset "utf-8";
+
+/*======================================================
+ * layout.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * 全エリア
+======================================================*/
+
+html {
+    min-height: 100%;
+    overflow-y: scroll;
+    position: relative;
+}
+
+body {
+    height: 100%;
+    margin-bottom: 80px; /* フッター高さ（含余白） */
+    min-width: 994px; /* 画面幅でなくブラウザ幅を1024pxで納めるため、30pxの余裕を取る */
+}
+
+#wrap {
+    min-height: 100%;
+    width: 100%;
+    /*min-width: 1024px;*/
+    position: static !important; /* 動的なposition:relative挿入の対策 */
+}
+
+
+/*======================================================
+ * ヘッダー
+======================================================*/
+
+/*===== メインエリア =====*/
+
+/* ヘッダー共通 */
+header {
+    /*background: #ffffff url(../images/headerBg.png) no-repeat right top;*/
+    background-size: contain;
+    height: 60px;
+    position: relative;
+}
+
+/* ロゴ */
+/*
+header h1 {
+    background: url(../images/upLogo.png) no-repeat left top;
+    background-size: contain;
+    display: inline-block;
+    height: 45px;
+    left: 15px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    top: 10px;
+    width: 360px;
+}
+*/
+
+header h1 {
+    display: inline-block;
+    height: 45px;
+    left: 15px;
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    width: 360px;
+}
+
+/* ログイン情報 */
+header .loginInfo {
+    /*background: rgba(0,0,0,0.2);*/
+    color: #ffffff;
+    display: inline-block;
+    font-size: 14px; /* 固定 */
+    position: absolute;
+    padding: 5px;
+    left: 380px;
+    top: 0;
+    white-space: nowrap;
+}
+
+/* ログイン情報（ユーザ切替） */
+header .loginSwitching {
+    background: rgba(204,0,0,0.9);
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: inline-block;
+    height: 56px;
+    left: 365px;
+    line-height: 1.4;
+    margin-top: 1px;
+    position: absolute;
+    padding: 10px 80px 5px 10px;
+    top: 1px;
+    white-space: nowrap;
+}
+
+/* 切替終了ボタン */
+.switchingEnd {
+    background: #ffffff;
+    border: solid 1px #333333;
+    position: absolute;
+    right: 5px;
+    top: 14px;
+}
+
+.switchingEnd span {
+    color: #333333;
+}
+
+/*===== ヘッダメニュー =====*/
+
+header nav {
+    display: inline-block;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+header nav li {
+    float: left;
+    margin-right: 1px;
+}
+
+header nav li .headerBtn{
+    float: right;
+    height: 54px;
+    width: 54px;
+}
+
+header nav li .headerBtn img{
+    height: 20px;
+    -webkit-perspective: 54px;
+    perspective: 54px;
+    position: relative;
+    width: 20px;
+}
+
+header nav li .headerBtn span {
+    box-sizing: border-box;
+    display: block;
+    font-size: 12px;
+    height: 54px;
+    line-height: 12px;
+    padding-top: 10px;
+    position: absolute;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    width: 54px;
+}
+
+header nav li .headerBtn span:nth-child(1) {
+    background: #999999;
+    border: 1px solid #555555;
+    color: #ffffff;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -30px;
+    -moz-transform-origin: 50% 50% -30px;
+    transform-origin: 50% 50% -30px;
+}
+
+header nav li .headerBtn span:nth-child(2) {
+    background: #ffffff;
+    border: 1px solid #999999;
+    color: #000000;
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -30px;
+    -moz-transform-origin: 50% 50% -30px;
+    transform-origin: 50% 50% -30px;
+}
+
+header nav li .headerBtn:hover span:nth-child(1) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+
+header nav li .headerBtn:hover span:nth-child(2) {
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+}
+
+/*======================================================
+ * メインメニュー（グローバルナビ）
+======================================================*/
+
+#mainMenu {
+    margin: 5px 4px 0 4px;
+}
+
+#mainMenu ul.ui-menu-list h3 {
+    font-weight: bold;
+}
+
+nav#mainMenu.isFixed {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 99.5%;
+    z-index: 1002;
+}
+
+/*======================================================
+ * フッター
+======================================================*/
+
+footer {
+    background: #eeeeee;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 60px;
+    margin: 20px 0 0 0;
+    min-width: 994px;
+    padding: 10px 15px;
+    position: absolute;
+    width: 100%;
+}
+
+footer .sitemap {
+    display: inline-block;
+    float: right;
+    text-align: right;
+}
+
+footer .copyright {
+    clear: both;
+    text-align: center;
+}
+
+footer .footerInfo {
+    display: inline-block;
+    float: left;
+}
+
+footer .footerInfo span {
+    display: inline-block;
+    padding-right: 20px;
+}
+
+/*======================================================
+ * 機能エリア（メインコンテンツ）
+======================================================*/
+
+/* 機能エリアはメニュー部固定のため分割 */
+#mainWrapTop {
+    margin: 0 auto;
+    /*width: 93%;*/
+    width: 95%;
+}
+
+#mainWrapBottom {
+    margin: 5px auto;
+    min-height: 290px;
+    /*overflow: hidden;*/
+    /*width: 93%;*/
+    width: 95%;
+}
+
+/*======================================================
+ * 機能ヘッダエリア
+======================================================*/
+
+/*===== エリア全体 =====*/
+
+#funcHeader {
+    padding-top: 0.5em;
+    position: relative;
+}
+
+#funcHeader:empty {
+    padding: 0;
+}
+
+/*===== パンくずリスト =====*/
+
+#breadCrumbArea {
+    position: relative;
+}
+
+/* パンくずリスト、リンクなし時の透明度解除 */
+.ui-widget-header .ui-state-disabled {
+    opacity: 1;
+    filter: alpha(opacity=100); /* IE拡張 */
+}
+
+/* 余白調整 */
+#breadCrumbArea div {
+    padding-left: 12px;
+}
+
+/* パンくずリストの矢印？アイコン位置調整 */
+#breadCrumbArea .ui-breadcrumb-chevron {
+    margin-top: 0.45em;
+}
+
+/*===== 機能名称エリア =====*/
+
+#breadCrumbArea h2 {
+    display: inline-block;
+    bottom: 3px;
+    color: #777777;
+    font-size: 1em;
+    position: absolute;
+    right: 5.5em;
+    text-align: right;    
+}
+
+/*===== ボタンエリア =====*/
+
+.btnUpArea {
+    bottom: 4px;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+}
+
+/* ボタンレイアウト変更 */
+.btnUpArea .ui-button {
+    background: transparent;
+    border: none;
+    font-size: 1.8em;
+    height: 1.3em;
+    margin: 0;
+    outline: none;
+    width: 1.3em;
+}
+
+.btnUpArea .noText .ui-button-text {
+    margin: 0;
+    padding: 0 !important;
+}
+
+/*===== 代理ログイン =====*/
+
+.dispSub p {
+    background: #ffe77a;
+    border-radius: 5px;
+    display: inline-block;
+    /*font-size: 1.2em;*/
+    line-height: 2.2;
+    padding: 3px 10px;
+}
+
+.dispSub p button {
+    margin: 0 3px;
+}
+
+/*======================================================
+ * 機能本体エリア
+======================================================*/
+
+/*===== エリア全体 =====*/
+
+#funcContent {
+    margin: 10px auto 10px auto;
+    position: relative;
+    /*width: 93%;*/
+    width: 95%;
+}
+
+/*======================================================
+ * 機能本体フッタエリア
+======================================================*/
+
+/*===== エリア全体 =====*/
+
+#funcFooter {
+    margin: 0 auto;
+    /*width: 93%;*/
+    width: 95%;
+}
+
+/*======================================================
+ * メニュー固定エリア
+======================================================*/
+
+#fixedArea {
+    background: #ffffff;
+    width: 100% !important;
+}
+
+/*======================================================
+ * メッセージエリア（暫定）
+======================================================*/
+
+.informationMain {
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 30px 65px;
+    margin: 40px auto 0 auto;
+    min-height: 100px;
+    text-align: center;
+    width:  60%;
+}
+
+.infoErrorMsgArea .informationMain {
+    background: rgba(255,204,255,0.2);
+    border: solid 2px #cc0000;
+}
+
+.infoNmlMsgArea .informationMain {
+    background: rgba(200,200,200,0.2);
+    border: solid 2px #005882;
+}
+
+.informationMain .innerInfo {
+    font-size: 1.1em;
+    display: inline-block;
+    position: relative;
+}
+
+.informationBtn {
+    margin-top: 120px;
+    text-align: center;
+}
+
+.informationBtn button {
+    background: #ffffff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.infoErrorMsgArea .informationBtn button {
+    border: solid 1px #cc0000;
+    color: #cc0000;
+}
+
+.infoNmlMsgArea .informationBtn button {
+    border: solid 1px #005882;
+    color: #005882;
+}
+
+.informationBtn button.ui-state-hover {
+    background: #f9f9f9;
+}
+
+.informationMain .iconWarningInfo {
+    font-size: 1.8em;
+    left: -45px;
+    position: absolute;
+    top: 0;
+}
+
+.infoErrorMsgArea .iconWarningInfo {
+    color: #cc0000;    
+}
+
+.infoNmlMsgArea .iconWarningInfo {
+    color: #005882;
+}
+
+/*======================================================
+ * その他エリア
+======================================================*/
+
+/* メッセージダイアログ */
+#mssDlgArea {
+    margin: 0 auto;
+    position: relative;
+    width: 95%;
+}
+
+/*======================================================
+ * フレームワーク
+======================================================*/
+
+.frInformation {
+}
+.frGakuenException {
+}
+.frSystemException {
+}
+
+/*======================================================
+ * テスト用（後に削除）
+======================================================*/
+
+#fontSize {
+    position: absolute;
+    top: 69px;
+    right: 186px;
+    z-index: 999;
+}
+
+#fontFamily {
+    position: absolute;
+    top: 69px;
+    right: 270px;
+    z-index: 999;
+}
+
+#fontSize p, #fontFamily p {
+    display: inline-block;
+    font-size: 12px;
+}
+
+#fontSize ul, #fontFamily ul {
+    display: inline-block;
+}
+
+#fontSize li, #fontFamily li {
+    width: 50px;
+    display: inline-block;
+    background: #ffffff;
+    border: dotted 1px #777777;
+    color: #777777;
+    text-align: center;
+    font-size: 12px;
+}
+
+.current {
+    color: #cc0000 !important;
+    font-weight: bold;
+}
+
+#theme {
+    position: absolute;
+    top: 73px;
+    right: 9px;
+    z-index: 999;
+}
+
+#theme p {
+    display: inline-block;
+    font-size: 12px;
+}
+
+#theme .ui-selectonemenu {
+    position: relative;
+    top: -4px;
+}
+

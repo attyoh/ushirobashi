@@ -1,0 +1,172 @@
+@charset "utf-8";
+/*
+ * message.css
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+/*======================================================
+ * メッセージダイアログ（案内、警告、エラー）
+======================================================*/
+
+/************** メッセージダイアログ本体 **************/
+
+/* 共通 */
+.infoMessageDlgAlt, .warnMessageDlgAlt, .errMessageDlgAlt, .errMessageDlgAlt2 {
+    min-width: 450px;
+    outline: none;
+    /*z-index: 1130;*/
+    z-index: 999999;
+    top: 250px !important;
+}
+
+.infoMessageDlgAlt ul, .warnMessageDlgAlt ul, .errMessageDlgAlt ul, .errMessageDlgAlt2 ul {
+    list-style-type: disc;
+    margin: 5px 15px 5px 80px;
+}
+
+.infoMessageDlgAlt .ui-dialog-titlebar-close, .warnMessageDlgAlt .ui-dialog-titlebar-close, .errMessageDlgAlt .ui-dialog-titlebar-close, .errMessageDlgAlt2 .ui-dialog-titlebar-close {
+    background: transparent;
+    border: 0;
+}
+
+.infoMessageDlgAlt .ui-corner-all, .warnMessageDlgAlt .ui-corner-all, .errMessageDlgAlt .ui-corner-all {
+    border-radius: 5px 5px 0 0;
+}
+
+.infoMessageDlgAlt .ui-dialog-titlebar-close, .warnMessageDlgAlt .ui-dialog-titlebar-close, .errMessageDlgAlt .ui-dialog-titlebar-close {
+    outline: none;
+    height: 20px;
+}
+
+.infoMessageDlgAlt .ui-dialog-titlebar-close .ui-icon-closethick, .warnMessageDlgAlt .ui-dialog-titlebar-close .ui-icon-closethick, .errMessageDlgAlt .ui-dialog-titlebar-close .ui-icon-closethick {
+    top: 20%;
+}
+
+.infoMessageDlgAlt ul::before, .warnMessageDlgAlt ul::before, .errMessageDlgAlt ul::before, .errMessageDlgAlt2 ul::before {
+    content: "\f071";
+    font-family: fontAwesome;
+    font-size: 2.5em;
+    left: 30px;
+    position: absolute;
+    top: 20px;
+}
+
+/* 案内 */
+.infoMessageDlgAlt ul li {
+    color: #003366;
+    list-style: none;
+    min-height: 2em;
+}
+
+.infoMessageDlgAlt .ui-dialog-titlebar {
+    background: #c5dbec;
+    color: #003366;
+}
+
+.infoMessageDlgAlt.ui-widget-content {
+    border: solid 1px #c5dbec;
+}
+
+.infoMessageDlgAlt ul::before {
+    color: #003366;
+}
+
+/* 警告 */
+.warnMessageDlgAlt ul li {
+    color: #e17009;
+    list-style: none;
+    min-height: 2em;
+}
+
+.warnMessageDlgAlt .ui-dialog-titlebar {
+    background: #dddddd;
+    color: #e17009;
+}
+
+.warnMessageDlgAlt.ui-widget-content {
+    border: solid 1px #dddddd;
+}
+
+.warnMessageDlgAlt ul::before {
+    color: #e17009;
+}
+
+/* エラー */
+.errMessageDlgAlt ul li {
+    color: #cc0000;
+    list-style: none;
+    min-height: 2em;
+}
+
+.errMessageDlgAlt .ui-dialog-titlebar {
+    background: #efc1c4;
+    color: #cc0000;
+}
+
+.errMessageDlgAlt.ui-widget-content {
+    border: solid 1px #efc1c4;
+}
+
+.errMessageDlgAlt ul::before {
+    color: #cc0000;
+}
+
+/* エラー2 */
+.errMessageDlgAlt2 ul li {
+    color: #cc0000;
+    list-style: none;
+    min-height: 2em;
+}
+
+.errMessageDlgAlt2 .ui-dialog-titlebar {
+    background: #cccccc;
+    color: #cc0000;
+}
+
+.errMessageDlgAlt2.ui-widget-content {
+    border: solid 1px #cccccc;
+}
+
+.errMessageDlgAlt2 ul::before {
+    color: #cc0000;
+}
+
+/************** ボタン **************/
+
+/* 共通 */
+.messageBtnArea {
+    position: fixed;
+    z-index: 1003;
+}
+
+.errorMessageDlgOpen, .infoMessageDlgOpen, .warningMessageDlgOpen {
+    float: left;
+    margin-right: 3px;
+}
+
+.infoMessageDlgOpen .infoOpenBtn, .errorMessageDlgOpen .errOpenBtn, .warningMessageDlgOpen .warnOpenBtn {
+    background-size: contain !important;
+    border:0;
+    display:none;
+    height: 35px;
+    opacity: 0.7;
+    width: 35px;
+}
+
+/* 案内 */
+.infoMessageDlgOpen .infoOpenBtn {
+    background: url('../images/dlgInfoOpen.png') no-repeat center center;
+}
+
+/* エラー */
+.errorMessageDlgOpen .errOpenBtn {
+    background: url('../images/dlgErrOpen.png') no-repeat center center;
+}
+
+/* 警告 */
+.warningMessageDlgOpen .warnOpenBtn {
+    background: url('../images/dlgWarnOpen.png') no-repeat center center;
+}
+

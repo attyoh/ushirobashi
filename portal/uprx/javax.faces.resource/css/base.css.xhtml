@@ -1,0 +1,144 @@
+/* base.css.xhtml */
+
+@charset "utf-8";
+
+/*======================================================
+ * base.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * Chrome FOUC対策（暫定）
+======================================================*/
+
+/* frameCompornent.xhtmlでvisibility:hiddenにしたものを初期化する。（Chromeのみ） */
+/***
+@media screen and (-webkit-min-device-pixel-ratio:0) { * { visibility: visible !important; }}
+***/
+
+/*======================================================
+ * リセット
+======================================================*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    border: 0;
+    /*font-style: normal;*/
+    /*font-weight: normal;*/
+    /* font-size: 100%; */
+    margin: 0;
+    padding: 0;
+    /* vertical-align: baseline; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+html{
+    overflow-y: scroll;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+    content: '';
+    content: none;
+}
+
+input, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul{
+    list-style:none;
+}
+
+table{
+    border-collapse: collapse; 
+    border-spacing:0;
+}
+
+caption, th{
+    text-align: left;
+}
+
+a:focus {
+    outline:none;
+}
+
+/*======================================================
+ * clearfix
+======================================================*/
+
+.cf::before,
+.cf::after {
+    content: " ";
+    display: table;
+}
+
+.cf::after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1; /* CSS Hack */
+}
+
+
+/*======================================================
+ * IE対応
+======================================================*/
+
+/* クリアボタン非表示 */
+input::-ms-clear {
+    visibility: hidden !important;
+}
+
+/* パスワード表示ボタン非表示 */
+input::-ms-reveal {
+    visibility: hidden !important;
+}
+
+/* 画像縮小時の劣化防止（バイキュービック法） */
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
+/*===== Win8.1,Win10のIE11で游ゴシックに余白が生じる問題を回避（CSSハック） =====*/
+
+/* ボタン */
+@media all and (-ms-high-contrast:none){
+    *::-ms-backdrop, button.ui-button .ui-button-text {position: relative; top: 0.15em;}
+}
+
+/*======================================================
+ * Chrome対応
+======================================================*/
+
+/* inputがオートフィルされてると背景色が黄色になるのを回避 */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+}

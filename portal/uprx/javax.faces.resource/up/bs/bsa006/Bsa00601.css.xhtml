@@ -1,0 +1,29 @@
+@charset "utf-8";
+/*
+ * Bsa00601.css
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+/*
+ * 休日・イベント
+ * ※このCSSは親画面にて取り込むこと
+ * ※form要素のid属性を指定し、その子孫要素に対して定義すること
+ */
+
+form[id^="bsa00601"] .eventDisp dt, form[id^="bsa00601"] .eventDisp dd {
+    display: table-cell;
+}
+
+form[id^="bsa00601"] .eventDisp {
+    margin-bottom: 16px;
+}
+
+form[id^="bsa00601"] .eventDisp dt {
+    min-width: 80px;
+}
+
+form[id^="bsa00601"] .eventDisp dd::before {
+    content:  ": ";
+}

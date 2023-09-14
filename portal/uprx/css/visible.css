@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/*======================================================
+ * visible.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/*======================================================
+ * Chrome FOUC対策（暫定）
+======================================================*/
+
+/* frameCompornent.xhtmlでvisibility:hiddenにしたものを初期化する。 */
+* {
+    visibility: visible !important;
+}
+
+

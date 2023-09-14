@@ -1,0 +1,100 @@
+//jquery.global.js
+
+
+//ページ内リンク
+$(function() {
+var offsetY = -10;
+var time = 500;
+
+$('a[href^="#"]').click(function() {
+var target = $(this.hash);
+if (!target.length) return ;
+var targetY = target.offset().top+offsetY;
+$('html,body').animate({scrollTop: targetY}, time, 'swing');
+window.history.pushState(null, null, this.hash);
+return false;
+});
+});
+
+
+
+
+$(function(){
+//hamburger menu
+$(".menu-trigger").click(function(){
+$(".site_nav").fadeToggle("fast");
+return false;
+});
+});
+$(function () {
+$('.menu-trigger').on('click', function () {
+$(this).toggleClass('active');
+return false;
+});
+//$(".site_nav a").on('click', function(){
+//$(".menu-trigger").click();
+//});
+
+
+// Open Contents - gnav accordion
+$(".gnav_trigger a").click(function(){
+$(this).toggleClass("close");
+$(this).next(".sub-menu").slideToggle("fast");
+});
+
+// Open Contents - spnav accordion
+$(".spnav_trigger a").click(function(){
+$(this).toggleClass("close");
+$(this).next(".sub-menu").slideToggle("fast");
+});
+
+// Open Contents - contents accordion
+$(".open_trigger").click(function(){
+$(this).toggleClass("close");
+$(this).next(".open_inner").slideToggle("fast");
+});
+ 
+
+
+$('.slide').slick({
+autoplay: true,
+dots: true, 
+arrows: false,
+fade: true,
+infinite: true
+});
+});
+
+
+
+
+
+
+// Back to Top
+$(function(){
+$(window).scroll(function(){
+var now = $(window).scrollTop();
+var under = $('body').height() - (now + $(window).height());
+if(now > 700 ){
+$('#back-top').fadeIn("fast");
+}else{
+$('#back-top').fadeOut("fast");
+}
+});
+$('#back-top').click(function(){
+$('html,body').animate({scrollTop:0},'slow');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+});

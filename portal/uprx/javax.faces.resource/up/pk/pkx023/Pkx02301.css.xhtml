@@ -1,0 +1,76 @@
+@charset "utf-8";
+/*
+ * Pkx02301.css
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+.print{
+    text-align:right;
+    margin-bottom: 2px;
+}
+
+.rowStyle{
+    display:table;
+}
+
+.rowMargin{
+    margin-top: -1px;
+}
+
+.rowMargin:first-child{
+    margin-top: 0;
+}
+
+.colStyle{
+    box-sizing:border-box;
+    display:table-cell;
+    padding: 0.4em;
+    vertical-align: middle;
+}
+
+.colNoBorder{
+    border: 0 !important;
+}
+
+.colBorderTopOnly{
+    border: 0 !important;
+    border-top: 1px solid #bbbbbb !important;
+}
+
+.colBorder{
+    border: 1px solid #bbbbbb !important;
+    border-right: 0!important;
+}
+
+.colBorder:last-child {
+    border-right: 1px solid #bbbbbb !important;
+}
+
+.colLeftBorder {
+    border: 0 !important;
+    border-left: 1px solid #bbbbbb !important;
+}
+
+.colLeftTopBorder {
+    border: 0 !important;
+    border-left: 1px solid #bbbbbb !important;
+    border-top: 1px solid #bbbbbb !important;
+}
+
+@media print{
+    .dispNoneForPrint{
+        display:none;
+    }
+    /* ボタンの右上配置 */
+    .btnNewLocation1 {
+        top: 0;
+        position: relative;
+        right: 0;
+    }
+    /* Chromeで不要な余白ページが印刷されるバグの対応 */
+    html, body {
+        height: auto;
+    }
+}

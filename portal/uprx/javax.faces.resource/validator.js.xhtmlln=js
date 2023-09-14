@@ -1,0 +1,503 @@
+/*
+ * validator.js
+ *
+ * 著作権  ：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名  ：日本システム技術株式会社
+ */
+
+// ---------------------------------------------------------
+// バリデーションに限定した jsファイル。
+// PrimeFacesに介入し、RXの独自仕様を盛り込む。
+// ---------------------------------------------------------
+
+/**
+ * RX仕様のクライアントバリデーション用オブジェクト。
+ */
+PrimeFaces.validator['RxValidationForUI'] = {
+    MESSAGE_ID: '',
+    validate: function (element, value) {
+        // コンバータ（PrimeFaces.converter）はクリアできている
+        // 必須チェックはコンバータにてチェック済み
+        if (value === null) {
+            return;
+        }
+        if ($.trim(value).length === 0) {
+            return;
+        }
+        // タイプのチェックを行う
+        this.checkType(element, value);
+        // 以下、型によるチェックを行う
+        var cls = $.type(value);
+        if (cls === 'string') {
+            // ==================================
+            // 文字列の場合
+            // ==================================
+            // 禁則文字チェック
+            if (element.data('rx-kinsoku')) {
+                var pattern = new RegExp("^[^\\|<>\\\"]*$");
+                if (!pattern.test(value)) {
+                    var errMsg = this.getMessage(element, 'Kinsoku');
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            }
+            // 桁数チェック
+            // 文字列の長さを取得する
+            var strLength = this.resolveLength(element, value);
+            var minLength = element.data('p-minlength');
+            var maxLength = element.data('p-maxlength');
+            if (minLength && maxLength) {
+                // 最大、最小桁数両方設定している場合
+                if (strLength < minLength || strLength > maxLength) {
+                    var errMsg = this.getMessage(element, 'Size');
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            } else if (minLength) {
+                // 最小桁数のみ設定している場合
+                if (strLength < minLength) {
+                    var errMsg = this.getMessage(element, 'MinLength');
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            } else if (maxLength) {
+                // 最大桁数のみ設定している場合
+                if (strLength > maxLength) {
+                    var errMsg = this.getMessage(element, 'MaxLength');
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            }
+        } else if (cls === 'date') {
+            // ==================================
+            // 日付の場合、特にチェックしない
+            // ==================================
+        } else if (cls === 'number') {
+            // ==================================
+            // 数値の場合
+            // ==================================
+
+            // inputNumber 使用時はカンマを除去して判定する
+            if (element.hasClass('rx-number')) {
+                value = value.toString().replace(/,/g, '');
+            }
+            // 最小値チェック ※ if(0) となることを考慮
+            if (typeof element.data('p-minvalue') !== 'undefined') {
+                this.rxValidate(PrimeFaces.validator.Min, 'Min', element, value);
+            }
+            // 最大値チェック
+            if (typeof element.data('p-maxvalue') !== 'undefined') {
+                this.rxValidate(PrimeFaces.validator.Max, 'Max', element, value);
+            }
+            // 負号チェック
+            var signed = element.data('rx-signed');
+            if (!signed) {
+                // 負号フラグ立てられた場合のみ、チェックを行う
+                // 先頭が負号でなければ、エラーとする
+                if (value.toString().charAt(0) === '-') {
+                    var errMsg = this.getMessage(element, 'SignedFlg');
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            }
+            // 整数部桁数チェック
+            var digits = value.toString().split('.');
+            var intLength = element.data('rx-intlength');
+            if (intLength) {
+                if (signed && digits[0].length - 1 > intLength
+                        || !signed && digits[0].length > intLength) {
+                    var errMsg = this.getMessage(element, 'IntLength');
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            }
+            // 小数部桁数チェック
+            var decLength = element.data('rx-declength');
+            if (decLength) {
+                if (digits.length > 1) {
+                    // 小数部有り -> 最後尾の0を削除
+                    var dec = digits[1].replace(/0*$/, '');
+                    if (dec.length > decLength) {
+                        var errMsg = this.getMessage(element, 'DecLength');
+                        throw {summary: errMsg, detail: errMsg};
+                    }
+                }
+            }
+        } else {
+            // 想定外データ型の場合
+            throw {summary: '予期せぬエラー', detail: 'サポートしない型[' + cls + ']が含まれています。'};
+        }
+    }
+    , rxValidate: function (validFunc, validType, element, value) {
+        if (validFunc) {
+            try {
+                validFunc.validate(element, value);
+            } catch (e) {
+                // validation/beanvalidation.js のメッセージは使用しない
+                // エラーメッセージを取得し、addする
+                var errMsg = this.getMessage(element, validType);
+                if (errMsg) {
+                    throw {summary: errMsg, detail: errMsg};
+                }
+            }
+        }
+    }
+    , checkType: function (element, value) {
+        // 値が未設定ならSKIP
+        if (!value)
+            return true;
+        // タイプを取得する。未設定ならSKIP
+        var rxType = element.data('rx-type');
+        if (!rxType)
+            return true;
+        var msg = this.checkByRegex[rxType].convert(value);
+        if (msg) {
+            // メッセージが設定されていたらエラー
+            msg = msg.replace('{0}', element.data('p-label'));
+            throw {summary: msg, detail: msg};
+        }
+    }
+    , resolveLength: function (element, value) {
+        // タイプを取得する
+        var rxType = element.data('rx-type');
+        if (rxType === 'ZENKAKU_ALL') {
+            // バリデーションタイプが「全角半角文字全て」の場合、SJISのバイト数で長さを判定し、返却する
+            var count = 0;
+            for (var i = 0; i < value.length; i++) {
+                var c = value.charCodeAt(i);
+                // Shift_JISの半角エリア : 0x0 ～ 0x80, 0xa0, 0xa1 ～ 0xdf, 0xfd ～ 0xff
+                if ((c >= 0x0 && c <= 0x80) || (c === 0xa0) || (c >= 0xa1 && c <= 0xdf) || (c >= 0xfd && c <= 0xff)) {
+                    count += 1;
+                } else {
+                    count += 2;
+                }
+            }
+            return count;
+        }
+        // バリデーションタイプが「全角半角文字全て」以外の場合、桁数で長さを判定し、返却する
+        return element.val().length;
+    }
+    , checkByRegex: {
+        // 以下のパターンはタイプバリデーターと同様な正規表現を使用する
+        // 半角
+        HANKAKU: {
+            message: RxValidator.rx.messages['TypeValidator.HANKAKU'],
+            regex: new RegExp("^[a-zA-Z0-9/@\\.\\-_',\\(\\) ]*$"),
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 半角数字
+        HANKAKU_NUMBER: {
+            message: RxValidator.rx.messages['TypeValidator.HANKAKU_NUMBER'],
+            regex: new RegExp("^[0-9]*$"),
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 半角英字
+        HANKAKU_ALPHABET: {
+            message: RxValidator.rx.messages['TypeValidator.HANKAKU_ALPHABET'],
+            regex: new RegExp("^[a-zA-Z 0-9@\\.\\-_',\\(\\)]*$"),
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 半角ALL
+        HANKAKU_ALL: {
+            message: RxValidator.rx.messages['TypeValidator.HANKAKU_ALL'],
+            regex: new RegExp("^[a-zA-Z0-9\\-\\(\\) \\^\\|\\\\\\{\\}\\[\\]@'\\+;\\*:,\\.\\?/_\\uff66-\\uff9f]*$"),
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // カナ
+        KANA: {
+            message: RxValidator.rx.messages['TypeValidator.KANA'],
+            regex: new RegExp("^[\\u30a1-\\u30ed\\u30ef\\u30f2-\\u30f4ー　（）\\\\\\./\\-']*$"),
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 全角ALL(チェックしない)
+        ZENKAKU_ALL: {
+            convert: function (value) {
+                return null;
+            }
+        },
+        // 全角のみ
+        ZENKAKU_ONLY: {
+            message: RxValidator.rx.messages['TypeValidator.ZENKAKU_ONLY'],
+            regex: new RegExp("^[^\\u0000-\\u00a6\\u00a9-\\u00af\\u00b2-\\u00b3"
+                    + "\\u00b5\\u00b7-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff"
+                    + "\\uff61-\\uff9f\\uffa0-\\uffdc\\uffe8-\\uffee\\ufffd]*$"),
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 以下のパターンの正規表現は設定ファイルから取得する
+        // 電話番号
+        DENWA_NO: {
+            message: RxValidator.rx.messages['TypeValidator.DENWA_NO'],
+            regex: RxValidator.rx.regexs['denwa_no.regex'],
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 郵便番号
+        YUBIN_NO: {
+            message: RxValidator.rx.messages['TypeValidator.YUBIN_NO'],
+            regex: RxValidator.rx.regexs['yubin_no.regex'],
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // EMAIL
+        EMAIL: {
+            message: RxValidator.rx.messages['TypeValidator.EMAIL'],
+            regex: RxValidator.rx.regexs['email.regex'],
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // URL
+        URL: {
+            message: RxValidator.rx.messages['TypeValidator.URL'],
+            regex: RxValidator.rx.regexs['url.regex'],
+            convert: function (value) {
+                if (this.regex.test(value))
+                    return null;
+                return this.message;
+            }
+        },
+        // 以下のパターンのタイプチェックを行わない
+        // NUMBER
+        NUMBER: {
+            convert: function (value) {
+                return null;
+            }
+        },
+        // KINGAKU
+        KINGAKU: {
+            convert: function (value) {
+                return null;
+            }
+        },
+        // DATE
+        DATE: {
+            convert: function (value) {
+                return null;
+            }
+        },
+        // TIME
+        TIME: {
+            convert: function (value) {
+                return null;
+            }
+        }
+    }
+    , MESSAGE_INFO: {
+        // 文字列チェックエラーメッセージ
+        Kinsoku: {'message': RxValidator.rx.messages['ExValidator.NO_KINSOKU']},
+        Size: {'message': RxValidator.rx.messages['LengthValidator.SIZE'], 'args': 'p-minlength,p-maxlength'},
+        MinLength: {'message': RxValidator.rx.messages['LengthValidator.MIN_LENGTH'], 'args': 'p-minlength'},
+        MaxLength: {'message': RxValidator.rx.messages['LengthValidator.MAX_LENGTH'], 'args': 'p-maxlength'},
+        // 数値チェックエラーメッセージ
+        Min: {'message': RxValidator.rx.messages['NumberValidator.MIN'], 'args': 'p-minvalue'},
+        Max: {'message': RxValidator.rx.messages['NumberValidator.MAX'], 'args': 'p-maxvalue'},
+        SignedFlg: {'message': RxValidator.rx.messages['NumberValidator.SIGNED_FLG']},
+        IntLength: {'message': RxValidator.rx.messages['NumberValidator.INTEGRAL_LENGTH'], 'args': 'rx-intlength'},
+        DecLength: {'message': RxValidator.rx.messages['NumberValidator.DECIMAL_LENGTH'], 'args': 'rx-declength'}
+    }
+    , getMessage: function (element, validType) {
+        // バリデーションの種類からメッセージを取得する
+        var msg = this.MESSAGE_INFO[validType].message;
+        // バリデーションの種類から引数名を取得する
+        var args = this.MESSAGE_INFO[validType].args;
+        msg = this.replaceMessage(element, msg, args);
+        return msg;
+    }
+    , replaceMessage: function (element, msg, args) {
+        // {0}は'p-label'で置換する
+        msg = msg.replace('{0}', element.data('p-label'));
+        if (args) {
+            // 該当の引数があればカンマ区切りで設定されているので分解する
+            args = args.split(',');
+            for (var i = 0; i < args.length; i++) {
+                // {n(１以降)}は'p-xxx'で置換する
+                msg = msg.replace('{' + (i + 1) + '}', element.data(args[i]));
+            }
+        }
+        return msg;
+    }
+};
+
+/**
+ * ロケール別メッセージの定義。
+ * 実際には同じメッセージが設定されるが、常にロケールに合わせたメッセージが設定される。
+ * 
+ */
+PrimeFaces.locales['ja'] = $.extend(PrimeFaces.locales['ja'], {
+    decimalSeparator: '.',
+    groupingSeparator: ',',
+    messages: RxValidator.faces.messages
+});
+PrimeFaces.locales['en'] = $.extend(PrimeFaces.locales['en'], {
+    decimalSeparator: '.',
+    groupingSeparator: ',',
+    messages: RxValidator.faces.messages
+});
+
+/**
+ * バリデーション vi メソッドをハックし、rx:inputNumber を使用した場合の数値チェックに対応。
+ * 
+ * @param {String|Object} el エレメントまたはそのid
+ * @returns {Boolean} バリデーション結果
+ */
+PrimeFaces.vi = function (el) {
+    var element = (typeof el === 'string') ? $(PrimeFaces.escapeClientId(el)) : $(el);
+
+    var numBkup = null;     // rx:inputNumber 使用時はカンマ編集でエラーとなるため、一時的に退避
+    try {
+        if (element.hasClass('rx-number')) {
+            // カンマを除去してバリデーション
+            numBkup = element.val();
+            element.val(element.val().replace(/,/g, ''));
+        }
+        return this.validateInstant(el);
+    } finally {
+        if (numBkup) {
+            // 元の値に戻す
+            element.val(numBkup);
+        }
+    }
+};
+
+/**
+ * バリデーション validateInstant メソッドをハックし、バリデーションの前にツールチップを削除する。
+ * 
+ * @param {String|Object} el エレメントまたはそのid
+ * @returns {Boolean} バリデーション結果
+ */
+PrimeFaces.validateInstant = function (el) {
+    var vc = PrimeFaces.util.ValidationContext,
+            element = (typeof el === 'string') ? $(PrimeFaces.escapeClientId(el)) : $(el),
+            clientId = element.data(PrimeFaces.CLIENT_ID_DATA) || element.attr('id'),
+            uiMessageId = element.data('uimessageid'),
+            uiMessage = null;
+
+    if (uiMessageId) {
+        uiMessage = (uiMessageId === 'p-nouimessage') ? null : $(PrimeFaces.escapeClientId(uiMessageId));
+    } else {
+        uiMessage = vc.findUIMessage(clientId, element.closest('form').find('div.ui-message'));
+
+        if (uiMessage)
+            element.data('uimessageid', uiMessage.attr('id'));
+        else
+            element.data('uimessageid', 'p-nouimessage');
+    }
+
+    if (uiMessage) {
+        uiMessage.html('').removeClass('ui-message-error ui-message-icon-only ui-widget ui-corner-all ui-helper-clearfix');
+    }
+
+    // ツールチップを一旦削除する。[変更部分]
+    if (uiMessage) {
+        $(PrimeFaces.escapeClientId(uiMessage.data('target'))).removeData('tooltip');
+    }
+
+    this.validateInput(element);
+
+    if (!vc.isEmpty()) {
+        if (uiMessage) {
+            vc.renderUIMessage(uiMessage, vc.messages[clientId][0]);
+        }
+
+        vc.clear();
+        return false;
+    } else {
+        vc.clear();
+        return true;
+    }
+};
+
+/**
+ * バリデーション validator.Highlighter.highlightLabel メソッドをハックし、 
+ * 複数項目と紐付くラベルのハイライトを制御する。
+ * 
+ * @param {Object} forElement バリデーション対象のエレメント
+ */
+PrimeFaces.validator.Highlighter.highlightLabel = function (forElement) {
+    if (!forElement.attr('id')) {
+        return;
+    }
+    var label = $("label[for~='" + forElement.attr('id') + "']");
+    // エラー対象を保持（1対複数コンポーネント対策）
+    var id = forElement.attr('id').replace(/_input$/, '');
+    var dataHl = label.data('rx-hl');
+    var hls;
+    if (dataHl) {
+        hls = dataHl.split(' ');
+        for (var i = 0; i < hls.length; i++) {
+            if (hls[i] === id) {
+                // 既に含まれていれば何もしない
+                return;
+            }
+        }
+        hls.push(id);
+    } else {
+        hls = new Array(id);
+    }
+    label.data('rx-hl', hls.join(' '));
+    // ハイライト用クラススタイル追加
+    if (label.hasClass('ui-outputlabel')) {
+        label.addClass('ui-state-error');
+    }
+};
+
+/**
+ * バリデーション validator.Highlighter.unhighlightLabel メソッドをハックし、 
+ * 複数項目と紐付くラベルのハイライト解除を制御する。
+ * ※ 1件以上エラーが存在する場合は、ハイライトを解除しない。
+ * 
+ * @param {Object} forElement バリデーション対象のエレメント
+ */
+PrimeFaces.validator.Highlighter.unhighlightLabel = function (forElement) {
+    if (!forElement.attr('id')) {
+        return;
+    }
+    var label = $("label[for~='" + forElement.attr('id') + "']");
+    // エラー対象を削除（1対複数コンポーネント対策）
+    var id = forElement.attr('id').replace(/_input$/, '');
+    var dataHl = label.data('rx-hl');
+    var hls;
+    if (dataHl) {
+        hls = dataHl.split(' ');
+        for (var i = 0; i < hls.length; i++) {
+            if (hls[i] === id) {
+                hls.splice(i, 1);
+            }
+        }
+        label.data('rx-hl', hls.join(' '));
+        // 1件以上エラーが残っていれば削除せず終了
+        if (hls.length > 0) {
+            return;
+        }
+    }
+    // ハイライト用クラススタイル削除
+    if (label.hasClass('ui-outputlabel')) {
+        label.removeClass('ui-state-error');
+    }
+};

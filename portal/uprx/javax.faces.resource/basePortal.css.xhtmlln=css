@@ -1,0 +1,1926 @@
+@charset "utf-8";
+
+/*======================================================
+ * basePortal.css
+ *
+ * 著作権：Copyright Japan System Techniques Co., Ltd. All Rights Reserved.
+ * 会社名：日本システム技術株式会社
+======================================================*/
+
+/* ポータル関連画面（Bsa001-002,Bsa005-008）にのみ適用のこと！ */
+
+/*======================================================
+ * ポータル画面共通
+======================================================*/
+
+#funcContent {
+    width: 100%;
+}
+
+#funcContent .ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+    top: 1px !important;
+}
+
+#funcContent .ui-inputfield {
+    -moz-border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+    border: solid 1px #8f8f8f !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+}
+
+#funcContent .ui-inputfield.ui-state-error {
+    border: 1px solid #cd0a0a !important;
+    background: #fef1ec;
+    color: #cd0a0a !important;
+}
+
+#funcContent .ui-datepicker-trigger.ui-button-icon-only .ui-button-text {
+    padding: 0.1em !important;
+}
+
+#funcContent .ui-button-text-only .ui-button-text {
+    padding: .1em .7em !important;
+}
+
+#funcContent .ui-button-text-icon-left .ui-button-text {
+    padding: .1em .7em .1em 2em !important;
+    /*width: 65px;*/
+}
+
+#funcContent .ui-panel {
+    padding: 0;
+}
+
+#funcContent hr {
+    border: 0;
+    border-bottom: solid 1px #222222;
+}
+
+/* FontAwesomeの微調整 */
+#funcContent .nendoCngArea .fa {
+    position:relative;
+    top: 2px;
+}
+
+/*
+#funcContent .ui-widget-content a {
+    color: #999999 !important;
+}
+*/
+
+/*======================================================
+ * エリア別
+======================================================*/
+
+/*===== サブコンテンツ（学生支援エリア） =====*/
+
+#portalSupport .ui-tabs {
+    padding: 0;
+}
+
+#portalSupport .ui-tabs .ui-tabs-panel {
+    padding: 15px 20px !important;
+}
+
+#portalSupport .ui-widget-content {
+    background: none;
+    border: none;
+    color: #222222;
+}
+
+#portalSupport .ui-widget-header {
+    background: #ffffff;
+    border: none;
+    border-bottom: solid 1px #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#portalSupport .ui-state-default, #portalSupport .ui-widget-content .ui-state-default, #portalSupport .ui-widget-header .ui-state-default {
+    border: solid 1px #ffffff;
+}
+
+#portalSupport .ui-state-active, #portalSupport .ui-widget-content .ui-state-active, #portalSupport .ui-widget-header .ui-state-active {
+    border: solid 1px #000000 !important;
+    /*border-bottom: solid 1px #fff6d2 !important;*/
+    border-bottom: solid 1px #f5f5f5 !important;
+    /*background: #fff6d2 !important;*/
+    background: #f5f5f5 !important;
+    color: #222222 !important;
+    font-weight: normal;
+}
+
+#portalSupport .ui-state-default {
+    background: #ffffff;
+}
+
+#portalSupport .ui-state-default a {
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 120px;
+}
+
+#portalSupport .ui-state-active a, #portalSupport .ui-state-active a:link, #portalSupport .ui-state-active a:visited {
+    color: #222222 !important;
+}
+
+#portalSupport .ui-state-default a, #portalSupport .ui-state-default a:link, #portalSupport .ui-state-default a:visited {
+    color: #222222;
+}
+
+#portalSupport .ui-corner-top {
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#portalSupport .ui-tabs .ui-tabs-nav li a {
+    font-size: 1.1em;
+    padding: 0.3em 1em !important;
+}
+
+#portalSupport .ui-corner-all {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+#portalSupport .ui-tabs.ui-tabs-top > #portalSupport .ui-tabs-nav {
+    padding: 0 !important;
+}
+
+#portalSupport .ui-tabs-panels {
+    /*background: #fff6d2;*/
+    background: #f5f5f5;
+}
+
+/*===== メインコンテンツ =====*/
+
+#portalCont {
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+#portalCont h2 {
+    border-bottom: solid 1px #222222;
+    overflow: hidden;
+}
+
+#portalCont h2 span {
+    /*background: #222222;*/ /* カラーテーマでの指定 */
+    /*color: #ffffff;*/ /* カラーテーマでの指定 */
+    display: inline-block;
+    /*float: left;*/
+    float: right;
+    height: 2em;
+    line-height: 2;
+    text-align: center;
+    width: 150px;
+}
+
+#portalCont .ui-tabs {
+    padding: 0;
+}
+
+#portalCont .ui-tabs .ui-tabs-panel {
+    padding: 10px 0 !important;
+}
+
+#portalCont .ui-widget-content:not(ul) {
+    border: none;
+    background: transparent;
+    color: #222222;
+    line-height: 1.3;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+}
+
+#portalCont .ui-widget-content.ui-datatable-odd {
+    background: #f7f7f7;
+}
+
+#portalCont tbody.ui-widget-content {
+    border-bottom: solid 1px #8f8f8f;
+}
+
+#portalCont .ui-widget-content.ui-panel.lessonKeijiArea .ui-panel-content.ui-widget-content {
+    padding: 0;
+}
+
+#portalCont .ui-widget-content a.ui-commandlink,
+#portalSupport .ui-widget-content a.ui-commandlink {
+    color: #222222 !important;
+}
+
+#portalCont .portalMain > .ui-panel-content.ui-widget-content {
+    padding: 0;
+}
+
+#portalCont .ui-widget-header,
+.portalSchedule .ui-widget-header {
+    border: none;
+    background: #ffffff;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+#portalCont ul.ui-widget-header {
+    border-bottom: solid 1px #000000;
+}
+
+#portalCont li.ui-state-default, #portalCont .ui-widget-content li.ui-state-default {
+    border: solid 1px #ffffff;
+}
+
+#portalCont .ui-tabs-nav .ui-state-active {
+    background: #ffffff !important;
+    border: solid 1px #000000 !important;
+    border-bottom: solid 1px #ffffff !important;
+    color: #222222 !important;
+    font-weight: normal;
+}
+
+#portalCont .ui-state-default,
+.portalSchedule .ui-state-default {
+    background: #ffffff;
+}
+
+#portalCont .ui-state-default a,
+.portalSchedule .ui-state-default a {
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 120px;
+}
+
+#portalCont .ui-state-active a, #portalCont .ui-state-active a:link, #portalCont .ui-state-active a:visited {
+    color: #cc0000 !important;
+}
+
+#portalCont .ui-state-default a, #portalCont .ui-state-default a:link, #portalCont .ui-state-default a:visited {
+    color: #222222;
+}
+
+#portalCont .ui-corner-top {
+    -moz-border-radius-topleft: 0;
+    -webkit-border-top-left-radius: 0;
+    border-top-left-radius: 0;
+    -moz-border-radius-topright: 0;
+    -webkit-border-top-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#portalCont .ui-tabs .ui-tabs-nav li a {
+    font-size: 1.1em;
+    padding: 0.3em 1em !important;
+}
+
+#portalCont .ui-tabs-nav {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+#portalCont .ui-tabs.ui-tabs-top > #portalCont .ui-tabs-nav {
+    padding: 0 !important;
+}
+
+#portalCont .ui-tabs-panels {
+    background: #ffffff;
+}
+
+#portalCont .ui-button:not(.ui-selectonebutton.ui-button),
+.portalSchedule .ui-button:not(.ui-selectonebutton.ui-button) {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#portalCont .ui-button,
+.portalSchedule .ui-button {
+    border: solid 1px #222222 !important;
+    color: #222222;
+}
+
+#portalCont .ui-chkbox-box, #portalCont .ui-radiobutton-box {
+    /*background: #ffffff !important;*/
+    border: solid 1px #8f8f8f;
+}
+
+#portalCont .ui-selectonebutton .ui-button {
+    color: #cccccc;
+}
+
+#portalCont .ui-button.cpBtn {
+    /*border: solid 1px #b15b1d !important;*/
+    border: solid 1px #005882 !important;
+}
+
+#portalCont .ui-button.cpBtnNew {
+    background: #cc0000;
+    border: solid 1px #cc0000 !important;
+    color: #ffffff;
+}
+
+#portalCont  .ui-selectonebutton .ui-button.ui-state-active {
+    background: #dddddd !important;
+    color: #222222;
+}
+
+/* 学修ポートフォリオボタン（追加） */
+#portalCont .btnPortfolio {
+    border: solid 1px #2e8b57 !important;
+    position: absolute;
+    right: 0;
+    top: 0.25em;
+    z-index: 1;
+}
+
+#portalCont .ui-button.btnPortfolio span::before {
+    color: #32cd32 !important;
+}
+
+/*===== メインコンテンツ（メインエリア） =====*/
+
+.portalMain {
+    /*margin-left: 315px;*/
+    /*margin-left: 24%;*/
+    margin-left: 27%;
+    position: relative;
+}
+
+.portalMain h3 {
+    border-bottom: solid 1px #683e29;
+    overflow: hidden;
+}
+
+.portalMain h3 .portalTitle {
+    /*background: #683e29;*/ /* カラーテーマでの指定 */
+    /*color: #ffffff;*/ /* カラーテーマでの指定 */
+    display: inline-block;
+    float: left;
+    /*float: right;*/
+    height: 1.8em;
+    line-height: 1.8;
+    text-align: center;
+    width: 120px;
+}
+
+/* 日付エリア */
+
+#portalDate {
+    margin: 10px 0 15px 0;
+    position: relative;
+}
+
+#portalDate .dateDisp {
+    /*color: #3b79b7;*/ /* 文字色はテーマ別に設定 */
+    font-family: 'ARIAL BLACK', ARIAL; /* Win,Mac共通書体 */
+    font-size: 2.2em;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #eeeeee, 2px 2px 0px #707070;
+}
+
+/* 終日エリア */
+
+.myscheduleArea {
+    background: #e2f2f7 !important;
+    margin-top: 5px;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+.myscheduleArea > .ui-panel-content {
+    background: #e2f2f7 !important;
+}
+
+#portalSchedule1 .myscheduleArea {
+    border-bottom: dotted 1px #222222;
+    /*padding: 10px 10px;*/
+}
+
+#portalSchedule2 .myscheduleArea {
+    border-bottom: dotted 1px #222222;
+    padding: 0;
+}
+
+.ourscheduleArea {
+    background: #e5e5e5 !important;
+    border-bottom: dotted 1px #222222 !important;
+    margin-top: 5px;
+    padding: 10px 10px;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+.ourscheduleArea .ui-commandlink {
+    font-size: 1.1em !important;
+}
+
+/* 時間割エリア */
+
+#portalSchedule2 h3 {
+    margin-top: 5px;
+}
+
+#portalLessonList .lessonBtnArea, #portalSchedule2 .lessonBtnArea {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    min-width: auto;
+}
+
+#portalLessonList .lessonArea, #portalSchedule2 .lessonArea {
+    background: #f7f7f7;
+    border-bottom: dotted 1px #222222;
+    margin-top: 5px;
+    /* padding: 10px 10px; */
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+#portalKeijiban h2 {
+    margin-top: 10px;
+}
+
+#portalKeijiban h3 {
+    margin-top: 5px;
+}
+
+#portalKeijiban li {
+    margin-top: 5px;
+    min-height: 2.1em;
+    overflow: hidden;
+}
+
+.booleanButtonInfo {
+    display: inline-block;
+    padding-top: 3px;
+}
+
+/* BooleanButton位置調整　*/
+.keijiBooleanBtn {
+    float: right;
+    position: relative;
+    /*top: -3px;*/
+}
+
+.lessonHead, .myscheduleHead {
+    border-bottom: dashed 1px #222222;    
+    margin-bottom: 5px;
+}
+
+/* メモ入力エリア */
+.lessonMemoArea {
+    margin: 0 0 0 25px;
+}
+
+.lessonMemoArea .ui-inputfield {
+    width: 85%;
+}
+
+/* 授業種別 */
+#portalSchedule2 .lessonType {
+    font-size: 1.4em;
+    margin-left:8px;
+}
+
+/*===== メインコンテンツ（インフォメーション、リンク） =====*/
+
+.portalSub  {
+    float: left;
+    /*width: 300px;*/
+    /*width: 23%;*/
+    width: 26%;
+}
+
+.portalSub .portalSubDetail {
+    background: #f5f5f5 !important;
+    border-radius: 0;
+    min-height: 100px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 10px 8px !important;
+}
+
+.portalSub .portalSubDetail .ui-panel-content {
+    padding: 0;
+}
+
+.portalSub .marginTop {
+    margin-top: 10px;
+}
+
+.portalSub .linkArea .ui-datalist-item {
+    padding-bottom: 5px;
+}
+
+.portalSub .linkArea i {
+    position: relative;
+    margin-right: 2px;
+    top: 3px;
+}
+
+/*======================================================
+ * 月間スケジュール
+======================================================*/
+
+.portalSchedule {
+    margin: 0 auto;
+    width: 98%;
+}
+
+.portalSchedule .fc th, .portalSchedule .fc td {
+    border-width: 0;
+}
+
+.portalSchedule .fc-month-view table tbody tr > .ui-widget-content {
+    border: solid 1px #222222 !important;
+}
+
+.portalSchedule .fc-view-container {
+    border-top: solid 1px #222222;
+}
+
+.portalSchedule .ui-widget-header th {
+    font-size: 1.2em;
+}
+
+.portalSchedule .ui-widget-content .ui-state-highlight {
+    background: #fff6d2 !important;
+}
+
+.portalSchedule .fc-day-number {
+    padding-left: 5px !important;
+    text-align: left !important;
+}
+
+.portalSchedule .fc-day {
+    background: #ffffff !important;
+    border: solid 1px #222222 !important;
+    cursor: pointer;
+}
+
+.portalSchedule .fc-other-month {
+    background: #f5f5f5 !important;
+    cursor: default;
+}
+/*
+.portalSchedule .fc-toolbar .fc-right .fc-button-group {
+    display: none;
+}
+*/
+
+/* 
+.portalSchedule .fc-toolbar .fc-left {
+    position: absolute;
+    right: 0;
+}
+*/
+.portalSchedule .fc-toolbar .fc-center h2 {
+    background: #aaaaaa;
+    border: none !important;
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 5px 36px;
+}
+
+.portalSchedule .fc-day-header {
+    color: #222222 !important;
+    padding-left: 5px;
+    text-align: left;
+}
+
+.portalSchedule .fc-sun {
+    color: #eb7988 !important;
+}
+
+.portalSchedule .fc-sat {
+    color: #1987e5 !important;
+}
+
+.portalSchedule .fc-today {
+    border-top: solid 1px #222222 !important;
+    border-right: solid 1px #222222 !important;
+    border-left: solid 1px #222222 !important;
+}
+
+.portalSchedule .fc-button-group button {
+    margin-left: 2px;
+}
+
+.portalSchedule .fc-content {
+    text-overflow: ellipsis;
+}
+
+/* 月表示、提出期限アイコン */
+.portalSchedule .fc-event-container {
+    position: relative;
+}
+
+.portalSchedule .scdlDailyIcon {
+    background: transparent;
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: -1.8em;
+}
+
+.portalSchedule .scdlDailyIcon .fc-title {
+    color: #222222;
+    font-size: 1.4em;
+}
+
+.portalSchedule .scdlDailyIcon .fc-title::before {
+    font-family: FontAwesome;
+    color: #005882;
+    content: "\f19d";
+}
+
+/*======================================================
+ * スケジュール編集（フロート）
+======================================================*/
+
+/* classの指定が無効となるため、idにて適用させるように変更 */
+
+/*.portalDialog,*/
+div[id*="bsa00501"].ui-dialog,
+div[id*="bsa00601"].ui-dialog,
+div[id*="bsa00701"].ui-dialog,
+div[id*="bsa01001"].ui-dialog {
+    background: #ffffff !important;
+}
+
+/*.portalDialog p,*/
+div[id*="bsa00501"].ui-dialog p,
+div[id*="bsa00601"].ui-dialog p,
+div[id*="bsa00701"].ui-dialog p,
+div[id*="bsa01001"].ui-dialog p {
+    margin-top: 10px;
+}
+
+/*.portalDialog .scheduleRepeatInputArea dt, .portalDialog .scheduleRepeatInputArea dd,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dt, div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dd,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dt, div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dd,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dt, div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dd,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dt, div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dd  {
+    margin-top: 10px;
+}
+
+/*.portalDialog .ui-dialog-titlebar,*/
+div[id*="bsa00501"].ui-dialog .ui-dialog-titlebar,
+div[id*="bsa00601"].ui-dialog .ui-dialog-titlebar,
+div[id*="bsa00701"].ui-dialog .ui-dialog-titlebar,
+div[id*="bsa01001"].ui-dialog .ui-dialog-titlebar {
+    background: #ffffff;
+    color: #222222;
+}
+
+/*.portalDialog .ui-dialog-titlebar .ui-dialog-title,*/
+div[id*="bsa00501"].ui-dialog .ui-dialog-titlebar .ui-dialog-title,
+div[id*="bsa00601"].ui-dialog .ui-dialog-titlebar .ui-dialog-title,
+div[id*="bsa00701"].ui-dialog .ui-dialog-titlebar .ui-dialog-title,
+div[id*="bsa01001"].ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+    font-size: 1.4em;
+    left: 20px;
+    position: relative;
+    top: 10px;
+}
+
+/*.floatDispPortal,*/
+div[id*="bsa00501"].ui-dialog .floatDispPortal,
+div[id*="bsa00601"].ui-dialog .floatDispPortal,
+div[id*="bsa00701"].ui-dialog .floatDispPortal,
+div[id*="bsa01001"].ui-dialog .floatDispPortal {
+    /*height: 600px;*/
+    /*width: 540px !important;*/
+    padding: 10px 20px 20px 20px;
+}
+
+/*.floatDispPortal .ui-inputtext, .floatDispPortal .ui-inputtextarea,*/
+div[id*="bsa00501"].ui-dialog .floatDispPortal .ui-inputtext, div[id*="bsa00501"].ui-dialog .floatDispPortal .ui-inputtextarea,
+div[id*="bsa00601"].ui-dialog .floatDispPortal .ui-inputtext, div[id*="bsa00601"].ui-dialog .floatDispPortal .ui-inputtextarea,
+div[id*="bsa00701"].ui-dialog .floatDispPortal .ui-inputtext, div[id*="bsa00701"].ui-dialog .floatDispPortal .ui-inputtextarea,
+div[id*="bsa01001"].ui-dialog .floatDispPortal .ui-inputtext, div[id*="bsa01001"].ui-dialog .floatDispPortal .ui-inputtextarea {
+    width: 95%;
+}
+
+/*.floatDispPortal .ui-chkbox-box, .floatDispPortal .ui-radiobutton-box,*/
+div[id*="bsa00501"].ui-dialog .floatDispPortal .ui-chkbox-box, div[id*="bsa00501"].ui-dialog .floatDispPortal .ui-radiobutton-box,
+div[id*="bsa00601"].ui-dialog .floatDispPortal .ui-chkbox-box, div[id*="bsa00601"].ui-dialog .floatDispPortal .ui-radiobutton-box,
+div[id*="bsa00701"].ui-dialog .floatDispPortal .ui-chkbox-box, div[id*="bsa00701"].ui-dialog .floatDispPortal .ui-radiobutton-box,
+div[id*="bsa01001"].ui-dialog .floatDispPortal .ui-chkbox-box, div[id*="bsa01001"].ui-dialog .floatDispPortal .ui-radiobutton-box {
+    background: #ffffff !important;
+    border: solid 1px #8f8f8f;
+}
+
+/*.floatDispPortal .ui-selectonebutton .ui-state-default,*/
+div[id*="bsa00501"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-default,
+div[id*="bsa00601"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-default,
+div[id*="bsa00701"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-default,
+div[id*="bsa01001"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-default {
+    background: #eeeeee;
+    border: solid 1px #8f8f8f;
+}
+
+/*.floatDispPortal .ui-selectonebutton .ui-state-active,*/
+div[id*="bsa00501"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-active,
+div[id*="bsa00601"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-active,
+div[id*="bsa00701"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-active,
+div[id*="bsa01001"].ui-dialog .floatDispPortal .ui-selectonebutton .ui-state-active {
+    background: #ffffff;
+}
+
+div[id*="bsa00501"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel,
+div[id*="bsa00601"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel,
+div[id*="bsa00701"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel,
+div[id*="bsa01001"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel {
+    border: 0;
+}
+
+div[id*="bsa00501"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel .ui-panel-content,
+div[id*="bsa00601"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel .ui-panel-content,
+div[id*="bsa00701"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel .ui-panel-content,
+div[id*="bsa01001"].ui-dialog .floatDispPortal .scheduleMainInputArea .ui-panel .ui-panel-content {
+    padding: 0.5em 0;
+}
+
+/*.scheduleRepeatInputArea,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea {
+    background: #f5f5f5 !important;
+    overflow: hidden;
+    padding: 0 10px 10px 10px;
+    border-radius: 0;
+    border: 0;
+}
+
+/*.scheduleRepeatInputArea, .scheduleMemoInputArea,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea, div[id*="bsa00501"].ui-dialog .scheduleMemoInputArea,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea, div[id*="bsa00601"].ui-dialog .scheduleMemoInputArea,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea, div[id*="bsa00701"].ui-dialog .scheduleMemoInputArea,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea, div[id*="bsa01001"].ui-dialog .scheduleMemoInputArea {
+    margin-top: 5px;
+}
+
+/*.scheduleRepeatInputArea dl,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dl,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dl,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dl,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dl {
+    /*width:550px;*/
+}
+
+/*.scheduleRepeatInputArea dt,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dt,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dt,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dt,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dt {
+    clear: left;
+    float: left;
+    width: 90px;
+}
+
+/*.scheduleRepeatInputArea dd,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dd,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dd,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dd,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dd {
+    float: left;
+}
+
+/*.scheduleMainInputArea dt::after, .scheduleMemoInputArea dt::after,*/
+div[id*="bsa00501"].ui-dialog .scheduleMainInputArea dt::after, div[id*="bsa00501"].ui-dialog .scheduleMemoInputArea dt::after,
+div[id*="bsa00601"].ui-dialog .scheduleMainInputArea dt::after, div[id*="bsa00601"].ui-dialog .scheduleMemoInputArea dt::after,
+div[id*="bsa00701"].ui-dialog .scheduleMainInputArea dt::after, div[id*="bsa00701"].ui-dialog .scheduleMemoInputArea dt::after,
+div[id*="bsa01001"].ui-dialog .scheduleMainInputArea dt::after, div[id*="bsa01001"].ui-dialog .scheduleMemoInputArea dt::after {
+    content: ":";
+}
+
+/*.scheduleRepeatInputArea dd::before,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dd::before,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dd::before,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dd::before,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dd::before {
+    content: ": ";
+}
+
+/*.scheduleRepeatInputArea dd table,*/
+div[id*="bsa00501"].ui-dialog .scheduleRepeatInputArea dd table,
+div[id*="bsa00601"].ui-dialog .scheduleRepeatInputArea dd table,
+div[id*="bsa00701"].ui-dialog .scheduleRepeatInputArea dd table,
+div[id*="bsa01001"].ui-dialog .scheduleRepeatInputArea dd table {
+    display: inline-block;
+}
+
+/*.scheduleBtnArea,*/
+div[id*="bsa00501"].ui-dialog .scheduleBtnArea,
+div[id*="bsa00601"].ui-dialog .scheduleBtnArea,
+div[id*="bsa00701"].ui-dialog .scheduleBtnArea,
+div[id*="bsa01001"].ui-dialog .scheduleBtnArea {
+    padding-top: 20px;
+    position: relative;
+    text-align: center;
+}
+
+/*.scheduleBtnArea .ui-button,*/
+div[id*="bsa00501"].ui-dialog .scheduleBtnArea .ui-button,
+div[id*="bsa00601"].ui-dialog .scheduleBtnArea .ui-button,
+div[id*="bsa00701"].ui-dialog .scheduleBtnArea .ui-button,
+div[id*="bsa01001"].ui-dialog  {
+    border: solid 1px #222222 !important;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #222222;
+}
+
+/*.scheduleBtnArea .ui-state-default,*/
+div[id*="bsa00501"].ui-dialog .scheduleBtnArea .ui-state-default,
+div[id*="bsa00601"].ui-dialog .scheduleBtnArea .ui-state-default,
+div[id*="bsa00701"].ui-dialog .scheduleBtnArea .ui-state-default,
+div[id*="bsa01001"].ui-dialog .scheduleBtnArea .ui-state-default {
+    background: #ffffff;
+}
+
+/*.scheduleDelBtn,*/
+div[id*="bsa00501"].ui-dialog .scheduleDelBtn,
+div[id*="bsa00601"].ui-dialog .scheduleDelBtn,
+div[id*="bsa00701"].ui-dialog .scheduleDelBtn,
+div[id*="bsa01001"].ui-dialog .scheduleDelBtn {
+    left: 0;
+    position: absolute !important;
+}
+
+/* dialog内コンテンツ */
+div[id*="bsa00501"].ui-dialog .ui-widget-content,
+div[id*="bsa00601"].ui-dialog .ui-widget-content,
+div[id*="bsa00701"].ui-dialog .ui-widget-content,
+div[id*="bsa01001"].ui-dialog .ui-widget-content {
+    background: transparent;
+    /*background: #ffffff !important;*/
+    color: initial !important;
+}
+
+.ui-dialog-content.ui-widget-content {
+    background: transparent !important;
+}
+
+/*======================================================
+ * Advanced検索
+======================================================*/
+
+.advancedSearchArea .searchItem dt {
+    background: #eeeeee !important;
+}
+
+#funcContent .advancedSearchArea .ui-button .fa {
+    position: absolute;
+    top: auto;
+    bottom: .4em;
+}
+
+.advancedSearchArea .advSaveConditions {
+    margin-bottom: 5px;
+}
+
+#portalCont .advancedSearchArea .advSaveConditions .ui-accordion-content {
+    background: #fefefe;
+    border: dotted 1px #dddddd;
+}
+
+#portalCont .advSaveConditions h3.ui-state-default {
+    background: #bbbbbb;
+    color: #ffffff;
+}
+
+.advancedSearchArea .ui-datatable th {
+    background: #eeeeee !important;
+    color: #222222;
+}
+
+.advancedSearchArea .ui-datatable th, .advancedSearchArea .ui-datatable td {
+    border: solid 1px #8f8f8f;
+}
+
+#portalCont .advancedSearchArea .ui-datatable .ui-paginator {
+    background: #bbbbbb;
+    /*border: solid 1px #8f8f8f;*/
+}
+
+#portalCont .advancedSearchArea .ui-datatable .ui-paginator .ui-state-default {
+    border: solid 1px #dddddd;
+}
+
+#portalCont .advancedSearchArea .ui-datatable .ui-paginator-current {
+    color: #ffffff;
+    font-weight: normal;
+}
+
+#portalCont .advancedSearchArea .ui-datatable .ui-paginator-top {
+    border-bottom: 0;
+}
+
+#portalCont .advancedSearchArea .ui-datatable .ui-paginator-bottom {
+    border-top: 0;
+}
+
+#portalCont .advancedSearchArea .ui-fieldset.ui-widget-content, #portalCont .advancedSearchArea .ui-fieldset .ui-fieldset-legend {
+    border: solid 1px #8f8f8f  !important;
+    color: #222222;
+}
+
+#portalCont .advancedSearchArea .ui-selectonemenu {
+    border: 0;
+}
+
+#portalCont .advancedSearchArea .ui-selectonemenu-trigger {
+    background: #dddddd;
+    border-left: #8f8f8f;
+}
+
+/* これ以下はAdvanced検索だけでなく全体 */
+
+#mainWrapBottomPortal .ui-button span::before {
+    color: #222222 !important;
+}
+
+/*======================================================
+ * コンファームダイアログ
+======================================================*/
+
+.ui-confirm-dialog {
+    background: #ffffff !important;
+}
+
+/*
+.ui-confirm-dialog .ui-dialog-titlebar {
+    background: #ffffff;
+    color: #222222;
+}
+*/
+
+.ui-confirm-dialog .ui-dialog-content, .ui-confirm-dialog .ui-dialog-footer {
+    background: #ffffff;
+}
+
+.ui-confirm-dialog .ui-button {
+    border: solid 1px #222222 !important;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #222222;
+}
+
+.ui-confirm-dialog .ui-state-default {
+    background: #ffffff;
+}
+
+.ui-confirm-dialog .ui-button-text-icon-left .ui-button-text {
+    width: auto;
+}
+
+.ui-confirm-dialog.ui-dialog .ui-dialog-buttonpane {
+    margin: .5em 1em .5em 1em !important;
+}
+
+.ui-confirm-dialog .ui-confirm-dialog-message {
+    position: relative;
+    top: -10px;
+}
+
+/*======================================================
+ * 新規追加スタイル
+======================================================*/
+
+/*===== 文字アイコン =====*/
+
+/* 機能名共通 */
+.signPortal {
+    background: #ffffff;
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 0.9em;
+    margin: 0 5px 5px 0;
+    overflow: hidden;
+    /*padding: 0 8px;*/
+    text-align: center;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    min-width: 9em;
+    white-space: nowrap;
+}
+
+/* 掲示 */
+.signPortalKeiji {
+    border: solid 2px #cc0000;
+    letter-spacing: 1.5em;
+    text-indent: 1.5em;
+}
+
+/* 掲示 
+   英語の場合は、文字間隔をもどす
+*/
+.signPortalKeijiEnglish {
+    border: solid 2px #cc0000;
+}
+
+/* 未入力シラバス */
+.signPortalSirabasu {
+    border: solid 2px #f00ff0;
+}
+
+/* 未入力成績 */
+.signPortalMiseiseki {
+    border: solid 2px #1987e5;
+}
+
+/* アンケート */
+.signPortalEnquete {
+    border: solid 2px #b27246;
+}
+
+/* 授業評価 */
+.signPortalJugyohyoka {
+    border: solid 2px #1f9a3a;    
+}
+
+/* 時間割変更 */
+.signPortalChange {
+    border: solid 2px #1987e5;    
+}
+
+/* 試験実施調査 */
+.signPortalShikenjisshi {
+    border: solid 2px #777777;    
+}
+
+/* 課題 */
+.signPortalKadai {
+    border: solid 2px #005882; 
+    letter-spacing: 1.5em;
+    text-indent: 1.5em;
+}
+
+/* プロジェクト課題 */
+.signPortalPjKadai {
+    border: solid 2px #005882; 
+}
+
+/* コース課題 */
+.signPortalCoursekadai {
+    border: solid 2px #005882;    
+}
+
+/* コース */
+.signPortalCourse {
+    /*border: solid 2px #caf564;*/
+    border: solid 2px #005882;    
+}
+
+/* テスト */
+.signPortalTest {
+    /*border: solid 2px #ffb74c;*/    
+    border: solid 2px #005882;    
+}
+
+/* コーステスト */
+.signPortalCourseTest {
+    /*border: solid 2px #ffb74c;*/    
+    border: solid 2px #005882;    
+}
+
+/* 就活記録未報告、進路先未決定、進路希望未登録、就職活動  */
+.signPortalJobhunting {
+    border: solid 2px #ff8150;    
+}
+
+/* 授業ステータス共通 */
+.signLesson {
+    box-sizing: border-box;
+    border-radius: 3px;
+    display: inline-block;
+    margin-left:8px;
+    padding: 1px 0;
+    position: relative;
+    bottom: 3px;
+    text-align: center;
+    width: 6em;
+}
+
+/* 休講 */
+.signLessonRest {
+    background: #cc0000;
+    color: #ffffff;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+}
+
+/* 教室変更 */
+.signLessonChangeroom {
+    background: #ffe77a;
+    color: #222222;
+}
+
+/* 補講 */ 
+.signLessonSupple {
+    background: #1987e5;
+    color: #ffffff;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+}
+
+/* 隔週 */ 
+.signLessonBiweekly {
+    background: #777777;
+    color: #ffffff;
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+}
+
+/* 取消申請中（教室予約） */ 
+.signRoomCancel {
+    background: #ff9933;
+    color: #ffffff;
+}
+
+/* 取消否認済（教室予約） */ 
+.signRoomReject {
+    background: #ffcc99;
+    color: #222222;
+}
+
+/* 試験（定期試験、追試験、再試験） */ 
+.signTest {
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: solid 1px #b94a48;
+    bottom: 3px;
+    color: #333333;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-left: 8px;
+    padding: 1px 8px;
+    position: relative;
+    text-align: center;
+}
+
+/* 教室予約共通 */
+.signRoomRsv {
+    box-sizing: border-box;
+    border-radius: 3px;
+    display: inline-block;
+    margin-left:8px;
+    padding: 1px 0;
+    position: relative;
+    bottom: 3px;
+    text-align: center;
+    width: 6em;
+}
+
+.roomRsvHead {
+    border-bottom: dashed 1px #222222;    
+    margin-bottom: 5px;
+}
+
+.roomRsvDetail {
+    margin: 5px 20px 10px 25px;
+}
+
+/*===== スケジュール色分け =====*/
+
+/* 共通設定 */
+.fc-title {
+    margin: 0 3px;
+}
+
+/* 時間指定時の共通設定 */
+.eventDuring {
+    /*background: transparent;*/
+    background: #ffffff;
+    border: solid 2px #dddddd !important;
+}
+
+/* 時間指定時かつ複数日の共通設定 */
+.eventMulti {
+    background-color: #ffffff;
+    border: solid 2px #dddddd !important;
+}
+
+/* 授業情報 */
+.eventJugyo{
+    cursor: default;
+}
+.eventJugyo, .eventJugyo .fc-time, .eventJugyo .fc-title {
+    color: #222222 !important;
+}
+
+/* 休日イベント */
+.eventEvent {
+    cursor: pointer;
+}
+.eventEvent, .eventEvent .fc-time, .eventEvent .fc-title {
+    color: #3cb371 !important;
+}
+
+/* マイスケジュール */
+.eventMyself {
+    cursor: pointer;
+}
+.eventMyself, .eventMyself .fc-time, .eventMyself .fc-title {
+    color: #6495ed !important;
+}
+
+/* オフィスアワー */
+.eventOffice {
+    cursor: pointer;
+}
+.eventOffice, .eventOffice .fc-time, .eventOffice .fc-title {
+    color: #fa8072 !important;
+}
+
+/* 教室予約 */
+.eventRoomRsv {
+    /*cursor: pointer;*/
+    cursor: default;
+
+}
+
+.eventRoomRsv, .eventRoomRsv .fc-time, .eventRoomRsv .fc-title {
+    color: #994c00 !important;
+}
+
+/* セミナー */
+.eventSeminar {
+    /*cursor: pointer;*/
+    cursor: default;
+}
+
+.eventSeminar, .eventSeminar .fc-time, .eventSeminar .fc-title {
+    color: #ff8150 !important;
+}
+
+/* 授業情報（終日） */
+.eventJugyoAd {
+    border: 2px solid #222222;
+    background-color: #222222;
+    cursor: default;
+}
+
+.eventJugyoAd .fc-title {
+    color: #ffffff;
+}
+
+/* 休日イベント（終日） */
+.eventEventAd {
+    border: 2px solid #3cb371;
+    background-color: #3cb371;
+    cursor: pointer;
+}
+
+.eventEventAd .fc-title {
+    color: #ffffff;
+}
+
+/* 掲示情報（終日） */
+.eventKeijiAd {
+    border: 2px solid #cc0000;
+    background-color: #cc0000;
+    cursor: pointer;
+}
+
+.eventKeijiAd .fc-title {
+    color: #ffffff;
+}
+
+/* マイスケジュール（終日） */
+.eventMyselfAd {
+    border: 2px solid #6495ed;
+    background-color: #6495ed;
+    cursor: pointer;
+}
+
+.eventMyselfAd .fc-title {
+    color: #ffffff;
+}
+
+/* オフィスアワー（終日） */
+.eventOfficeAd {
+    border: 2px solid #fa8072;
+    background-color: #fa8072;
+    cursor: pointer;
+}
+
+.eventOfficeAd .fc-title {
+    color: #ffffff;
+}
+
+/* セミナー（終日） */
+.eventSeminarAd {
+    border: 2px solid #ff8150;
+    background-color: #ff8150;
+    /*cursor: pointer;*/
+    cursor: default;
+}
+
+.eventSeminarAd .fc-title {
+    color: #ffffff;
+}
+
+/*===== スケジュール非公開アイコン =====*/
+
+/* 非公開 */
+.eventPrivate .fc-title::after {
+    content: 'H';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    position: relative;
+    top: -1px;
+    left: 2px;
+}
+
+/* 非公開（終日） */
+.eventPrivateAd .fc-title::after {
+    content: 'H';
+    color: #ffffff;
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    position: relative;
+    top: -1px;
+    left: 2px;
+}
+
+/*===== その他アイコン =====*/
+
+/* New */
+.newInfo::after {
+    /*content: url('../images/new.png');*/
+    content: url('../images/new.gif');
+    position: relative;
+    top: 0.1em;
+}
+
+/* 前週 */
+.lastweek span::before {
+    content: 'E';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    margin-right: 3px;
+    position: relative;
+    top: 2px;
+}
+
+/* 前日、翌月 */
+.lastday span::before {
+    content: 'F';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    margin-right: 3px;
+    position: relative;
+    top: 2px;
+}
+
+/* 翌週 */
+.nextweek span::after {
+    content: 'G';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    margin-left: 3px;
+    position: relative;
+    top: 2px;
+}
+
+/* 翌日、翌月 */
+.nextday span::after {
+    content: '?';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    margin-left: 3px;
+    position: relative;
+    top: 2px;
+}
+
+/*===== インフォメーションイメージボタン =====*/
+
+.infoBtn {
+    /*float: left;*/
+    display: inline-block;
+    margin:5px;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    width: 66px;
+}
+
+.infoBtn span {
+    /*display: inline-block;*/
+    /*line-height: 1.3;*/
+    /*word-wrap: break-word;*/ 
+    /*overflow-wrap: break-word;*/ 
+}
+
+.infoIcon {
+    height: 64px;
+    width: 64px;
+}
+
+/* 掲示情報 */
+.infoKeiji {
+    background:url('../images/imgInfoKeiji.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 時間割変更情報 */
+.infoTimetable {
+    background:url('../images/imgInfoTimetable.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* QA登録 */
+.infoQA {
+    background:url('../images/imgInfoQA.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* GET */
+.infoStudy {
+    background:url('../images/imgInfoStudy.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* マイステップ登録 */
+.infoMystep {
+    background:url('../images/imgInfoMystep.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/*クラスプロファイル */
+.infoClassprofile {
+    background:url('../images/imgInfoClassprofile.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 掲示登録（申請/承認） */
+.approvalKeiji {
+    background:url('../images/imgApprovalKeiji.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* アンケート作成（申請/承認） */
+.approvalInquiry {
+    background:url('../images/imgApprovalInquiry.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 時間割変更（申請/承認） */
+.approvalTimetable {
+    background:url('../images/imgApprovalTimetable.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 学籍情報変更（申請/承認） */
+.approvalStudentinfo {
+    background:url('../images/imgApprovalStudentinfo.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 希望資格（申請/承認） */
+.approvalLicense {
+    background:url('../images/imgApprovalLicense.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 教室予約（申請/承認） */
+.approvalRoom {
+    background:url('../images/imgApprovalRoom.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* QA回答 */
+.approvalQA {
+    background:url('../images/imgApprovalQA.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* マイステップフォロー */
+.approvalMystep {
+    background:url('../images/imgApprovalMystep.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/* 就職活動 */
+.approvalJobhunting {
+    background:url('../images/imgApprovalJobhunting.png') no-repeat center center;
+    background-size: 80%;
+}
+
+/*===== ローディングアニメーション =====*/
+
+.col-sm-2 {
+    position: relative;
+    height: 125px;
+}
+
+.sp {
+    width: 32px;
+    height: 32px;
+    clear: both;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+/* Spinner 3Balls Scale */
+.sp-3balls, .sp-3balls:before, .sp-3balls:after {
+  border-radius: 50%;
+  background-color: #000;
+  width: 18px;
+  height: 18px;
+  transform-origin: center center;
+  display: inline-block;
+}
+
+.sp-3balls {
+  position: relative;
+  background-color: black;
+  opacity: 1;
+  -webkit-animation: spScaleAlpha 1s infinite linear;
+  animation: spScaleAlpha 1s infinite linear;
+}
+
+.sp-3balls:before, .sp-3balls:after {
+  content: '';
+  position: relative;
+  opacity: 0.25;
+}
+
+.sp-3balls:before {
+  left: 30px;
+  top: 0px;
+  -webkit-animation: spScaleAlphaBefore 1s infinite linear;
+  animation: spScaleAlphaBefore 1s infinite linear;
+}
+
+.sp-3balls:after {
+  left: -30px;
+  top: -23px;
+  -webkit-animation: spScaleAlphaAfter 1s infinite linear;
+  animation: spScaleAlphaAfter 1s infinite linear;
+}
+
+@-webkit-keyframes spScaleAlpha {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.25;
+  }
+  66% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes spScaleAlpha {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.25;
+  }
+  66% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes spScaleAlphaBefore {
+  0% {
+    opacity: 0.25;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.25;
+  }
+}
+@keyframes spScaleAlphaBefore {
+  0% {
+    opacity: 0.25;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 0.25;
+  }
+}
+@-webkit-keyframes spScaleAlphaAfter {
+  33% {
+    opacity: 0.25;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+@keyframes spScaleAlphaAfter {
+  33% {
+    opacity: 0.25;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+
+/*===== その他 =====*/
+
+/* 文言表示（日付） */
+.textDate {
+    color: #777777;
+}
+
+/* 文言表示（タイトル） */
+.textTitle {
+    color: #222222;
+    font-weight: bold;
+}
+
+/* 文言表示（送信元） */
+.textFrom {
+    color: #777777;
+}
+
+/* 文言表示（期限） */
+.textLimitdate {
+    color: #cc0000;    
+}
+
+.dateBtnArea {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* 時間帯 */
+.period {
+    font-size: 1.2em;
+    /*font-size: 1.3em;*/
+}
+
+/* 出席率 */
+.lessonAttend {
+    display: inline-block;
+    float: right;
+    padding-top: 5px;
+}
+
+/*
+.lessonAttend::before {
+    content: "出席率：";
+}
+*/
+
+/*
+.lessonAttend::after {
+    content: "%";
+}
+*/
+
+.lessonMain {
+    position: relative;
+}
+
+/* 授業科目名称 */
+.lessonTitle {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 65%;
+}
+
+.lessonTitle::before {
+    content: 'Q';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+/* 教室予約名称 */
+.roomRsvTitle {
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 65%;
+}
+
+.roomRsvTitle::before {
+    content: 'U';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+/* マイスケジュール名称 */
+.myscheduleMain .ui-commandlink {
+    font-size: 1.2em !important;
+}
+
+.myscheduleMain::before {
+    content: 'C';
+    font-family: unipa_pc;
+    font-size: 1.8em;
+    margin-right: 5px;
+}
+
+/* 全体スケジュール名称 */
+.ourshceduleTitle .ui-commandlink {
+    font-size: 1.1em !important;
+}
+
+/* イベント */
+.ourshceduleTitle::before {
+    content: 'D';
+    font-family: unipa_pc;
+    font-size: 1.8em;
+    margin-right: 5px;
+}
+
+/* 祝祭日 */
+.publicHolidayTitle::before {
+    content: 'O';
+    font-family: unipa_pc;
+    font-size: 1.8em;
+    margin-right: 5px;
+}
+
+/* 掲示 */
+.keijiTitle::before {
+    content: 'S';
+    font-family: unipa_pc;
+    font-size: 1.8em;
+    margin-right: 5px;
+}
+
+/* 学校指定休日 */
+.scheduledLeaveTitle::before {
+    content: 'P';
+    font-family: unipa_pc;
+    font-size: 1.8em;
+    margin-right: 5px;
+}
+
+/* オフィスアワー */
+.officehours::before {
+    content: 'T';
+    font-family: unipa_pc;
+    font-size: 1.8em;
+    margin-right: 5px;
+}
+
+/* オフィスアワー名称 */
+.officehours .ui-commandlink {
+    font-size: 1.2em !important;
+}
+
+/* 非公開 */
+.schedulePrivate::after {
+    content: 'H';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    position: relative;
+    top: -1px;
+    left: 4px;
+}
+
+/* セミナー */
+.seminarTitle::before {
+    content: "\f1e7";
+    font-family: fontawesome;
+    font-size: 1.2em;
+    margin-right: 7px;
+}
+
+/* セミナー名称 */
+.seminarTitle .ui-commandlink {
+    font-size: 1.2em !important;
+}
+
+/* 授業詳細 */
+.lessonDetail {
+    margin: 5px 20px 10px 25px;
+}
+
+.lessonKeijiArea {
+    margin: 5px 20px 5px 25px;
+}
+
+.lessonSeparator {
+    border: none !important;
+    border-bottom: dotted 1px #683e29 !important;
+    margin: 0 10px;
+}
+
+/* カレンダーの入力エリア非表示 */
+#portalDate .hasDatepicker {
+    display: none;
+}
+
+/* 新着丸数字 */
+.newNumber {
+    background: #cc0000;
+    border-radius: 50%;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1em;
+    height: 1.6em;
+    line-height: 1.6em;
+    position: absolute;
+    right: -5px;
+    top: -3px;
+    width: 1.6em;
+}
+
+/* もっと見る、元に戻す */
+.moreRead, .returnNormal {
+    padding: 0 5px;
+}
+
+/* タブパネルボックス定義 */
+#portalSupport .ui-tabs-panel {
+    max-height: 300px;
+    overflow: auto;
+}
+
+/* 日表示・非公開 */
+.lessonPrivate .ui-commandlink::after {
+    content: 'H';
+    font-family: unipa_pc;
+    font-size: 1.2em;
+    position: relative;
+    top: -2px;
+    left: 2px;
+}
+
+/* カレンダーボタン差し替え */
+.ctrl-calendarArea .ui-datepicker-trigger::before {
+    content: "\f073";
+    font-family: "fontAwesome";
+    font-size: 1.2em;
+    position: absolute;
+    bottom: 0.2em;
+    left: 0.5em;
+}
+
+@media all and (-ms-high-contrast:none){ /* CSS hack (IE11) */
+    .ctrl-calendarArea .ui-datepicker-trigger::before {
+        bottom: 0.15em;
+    }
+}
+
+.ctrl-calendarArea .ui-datepicker-trigger .ui-icon-calendar {
+    display: none;
+}
+
+/*======================================================
+ * PFバグ対応
+======================================================*/
+
+/* IEで子画面上でのscheduleの最下部ボーダーが消える件 */
+@media all and (-ms-high-contrast:none) {
+    .fc-view-container *, .fc-view-container *::before, .fc-view-container *::after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+
+/* Firefoxで子画面上でのscheduleの最下部ボーダーが消える件 */
+@-moz-document url-prefix() {
+    .fc-view-container *, .fc-view-container *::before, .fc-view-container *::after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
