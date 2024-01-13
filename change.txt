@@ -53,3 +53,4 @@ NameVirtualHost http://192.168.3.21/:80
  ServerName potal.ushirobashi
 </VirtualHost>
 
+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
