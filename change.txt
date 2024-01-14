@@ -54,3 +54,6 @@ NameVirtualHost http://192.168.3.21/:80
 </VirtualHost>
 
 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
+
+// ウイルス名
+Trojan.Generic.1394607
