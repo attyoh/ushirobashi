@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$message = "a";
+$message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // データベース接続情報
     $servername = "localhost";
@@ -38,16 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // ログイン失敗時の処理
             $_SESSION['login_error'] = "incorrect";
-            $message = "メールアドレスもしくはパスワードが異なります";
-            header("Location: login_form.php");  // ログイン失敗時に login.html にリダイレクト
-            exit();
+            $message = "login false";
         }
     } else {
         // ログイン失敗時の処理
         $_SESSION['login_error'] = "incorrect";
-        $message = "メールアドレスもしくはパスワードが異なります";
-        header("Location: login_form.php");  // ログイン失敗時に login.html にリダイレクト
-        exit();
+        $message = "login false";
     }
     
     // データベース接続を閉じる
@@ -56,3 +52,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $message = htmlspecialchars($message);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    
+    <h2>Login</h2>
+    <div class="text-danger mt-5" style="font-size: 14px"><?= $message; ?></div>
+    <form action="login_form.php" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" pattern="[a-zA-Z0-9]+" title="英数字のみ使用可能" required><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+        
+        <input type="submit" value="Login" name="Login">
+    </form>
+
+    <h2>Register</h2>
+    <form action="register.php" method="post">
+        <label for="new_username">New Username:</label>
+        <input type="text" name="new_username" pattern="[a-zA-Z0-9]+" title="英数字のみ使用可能" required><br>
+        
+        <label for="new_password">New Password:</label>
+        <input type="password" name="new_password" required><br>
+        
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
