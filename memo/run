@@ -1,0 +1,4 @@
+obser.php
+スクリプトをバックグラウンドで実行:
+nohup php /var/www/html/log/obser.php > output.log 2>&1 &
+
