@@ -4,6 +4,7 @@ require_once 'config.php';
 Config::setConfigDirectory(__DIR__ . "/config");
 $userId = Config::get('lineUserId');                      // 通知を受け取るLineユーザーのID
 $channelAccessToken = Config::get('channelAccessToken');  // Line Messaging APIのアクセストークン
+$slackWebhookUrl = Config::get('slackWebhookUrl');        // Slack Incoming WebhooksのWebhook URL
 $logFilePath = '/var/log/httpd/access_log';       // アクセスログのパスを指定
 $logOutputFile = '/var/www/html/log/output.log';  // ログを保存するファイルのパス
 $keywordToDetect = 'Hydra';                       // 検出したい単語を指定
@@ -24,21 +25,21 @@ while (true) {
             preg_match('/^(\S+) \S+ \S+ \[([^\]]+)\] "(?:GET|POST|PUT|DELETE) .*" \d+ \d+ "(?:.*)" "(?:.*)"$/m', $logContent, $matches);
             // $detectedIP = isset($matches[1]) ? $matches[1] : 'IPアドレス不明';
             $detectedIP = '203.181.237.86';
-            $accessDateTime = isset($matches[2]) ? $matches[2] : '日時不明';
+            $accessDateTime = isset($matches[2]) ? formatDate($matches[2]) : '日時不明';
 
             // whois情報を取得
             $whoisInfo = shell_exec('whois ' . $detectedIP);
 
             // ログファイルに通知を追加
-            $logEntry = '[' . date('Y-m-d H:i:s') . '] 検出された単語: ' . $keywordToDetect . PHP_EOL;
-            $logEntry = '[' . date('Y-m-d H:i:s') . '] 検出された単語: ' . $keywordToDetect . ', IPアドレス: ' . $detectedIP . ', アクセスされた日時: ' . $accessDateTime . PHP_EOL;
-            $logEntry .= 'Whois情報:' . PHP_EOL . $whoisInfo . PHP_EOL;
+            $logEntry = '[' . date('Y-m-d H:i:s') . "]\n検出された単語: " . $keywordToDetect . "\nIPアドレス: " . $detectedIP . "\nアクセスされた日時: " . $accessDateTime . "\n\n";
+            $logEntry .= 'Whois情報:' . "\n" . $whoisInfo . "\n";
             file_put_contents($logOutputFile, $logEntry, FILE_APPEND);
-
-            $message = $keywordToDetect . 'が検出されました!' . PHP_EOL . PHP_EOL . '現在' . $sleeptime . '秒間隔で監視しています。' . PHP_EOL . PHP_EOL . '以下にwhois情報を表示します。' . PHP_EOL . $whoisInfo;
+            
+            $message = $keywordToDetect . "が検出されました!\n" . "アクセスされた日時: " . $accessDateTime . "\n現在" . $sleeptime . "秒間隔で監視しています。\n\n" . 'whois情報を表示します。' . "\n" . $whoisInfo;
+            // file_put_contents($logOutputFile, $message, FILE_APPEND);
             
             // Lineに通知を送信
-            sendLineNotification($channelAccessToken, $userId, $message);
+            // sendLineNotification($channelAccessToken, $userId, $message);
         }
 
         // 最後に読み取った位置を更新
@@ -78,5 +79,10 @@ function sendLineNotification($channelAccessToken, $userId, $message) {
     curl_setopt_array($ch, $options);
     $result = curl_exec($ch);
     curl_close($ch);
+}
+
+function formatDate($rawDateTime) {
+    $timestamp = strtotime($rawDateTime);
+    return date('Y年m月d日 H時i分s秒', $timestamp);
 }
 ?>
