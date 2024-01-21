@@ -40,6 +40,9 @@ while (true) {
             
             // Lineに通知を送信
             // sendLineNotification($channelAccessToken, $userId, $message);
+
+            // Slackに通知を送信
+            sendSlackNotification($slackWebhookUrl, $message);
         }
 
         // 最後に読み取った位置を更新
@@ -50,6 +53,8 @@ while (true) {
     sleep($sleeptime);
 }
 
+
+//Lineに通知を送信する関数
 function sendLineNotification($channelAccessToken, $userId, $message) {
     $url = 'https://api.line.me/v2/bot/message/multicast';
 
@@ -81,6 +86,24 @@ function sendLineNotification($channelAccessToken, $userId, $message) {
     curl_close($ch);
 }
 
+
+// Slackに通知を送信する関数
+function sendSlackNotification($webhookUrl, $message) {
+    $data = array('text' => $message);
+
+    $options = [
+        'http' => [
+            'header'  => "Content-type: application/json",
+            'method'  => 'POST',
+            'content' => json_encode($data)
+        ]
+    ];
+
+    $context  = stream_context_create($options);
+    $result = file_get_contents($webhookUrl, false, $context);
+}
+
+// 日付を成形
 function formatDate($rawDateTime) {
     $timestamp = strtotime($rawDateTime);
     return date('Y年m月d日 H時i分s秒', $timestamp);
