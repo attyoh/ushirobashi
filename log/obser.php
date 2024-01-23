@@ -4,16 +4,17 @@ require_once 'config.php';
 Config::setConfigDirectory(__DIR__ . "/config");
 $userId = Config::get('lineUserId');                      // 通知を受け取るLineユーザーのID
 $channelAccessToken = Config::get('channelAccessToken');  // Line Messaging APIのアクセストークン
-$slackWebhookUrl = Config::get('slackWebhookUrl');        // Slack Incoming WebhooksのWebhook URL
+$slackWebhookUrl = Config::get('slackWebhookUrl');        // Slack Webhook URL
 $logFilePath = '/var/log/httpd/access_log';       // アクセスログのパスを指定
 $logOutputFile = '/var/www/html/log/output.log';  // ログを保存するファイルのパス
 $keywordToDetect = 'Hydra';                       // 検出したい単語を指定
 
 // 監視
 $lastPosition = 0;
-$sleeptime = 60;
+$sleeptime = 10;
 
 while (true) {
+// if (true) {
     // アクセスログの末尾を取得
     $logContent = shell_exec('tail -c +' . $lastPosition . ' ' . $logFilePath);
 
@@ -33,16 +34,16 @@ while (true) {
             // ログファイルに通知を追加
             $logEntry = '[' . date('Y-m-d H:i:s') . "]\n検出された単語: " . $keywordToDetect . "\nIPアドレス: " . $detectedIP . "\nアクセスされた日時: " . $accessDateTime . "\n\n";
             $logEntry .= 'Whois情報:' . "\n" . $whoisInfo . "\n";
-            file_put_contents($logOutputFile, $logEntry, FILE_APPEND);
+            // file_put_contents($logOutputFile, $logEntry, FILE_APPEND);
             
             $message = $keywordToDetect . "が検出されました!\n" . "アクセスされた日時: " . $accessDateTime . "\n現在" . $sleeptime . "秒間隔で監視しています。\n\n" . 'whois情報を表示します。' . "\n" . $whoisInfo;
-            // file_put_contents($logOutputFile, $message, FILE_APPEND);
+            file_put_contents($logOutputFile, $message, FILE_APPEND);
             
             // Lineに通知を送信
             // sendLineNotification($channelAccessToken, $userId, $message);
 
             // Slackに通知を送信
-            sendSlackNotification($slackWebhookUrl, $message);
+            // sendNotification($slackWebhookUrl, $message);
         }
 
         // 最後に読み取った位置を更新
@@ -87,8 +88,8 @@ function sendLineNotification($channelAccessToken, $userId, $message) {
 }
 
 
-// Slackに通知を送信する関数
-function sendSlackNotification($webhookUrl, $message) {
+// Webhookに通知を送信する関数
+function sendNotification($webhookUrl, $message) {
     $data = array('text' => $message);
 
     $options = [
