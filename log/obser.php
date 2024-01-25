@@ -4,6 +4,7 @@ require_once 'config.php';
 Config::setConfigDirectory(__DIR__ . "/config");
 $userId = Config::get('lineUserId');                      // 通知を受け取るLineユーザーのID
 $channelAccessToken = Config::get('channelAccessToken');  // Line Messaging APIのアクセストークン
+$discordWebhookUrl = Config::get('discordWebhookUrl');    // Discord Webhook URL
 $slackWebhookUrl = Config::get('slackWebhookUrl');        // Slack Webhook URL
 $logFilePath = '/var/log/httpd/access_log';       // アクセスログのパスを指定
 $logOutputFile = '/var/www/html/log/output.log';  // ログを保存するファイルのパス
@@ -44,6 +45,9 @@ while (true) {
 
             // Slackに通知を送信
             // sendNotification($slackWebhookUrl, $message);
+
+            // Discordに通知を送信
+            // sendDiscordNotification($discordWebhookUrl, $message);
         }
 
         // 最後に読み取った位置を更新
