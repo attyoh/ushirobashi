@@ -6,6 +6,7 @@ $userId = Config::get('lineUserId');                      // 通知を受け取�
 $channelAccessToken = Config::get('channelAccessToken');  // Line Messaging APIのアクセストークン
 $discordWebhookUrl = Config::get('discordWebhookUrl');    // Discord Webhook URL
 $slackWebhookUrl = Config::get('slackWebhookUrl');        // Slack Webhook URL
+$teamsWebhookUrl = Config::get('teamsWebhookUrl');      // Microsoft Teamrs Webhook URL
 $logFilePath = '/var/log/httpd/access_log';       // アクセスログのパスを指定
 $logOutputFile = '/var/www/html/log/output.log';  // ログを保存するファイルのパス
 $keywordToDetect = 'Hydra';                       // 検出したい単語を指定
@@ -14,8 +15,8 @@ $keywordToDetect = 'Hydra';                       // 検出したい単語を指
 $lastPosition = 0;
 $sleeptime = 10;
 
-while (true) {
-// if (true) {
+// while (true) {
+if (true) {
     // アクセスログの末尾を取得
     $logContent = shell_exec('tail -c +' . $lastPosition . ' ' . $logFilePath);
 
@@ -48,6 +49,9 @@ while (true) {
 
             // Discordに通知を送信
             // sendDiscordNotification($discordWebhookUrl, $message);
+
+            // Microsoft Teamsに通知を送信
+            // sendTeamsNotification($teamsWebhookUrl, $message);
         }
 
         // 最後に読み取った位置を更新
