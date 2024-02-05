@@ -13,7 +13,7 @@ $keywordToDetect = 'Hydra';                       // 検出したい単語を指
 
 // 監視
 $lastPosition = 0;
-$sleeptime = 10;
+$sleeptime = 0;
 
 // while (true) {
 if (true) {
@@ -42,16 +42,16 @@ if (true) {
             file_put_contents($logOutputFile, $message, FILE_APPEND);
             
             // Lineに通知を送信
-            // sendLineNotification($channelAccessToken, $userId, $message);
+            sendLineNotification($channelAccessToken, $userId, $message);
 
             // Slackに通知を送信
-            // sendNotification($slackWebhookUrl, $message);
+            sendNotification($slackWebhookUrl, $message);
 
             // Discordに通知を送信
-            // sendDiscordNotification($discordWebhookUrl, $message);
+            sendNotification($discordWebhookUrl, $message);
 
             // Microsoft Teamsに通知を送信
-            // sendTeamsNotification($teamsWebhookUrl, $message);
+            sendNotification($teamsWebhookUrl, $message);
         }
 
         // 最後に読み取った位置を更新
